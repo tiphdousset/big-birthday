@@ -17,3 +17,61 @@ html,body{height: 100%; margin: 0; padding: 0}
     padding-top: 48px;
 }
 
+#map {
+    top: 101px;
+    left: 134px;
+}
+
+#map > circle{
+fill: deepskyblue;
+}
+
+#map:hover > circle {
+fill: green
+}
+
+#map:hover {
+/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+-webkit-filter: drop-shadow(0px 0px 7px deepskyblue); 
+filter: drop-shadow(0px 0px 7px deepskyblue);
+}
+
+#photo {
+    top: 106px;
+    left: 222px;
+}
+
+#photo > circle{
+fill: red;
+}
+
+#photo:hover > circle {
+fill: orange
+}
+
+#photo:hover {
+/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+-webkit-filter: drop-shadow(0px 0px 7px red); 
+filter: drop-shadow(0px 0px 7px red);
+}
+
+#contact {
+    top: 98px;
+    left: 509px;
+}
+
+#contact > circle{
+fill: yellow;
+}
+
+#contact:hover > circle {
+fill: deepskyblue
+}
+
+#contact:hover {
+/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+-webkit-filter: drop-shadow(0px 0px 7px red); 
+filter: drop-shadow(0px 0px 7px red);
+}
+
+
