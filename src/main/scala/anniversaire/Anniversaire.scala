@@ -10,6 +10,7 @@ object Anniversaire {
   implicit val ctx: Ctx.Owner = Ctx.Owner.safe()
 
   def main(args: Array[String]): Unit = {
+
     val page = Var("")
 
     def light_div(lightId:String) = {
@@ -20,7 +21,8 @@ object Anniversaire {
 
     val intro_button = button(id := "intro_button",
                               "They are back.",
-                              onClick --> sideEffect{page() = "start"}
+                              /*onClick --> sideEffect{page() = "start"}*/
+                              onClick("start") --> page
                              )
     val intro_div = div(
                     backgroundImage := "url(intro.jpg)",
@@ -36,9 +38,19 @@ object Anniversaire {
                   textShadow := "0 1px 1px #fff",
                   fontSize := "160px",
                   marginBottom := "0"
+
                   )
+
+    val contentHandler = Var[VNode](div("empty"))
+    val main_container = div(borderStyle := "dotted",
+                             marginLeft := "auto",
+                             marginRight := "auto",
+                             width := "900px",
+                             height := "200px",
+                             contentHandler
+                            )
  
-     val lights_div = div(
+    val lights_div = div(
                     marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
                     marginRight:= "auto",
                     width:= "900px", //default width for div is 100%
@@ -46,27 +58,28 @@ object Anniversaire {
                     backgroundSize := "contain", 
                     backgroundRepeat := "no-repeat",
                     height := "150px",
-                    style("background-position-x") := "center",
                     position:="relative",
-                    light_div("map"),
-                    light_div("photo"),
-                    light_div("contact")
+                    light_div("map")(onClick(div("map")) --> contentHandler),
+                    light_div("photo")(onClick(div("photo")) --> contentHandler),
+                    light_div("contact")(onClick(div("contact")) --> contentHandler),
                     )
 
-    val start_div = div(
+    val home_div = div(
                     title,
                     backgroundImage := "url(tente.jpg)",
                     backgroundSize := "cover", 
                     height := "100%",
-                    lights_div
+                    lights_div,
+                    main_container
                     )
 
-   val main = div(
+
+    val main = div(
                   height := "100%",
 
               Rx{
                 if (page() == "start"){
-                  start_div
+                  home_div
                 }
                 else intro_div
               }
