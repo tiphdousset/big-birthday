@@ -31,7 +31,10 @@ object Anniversaire {
                     intro_button,
                     )
 
+    val countDown = div(s"J - ${CountDown.countDown}", fontSize := "80px", textAlign := "left")
+
     val title = h1(id := "title",
+                  countDown,
                   "La Tentaine",
                   fontFamily := "Great Vibes",
                   textAlign := "center",
