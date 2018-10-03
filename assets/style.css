@@ -27,7 +27,7 @@ fill: deepskyblue;
 }
 
 #map:hover > circle {
-fill: green
+fill: yellowGreen
 }
 
 #map:hover {
@@ -42,7 +42,7 @@ filter: drop-shadow(0px 0px 7px deepskyblue);
 }
 
 #photo > circle{
-fill: red;
+fill: tomato;
 }
 
 #photo:hover > circle {
@@ -51,8 +51,8 @@ fill: orange
 
 #photo:hover {
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px red); 
-filter: drop-shadow(0px 0px 7px red);
+-webkit-filter: drop-shadow(0px 0px 7px tomato); 
+filter: drop-shadow(0px 0px 7px tomato);
 }
 
 #contact {
@@ -61,7 +61,7 @@ filter: drop-shadow(0px 0px 7px red);
 }
 
 #contact > circle{
-fill: yellow;
+fill: gold;
 }
 
 #contact:hover > circle {
@@ -70,8 +70,8 @@ fill: deepskyblue
 
 #contact:hover {
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px red); 
-filter: drop-shadow(0px 0px 7px red);
+-webkit-filter: drop-shadow(0px 0px 7px tomato); 
+filter: drop-shadow(0px 0px 7px tomato);
 }
 
 

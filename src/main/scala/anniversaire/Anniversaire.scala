@@ -42,11 +42,12 @@ object Anniversaire {
                   )
 
     val contentHandler = Var[VNode](div("empty"))
+
     val main_container = div(borderStyle := "dotted",
-                             marginLeft := "auto",
-                             marginRight := "auto",
-                             width := "900px",
-                             height := "200px",
+                             marginLeft := "50px",
+                             marginRight := "50px",
+                             height := "500px",
+                             backgroundColor := "#ffffff85",
                              contentHandler
                             )
  
@@ -54,14 +55,15 @@ object Anniversaire {
                     marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
                     marginRight:= "auto",
                     width:= "900px", //default width for div is 100%
-                    backgroundImage := "url(lights.svg)",
+                    /*backgroundImage := "url(lights.svg)",*/
+                    backgroundImage := "url(lichtketteF.svg)",
                     backgroundSize := "contain", 
                     backgroundRepeat := "no-repeat",
                     height := "150px",
                     position:="relative",
                     light_div("map")(onClick(div("map")) --> contentHandler),
                     light_div("photo")(onClick(div("photo")) --> contentHandler),
-                    light_div("contact")(onClick(div("contact")) --> contentHandler),
+                    light_div("contact")(onClick(Contact.contacts) --> contentHandler),
                     )
 
     val home_div = div(
@@ -82,6 +84,7 @@ object Anniversaire {
                   home_div
                 }
                 else intro_div
+                home_div //to be deleted
               }
        )
 
