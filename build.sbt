@@ -29,14 +29,14 @@ scalacOptions ++=
   "-feature" ::
   "-language:_" ::
   "-Xfuture" ::
-  "-Xlint" ::
+  /* "-Xlint" :: */
   "-Ypartial-unification" ::
   "-Yno-adapted-args" ::
-  "-Ywarn-extra-implicit" ::
-  "-Ywarn-infer-any" ::
-  "-Ywarn-value-discard" ::
-  "-Ywarn-nullary-override" ::
-  "-Ywarn-nullary-unit" ::
+  /* "-Ywarn-extra-implicit" :: */
+  /* "-Ywarn-infer-any" :: */
+  /* "-Ywarn-value-discard" :: */
+  /* "-Ywarn-nullary-override" :: */
+  /* "-Ywarn-nullary-unit" :: */
   Nil
 
 

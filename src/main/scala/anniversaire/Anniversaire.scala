@@ -31,7 +31,7 @@ object Anniversaire {
                     intro_button,
                     )
 
-    val countDown = div(s"J - ${CountDown.countDown}", fontSize := "80px", textAlign := "left")
+    val countDown = div(s"J - ${CountDown.countDown}", fontSize := "40px", textAlign := "left", marginLeft :="10px")
 
     val title = h1(id := "title",
                   countDown,
@@ -64,8 +64,8 @@ object Anniversaire {
                     backgroundRepeat := "no-repeat",
                     height := "150px",
                     position:="relative",
-                    light_div("map")(onClick(div("map")) --> contentHandler),
-                    light_div("photo")(onClick(div("photo")) --> contentHandler),
+                    light_div("map")(onClick(Map.map) --> contentHandler),
+                    light_div("photo")(onClick(Photos.photos) --> contentHandler),
                     light_div("contact")(onClick(Contact.contacts) --> contentHandler),
                     )
 
@@ -87,7 +87,7 @@ object Anniversaire {
                   home_div
                 }
                 else intro_div
-                home_div //to be deleted
+                home_div //temporary for test purpose
               }
        )
 
