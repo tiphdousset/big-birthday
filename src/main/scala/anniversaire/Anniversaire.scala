@@ -13,10 +13,21 @@ object Anniversaire {
 
     val page = Var("")
 
-    def light_div(lightId:String) = {
-                    import svg._
-                    svg(id:=lightId, width:="30px", height:="40px", rect(y:="5", x:="10", height:="10", width:="10"), circle(r:="10",cy:="25",cx:="15"),
-                    position:= "absolute")
+    def light_div(lightId:String, description:String) = { 
+      import svg._
+      div(
+        cls := "lightsCls",
+        id := lightId,
+        position := "absolute",
+        div(
+          svg( 
+              width:="30px", height:="40px", 
+              rect(y:="5", x:="10", height:="10", width:="10"), 
+              circle(r:="10",cy:="25",cx:="15")
+              )
+          ),
+        div(cls := "descriptionCls", description)
+      )
     }
 
     val intro_button = button(id := "intro_button",
@@ -64,9 +75,9 @@ object Anniversaire {
                     backgroundRepeat := "no-repeat",
                     height := "150px",
                     position:="relative",
-                    light_div("map")(onClick(Map.map) --> contentHandler),
-                    light_div("photo")(onClick(Photos.photos) --> contentHandler),
-                    light_div("contact")(onClick(Contact.contacts) --> contentHandler),
+                    light_div("map", "la map")(onClick(Map.map) --> contentHandler),
+                    light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
+                    light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
                     )
 
     val home_div = div(
