@@ -12,10 +12,10 @@ object Contact{
 
 
   val tiph = div(contact("Tiph", "tiphdousset@gmail.com", Seq("06.63.88.31.50", "0049 1573 0983456"), "gold"))
-  val bene = div(contact("Béné","benedicte.gourdon@gmail.com", Seq("07.81.18.84.63"), "yellowGreen"))
   val fanch = div(contact("Fanch","francois.sail@gmail.com", Seq("06.76.29.51.25"), "pink"))
+  val bene = div(contact("Béné","benedicte.gourdon@gmail.com", Seq("07.81.18.84.63"), "yellowGreen"))
   val contacts = div(
-    div(tiph, bene, fanch, display := "flex", justifyContent := "space-around"),
+    div(tiph, fanch, bene, display := "flex", justifyContent := "space-around"),
     img(src := "20ans.jpg")
   )
 }
