@@ -33,13 +33,17 @@ object Anniversaire {
     val intro_button = button(id := "intro_button",
                               "They are back.",
                               /*onClick --> sideEffect{page() = "start"}*/
-                              onClick("start") --> page
+                              onClick("start") --> page,
+                              cursor := "pointer"
                              )
     val intro_div = div(
                     backgroundImage := "url(intro.jpg)",
                     backgroundSize := "cover", 
                     height := "100%",
                     intro_button,
+                    onClick("start") --> page,
+                    cursor := "pointer"
+
                     )
 
     val countDown = div(s"J - ${CountDown.countDown}", fontSize := "40px", textAlign := "left", marginLeft :="10px")
