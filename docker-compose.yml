@@ -3,6 +3,6 @@ services:
   potgresContainer:
       image: postgres:11.1
       volumes:
-          - /home/tiphanie/tentaine/anniversaire/postgres_data/:/var/lib/postgresql/data
+          - /home/tiphanie/tentaine/postgres_data/:/var/lib/postgresql/data
       ports:
           - "5432:5432"
