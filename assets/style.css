@@ -87,3 +87,9 @@ display:flex;
     visibility:visible;
 
 }
+
+.innerShadow{
+    -webkit-box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);
+    box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);
+}

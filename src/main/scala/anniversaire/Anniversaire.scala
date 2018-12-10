@@ -21,90 +21,134 @@ object Anniversaire {
         position := "absolute",
         div(
           svg( 
-              width:="30px", height:="40px", 
-              rect(y:="5", x:="10", height:="10", width:="10"), 
-              circle(r:="10",cy:="25",cx:="15")
-              )
-          ),
-        div(cls := "descriptionCls", description)
-      )
+            width:="30px", height:="40px", 
+            rect(y:="5", x:="10", height:="10", width:="10"), 
+            circle(r:="10",cy:="25",cx:="15")
+          )
+        ),
+      div(cls := "descriptionCls", description)
+    )
     }
 
     val intro_button = button(id := "intro_button",
-                              "They are back.",
-                              /*onClick --> sideEffect{page() = "start"}*/
-                              onClick("start") --> page,
-                              cursor := "pointer"
-                             )
+      "They are back.",
+      /*onClick --> sideEffect{page() = "start"}*/
+     onClick("start") --> page,
+     cursor := "pointer"
+     )
     val intro_div = div(
-                    backgroundImage := "url(intro.jpg)",
-                    backgroundSize := "cover", 
-                    height := "100%",
-                    intro_button,
-                    onClick("start") --> page,
-                    cursor := "pointer"
+      backgroundImage := "url(intro.jpg)",
+      backgroundSize := "cover", 
+      height := "100%",
+      intro_button,
+      onClick("start") --> page,
+      cursor := "pointer"
 
-                    )
+    )
 
     val countDown = div(s"J - ${CountDown.countDown}", fontSize := "40px", textAlign := "left", marginLeft :="10px")
 
     val title = h1(id := "title",
-                  countDown,
-                  "La Tentaine",
-                  fontFamily := "Great Vibes",
-                  textAlign := "center",
-                  textShadow := "0 1px 1px #fff",
-                  fontSize := "160px",
-                  marginBottom := "0"
+      countDown,
+      "La Tentaine",
+      fontFamily := "Great Vibes",
+      textAlign := "center",
+      textShadow := "0 1px 1px #fff",
+      fontSize := "160px",
+      marginBottom := "0"
 
-                  )
+      )
 
     val contentHandler = Var[VNode](div("empty"))
 
     val main_container = div(borderStyle := "dotted",
-                             marginLeft := "50px",
-                             marginRight := "50px",
-                             height := "500px",
-                             backgroundColor := "#ffffff85",
-                             contentHandler
-                            )
- 
-    val lights_div = div(
-                    marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
-                    marginRight:= "auto",
-                    width:= "900px", //default width for div is 100%
-                    /*backgroundImage := "url(lights.svg)",*/
-                    backgroundImage := "url(lichtketteF.svg)",
-                    backgroundSize := "contain", 
-                    backgroundRepeat := "no-repeat",
-                    height := "150px",
-                    position:="relative",
-                    light_div("map", "la map")(onClick(Map.map) --> contentHandler),
-                    light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
-                    light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
-                    )
+      marginLeft := "50px",
+      marginRight := "50px",
+      height := "500px",
+      backgroundColor := "#ffffff85",
+      contentHandler
+      )
 
-    val home_div = div(
-                    title,
-                    backgroundImage := "url(tente.jpg)",
-                    backgroundSize := "cover", 
-                    height := "100%",
-                    lights_div,
-                    main_container
-                    )
+    val lights_div = div(
+      marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
+      marginRight:= "auto",
+      width:= "900px", //default width for div is 100%
+      /*backgroundImage := "url(lights.svg)",*/
+     backgroundImage := "url(lichtketteF.svg)",
+     backgroundSize := "contain", 
+     backgroundRepeat := "no-repeat",
+     height := "150px",
+     position:="relative",
+     light_div("map", "la map")(onClick(Map.map) --> contentHandler),
+     light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
+     light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
+
+     )
+
+    val home_div = {
+      val showTokenBox = Var(true)
+      val tokenValue = Var("")
+      val tokenBorder = Var("none")
+      div(
+        title,
+        backgroundImage := "url(tente.jpg)",
+        backgroundSize := "cover", 
+        height := "100%",
+        lights_div,
+        main_container,
+        Rx{
+          if (showTokenBox()){
+            div(
+              height := "100%",
+              backgroundColor := "rgba(0,0,0,0.8)",
+              position := "absolute",
+              top := "0",
+              left := "0",
+              width := "100%",
+              display.flex,
+              justifyContent.center,
+              alignItems.center,
+              input(
+                tpe := "text",
+                placeholder := "Please enter your token",
+                fontSize := "100px",
+                cls := "innerShadow",
+                border <-- tokenBorder,
+                //fontFamily := "monospace"
+                onInput.value --> sideEffect{str =>
+                  tokenValue() = str
+                  tokenBorder() = "none"
+                }
+                ),
+              button("Ok",
+                onClick --> sideEffect{
+                  if (GuestCostume.isTokenValid(tokenValue.now)){
+                    showTokenBox() = false
+                  }
+                  else {
+                    tokenBorder() = "4px solid red"
+                  }
+                }
+                ),
+              )
+          }
+          else VDomModifier.empty
+        }
+        )
+    }
 
 
     val main = div(
-                  height := "100%",
+      height := "100%",
 
-              Rx{
-                if (page() == "start"){
-                  home_div
-                }
-                else intro_div
-                home_div //temporary for test purpose
-              }
-       )
+      Rx{
+        if (page() == "start"){
+          home_div
+        }
+        else intro_div
+        home_div //temporary for test purpose
+      }
+      )
 
 
     OutWatch.renderReplace("#app", main).unsafeRunSync()
