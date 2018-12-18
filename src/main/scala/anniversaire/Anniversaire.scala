@@ -5,6 +5,9 @@ import outwatch.dom.dsl._
 import monix.execution.Scheduler.Implicits.global
 import rx._
 import util._
+import org.scalajs.dom.ext.KeyCode
+
+
 
 object Anniversaire {
   implicit val ctx: Ctx.Owner = Ctx.Owner.safe()
@@ -33,7 +36,7 @@ object Anniversaire {
 
     val intro_button = button(id := "intro_button",
       "They are back.",
-      /*onClick --> sideEffect{page() = "start"}*/
+      /*onClick.foreach{page() = "start"}*/
      onClick("start") --> page,
      cursor := "pointer"
      )
@@ -86,6 +89,15 @@ object Anniversaire {
 
      )
 
+    def onClickToken(showTokenBox: Var[Boolean], tokenBorder: Var[String]) = {
+      if (GuestCostume.isTokenValid(tokenValue.now)){
+        showTokenBox() = false
+      }
+      else {
+        tokenBorder() = "4px solid red"
+      }
+    }
+
     val home_div = {
       val showTokenBox = Var(true)
       val tokenBorder = Var("none")
@@ -115,20 +127,16 @@ object Anniversaire {
                 cls := "innerShadow",
                 border <-- tokenBorder,
                 //fontFamily := "monospace"
-                onInput.value --> sideEffect{str =>
+                onInput.value.foreach{str =>
                   tokenValue() = str
                   tokenBorder() = "none"
-                }
+                },
+                onKeyDown.filter(_.keyCode == KeyCode.Enter).foreach{onClickToken(showTokenBox, tokenBorder)}
                 ),
-              button("Ok",
-                onClick --> sideEffect{
-                  if (GuestCostume.isTokenValid(tokenValue.now)){
-                    showTokenBox() = false
-                  }
-                  else {
-                    tokenBorder() = "4px solid red"
-                  }
-                }
+              button("OK",
+                onClick.foreach{onClickToken(showTokenBox, tokenBorder) },
+                fontSize := "100px",
+                marginLeft := "20px"
                 ),
               )
           }
@@ -136,6 +144,7 @@ object Anniversaire {
         }
         )
     }
+
 
 
     val main = div(
