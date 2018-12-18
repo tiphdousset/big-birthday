@@ -12,6 +12,7 @@ object Anniversaire {
   def main(args: Array[String]): Unit = {
 
     val page = Var("")
+    val tokenValue = Var("")
 
     def light_div(lightId:String, description:String) = { 
       import svg._
@@ -79,7 +80,7 @@ object Anniversaire {
      backgroundRepeat := "no-repeat",
      height := "150px",
      position:="relative",
-     light_div("map", "la map")(onClick(Map.map) --> contentHandler),
+     light_div("costume", "découvre ton personnage")(onClick.map(_ =>Costume.costume(tokenValue.now)) --> contentHandler),
      light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
      light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
 
@@ -87,7 +88,6 @@ object Anniversaire {
 
     val home_div = {
       val showTokenBox = Var(true)
-      val tokenValue = Var("")
       val tokenBorder = Var("none")
       div(
         title,

@@ -68,7 +68,12 @@ def getListGuestAndCostume(listPairGuests : Seq[(String, String)], listCostumes 
 val listGuestAndCostume = getListGuestAndCostume(listBestPairGuests, costumes)
 //println(listGuestAndCostume.mkString("\n"))
 
-def findNameAndCostumePerToken(token : String, listGuestAndCostume : Seq[((String,String), (String, String))], listAllGuests: List[Guest]) : Option[(String, String)] = {
+def findNameAndCostumePerToken(token : String) : Option[(String, String)] = {
+
+ val listAllGuests: List[Guest] = guests
+
+ val listGuestAndCostume: Seq[((String,String), (String, String))] = getListGuestAndCostume(listBestPairGuests, costumes);
+
   val name: Option[String] = listAllGuests.find(guest => guest.token == token).map(guest => guest.name)
   name.flatMap{name => 
     val flatListGuestAndCostume = listGuestAndCostume.flatMap{case (tuple1,tuple2) => List(tuple1,tuple2 ) }
