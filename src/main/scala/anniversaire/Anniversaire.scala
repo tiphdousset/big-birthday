@@ -63,12 +63,14 @@ object Anniversaire {
 
       )
 
-    val contentHandler = Var[VNode](div("empty"))
+    //val contentHandler = Var[VNode](div("empty"))
+    val contentHandler = Var[VNode](Contact.contacts)
 
     val main_container = div(borderStyle := "dotted",
       marginLeft := "50px",
       marginRight := "50px",
-      height := "500px",
+      marginTop := "60px",
+      minHeight := "500px",
       backgroundColor := "#ffffff85",
       contentHandler
       )
@@ -85,6 +87,7 @@ object Anniversaire {
      position:="relative",
      light_div("costume", "découvre ton personnage")(onClick.map(_ =>Costume.costume(tokenValue.now)) --> contentHandler),
      light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
+
      light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
 
      )
@@ -99,12 +102,14 @@ object Anniversaire {
     }
 
     val home_div = {
-      val showTokenBox = Var(true)
+      val showTokenBox = Var(false)
       val tokenBorder = Var("none")
       div(
         title,
         backgroundImage := "url(tente.jpg)",
         backgroundSize := "cover", 
+        backgroundAttachment := "fixed",
+        overflow := "auto",
         height := "100%",
         lights_div,
         main_container,
