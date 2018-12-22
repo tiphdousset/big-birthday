@@ -87,8 +87,8 @@ object Anniversaire {
      position:="relative",
      light_div("costume", "découvre ton personnage")(onClick.map(_ =>Costume.costume(tokenValue.now)) --> contentHandler),
      light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
-
      light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
+     light_div("info","Quoi?Où?Comment?")(onClick(Infos.info1) --> contentHandler),
 
      )
 

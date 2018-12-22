@@ -74,6 +74,27 @@ fill: deepskyblue
 filter: drop-shadow(0px 0px 7px tomato);
 }
 
+
+#info {
+    top: 88px;
+    left: 599px;
+}
+
+#info circle{
+fill: hotPink;
+}
+
+#info:hover circle {
+fill: lightSeaGreen
+}
+
+#info:hover {
+/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+-webkit-filter: drop-shadow(0px 0px 7px indigo); 
+filter: drop-shadow(0px 0px 7px indigo);
+}
+
+
 .lightsCls {
 display:flex;
 }

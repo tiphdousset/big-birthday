@@ -13,15 +13,17 @@ object Contact{
   val pic = div(backgroundImage := "url(20ans.jpg)",
       backgroundSize := "cover" ,
       height := "600px",
-      width := "70%",
+      width := "84.5%",
       marginLeft := "auto",
       marginRight := "auto",
-      marginTop := "60px"
+      marginTop := "30px"
       )
 
-  val tiph = div(contact("Tiph", "tiphdousset@gmail.com", Seq("06.63.88.31.50", "0049 1573 0983456"), "gold"))
+  val tiph = div(contact("Tiph", "tiphdousset@gmail.com", Seq("06.63.88.31.50 / 0049 1573 0983456"), "gold"))
   val fanch = div(contact("Fanch","francois.sail@gmail.com", Seq("06.76.29.51.25"), "pink"))
   val bene = div(contact("Béné","benedicte.gourdon@gmail.com", Seq("07.81.18.84.63"), "yellowGreen"))
-  val contacts = div(pic, div(tiph, fanch, bene, display := "flex", justifyContent := "space-around"))
+  val contacts_description = div("Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!",
+    /**fontFamily := "Great Vibes",**/ textAlign := "center", fontSize := "32px", marginTop := "5px")
+  val contacts = div(contacts_description, pic, div(tiph, fanch, bene, display := "flex", justifyContent := "space-around", marginTop := "10px"))
 }
 
