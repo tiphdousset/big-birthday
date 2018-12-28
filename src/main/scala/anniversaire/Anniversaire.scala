@@ -70,6 +70,7 @@ object Anniversaire {
       marginLeft := "50px",
       marginRight := "50px",
       marginTop := "60px",
+      marginBottom := "30px",
       minHeight := "500px",
       backgroundColor := "#ffffff85",
       contentHandler
@@ -89,6 +90,7 @@ object Anniversaire {
      light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
      light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
      light_div("info","Quoi?Où?Comment?")(onClick(Infos.info1) --> contentHandler),
+     light_div("fun","DO NOT CLICK HERE")(onClick(Fun.fun) --> contentHandler),
 
      )
 

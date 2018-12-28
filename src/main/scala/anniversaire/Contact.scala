@@ -24,6 +24,6 @@ object Contact{
   val bene = div(contact("Béné","benedicte.gourdon@gmail.com", Seq("07.81.18.84.63"), "yellowGreen"))
   val contacts_description = div("Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!",
     /**fontFamily := "Great Vibes",**/ textAlign := "center", fontSize := "32px", marginTop := "5px")
-  val contacts = div(contacts_description, pic, div(tiph, fanch, bene, display := "flex", justifyContent := "space-around", marginTop := "10px"))
+  val contacts = div(contacts_description, pic, div(tiph, fanch, bene, display := "flex", justifyContent := "space-around", marginTop := "10px", marginBottom := "10px"))
 }
 
