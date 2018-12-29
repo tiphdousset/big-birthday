@@ -20,7 +20,8 @@ object Costume{
    def costume(token: String) = {
      //div("token = "+token)
      //div("Guest and costume: "+GuestCostume.findNameAndCostumePerToken(token))
-     div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", costume_under_construction, "CONSTRUCTION")
+     //div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", costume_under_construction, "CONSTRUCTION")
+     div("On ne va pas tout te dévoiler mais reviens vite ici pour découvrir quel personnage t'es attribué!")
    }
 
  }

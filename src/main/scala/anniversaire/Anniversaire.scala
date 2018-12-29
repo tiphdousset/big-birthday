@@ -40,14 +40,15 @@ object Anniversaire {
      onClick("start") --> page,
      cursor := "pointer"
      )
+
     val intro_div = div(
       backgroundImage := "url(intro.jpg)",
       backgroundSize := "cover", 
       height := "100%",
       intro_button,
+      //why do we need it a second time?
       onClick("start") --> page,
       cursor := "pointer"
-
     )
 
     val countDown = div(s"J - ${CountDown.countDown}", fontSize := "40px", textAlign := "left", marginLeft :="10px")
@@ -90,7 +91,7 @@ object Anniversaire {
      light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
      light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
      light_div("info","Quoi?Où?Comment?")(onClick(Infos.info1) --> contentHandler),
-     light_div("fun","DO NOT CLICK HERE")(onClick(Fun.fun) --> contentHandler),
+     light_div("fun","DO NOT CLICK HERE")(onClick("fun") --> page)
 
      )
 
@@ -152,7 +153,9 @@ object Anniversaire {
         )
     }
 
-
+    val fun_div = div(
+      Fun.fun
+    )
 
     val main = div(
       height := "100%",
@@ -161,8 +164,11 @@ object Anniversaire {
         if (page() == "start"){
           home_div
         }
+        else if (page() == "fun"){
+          fun_div
+        }
         else intro_div
-        home_div //temporary for test purpose
+        //home_div //temporary for test purpose
       }
       )
 
