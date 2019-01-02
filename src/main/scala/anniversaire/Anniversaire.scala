@@ -55,7 +55,7 @@ object Anniversaire {
 
     val title = h1(id := "title",
       countDown,
-      "La Tentaine",
+      "La Tente'aine",
       fontFamily := "Great Vibes",
       textAlign := "center",
       textShadow := "0 1px 1px #fff",
@@ -68,12 +68,14 @@ object Anniversaire {
     val contentHandler = Var[VNode](Contact.contacts)
 
     val main_container = div(borderStyle := "dotted",
-      marginLeft := "50px",
-      marginRight := "50px",
+      marginLeft := "auto",
+      marginRight := "auto",
       marginTop := "60px",
       marginBottom := "30px",
       minHeight := "500px",
       backgroundColor := "#ffffff85",
+      width := "1300px",
+      padding := "20px",
       contentHandler
       )
 
