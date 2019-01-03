@@ -89,12 +89,11 @@ object Anniversaire {
      backgroundRepeat := "no-repeat",
      height := "150px",
      position:="relative",
-     light_div("costume", "découvre ton personnage")(onClick.map(_ =>Costume.costume(tokenValue.now)) --> contentHandler),
-     light_div("photo", "le coin photos")(onClick(Photos.photos) --> contentHandler),
-     light_div("contact", "contacts")(onClick(Contact.contacts) --> contentHandler),
-     light_div("info","Quoi?Où?Comment?")(onClick(Infos.info1) --> contentHandler),
-     light_div("fun","DO NOT CLICK HERE")(onClick("fun") --> page)
-
+     light_div("info","Informations")(onClick(Infos.info1) --> contentHandler),
+     light_div("costume", "Get dressed")(onClick.map(_ =>Costume.costume(tokenValue.now)) --> contentHandler),
+     light_div("fun","DO NOT CLICK HERE")(onClick("fun") --> page),
+     light_div("photo", "Photos")(onClick(Photos.photos) --> contentHandler),
+     light_div("contact", "Contacts")(onClick(Contact.contacts) --> contentHandler)
      )
 
     def onClickToken(showTokenBox: Var[Boolean], tokenBorder: Var[String]) = {

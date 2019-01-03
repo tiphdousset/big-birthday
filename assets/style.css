@@ -50,7 +50,7 @@ filter: drop-shadow(0px 0px 7px deepskyblue);
 }
 
 #photo {
-    left: 36px;
+    left: 693px;
     top: 57px;
 }
 
@@ -69,8 +69,8 @@ filter: drop-shadow(0px 0px 7px tomato);
 }
 
 #contact {
-    top: 78px;
-    left: 524px;
+    left: 861px;
+    top: 30px;
 }
 
 #contact circle{
@@ -89,8 +89,8 @@ filter: drop-shadow(0px 0px 7px tomato);
 
 
 #info {
-    top: 30px;
-    left: 861px;
+    left: 36px;
+    top: 57px;
 }
 
 #info circle{
@@ -109,8 +109,9 @@ filter: drop-shadow(0px 0px 7px indigo);
 
 
 #fun {
-    top: 57px;
-    left: 693px;
+    left: 524px;
+    top: 78px;
+    font-family: serif !important;
 }
 
 #fun circle{
@@ -127,6 +128,9 @@ fill: orange
 filter: drop-shadow(0px 0px 7px orange);
 }
 
+#fun .descriptionCls {
+font-family: monospace;
+}
 
 
 .lightsCls {
@@ -134,13 +138,13 @@ filter: drop-shadow(0px 0px 7px orange);
 }
 
 .lightsCls .descriptionCls {
-    visibility:hidden;
-
+    visibility: hidden;
+    font-family: Great Vibes;
 }
 
 .lightsCls:hover .descriptionCls {
     visibility:visible;
-
+    font-size: 30px;
 }
 
 .innerShadow{
