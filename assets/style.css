@@ -152,6 +152,7 @@ font-family: monospace;
 
 
 .lightsCls {
+    cursor: pointer;
 /* display:flex; */
 }
 

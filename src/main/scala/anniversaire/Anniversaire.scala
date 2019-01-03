@@ -29,7 +29,7 @@ object Anniversaire {
             width:="30px", height:="40px", 
             viewBox := "0 0 30 40", 
             rect(y:="5", x:="10", height:="10", width:="10"), 
-            circle(r:="10",cy:="25",cx:="15")
+            circle(r:="10",cy:="25",cx:="15"),
           )
         ),
       div(cls := "descriptionCls", description)
@@ -52,6 +52,10 @@ object Anniversaire {
     )
 
     val countDown = div(s"J - ${CountDown.countDown}", fontSize := "40px", textAlign := "left", marginLeft :="10px")
+   
+    //val contentHandler = Var[VNode](div("empty"))
+    val contentHandler = Var[Option[VNode]](None)
+
 
     val title = h1(id := "title",
       countDown,
@@ -60,20 +64,20 @@ object Anniversaire {
       textAlign := "center",
       textShadow := "0 1px 1px #fff",
       fontSize := "160px",
-      marginBottom := "0"
+      marginBottom := "0",
+      onClick(None) --> contentHandler,
+      cursor := "pointer"
 
       )
 
-    //val contentHandler = Var[VNode](div("empty"))
-    val contentHandler = Var[Option[VNode]](None)
-
-    val main_container = div(borderStyle := "dotted",
+     val main_container = div(borderStyle := "dotted",
       marginLeft := "auto",
       marginRight := "auto",
       marginTop := "60px",
       marginBottom := "30px",
       minHeight := "500px",
-      backgroundColor := "#ffffff85",
+      backgroundColor := "rgba(255, 255, 255, 0.8)",
+      // backgroundColor := "#ffffff85",
       width := "1300px",
       padding := "20px",
       contentHandler
