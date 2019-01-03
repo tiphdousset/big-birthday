@@ -16,12 +16,13 @@ object Fun{
                             display := "block",
                             marginTop := "50px",
                           ) )
-   val go_back_button = button(id := "go_back_button",
+
+   def go_back_button(page: Var[String]) = button(id := "go_back_button",
                                "please bring me back home", 
-                               cursor := "pointer")
+                               cursor := "pointer",onClick("start") --> page)
 
 
-    val fun = div(justifyContent.center, alignItems.center,fontSize := "50px", fun_gif, go_back_button)
+  def fun(page: Var[String]) = div(justifyContent.center, alignItems.center,fontSize := "50px", fun_gif, go_back_button(page))
 
 }
 

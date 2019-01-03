@@ -154,10 +154,6 @@ object Anniversaire {
         )
     }
 
-    val fun_div = div(
-      Fun.fun
-    )
-
     val main = div(
       height := "100%",
 
@@ -166,7 +162,7 @@ object Anniversaire {
           home_div
         }
         else if (page() == "fun"){
-          fun_div
+          Fun.fun(page)
         }
         else intro_div
         //home_div //temporary for test purpose
