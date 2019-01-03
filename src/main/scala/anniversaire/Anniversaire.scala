@@ -14,7 +14,7 @@ object Anniversaire {
 
   def main(args: Array[String]): Unit = {
 
-    val page = Var("")
+    val page = Var(Option.empty[String])
     val tokenValue = Var("")
 
     def light_div(lightId:String, description:String) = { 
@@ -24,8 +24,10 @@ object Anniversaire {
         id := lightId,
         position := "absolute",
         div(
-          svg( 
+          svg(
+            cls := "svgCls",
             width:="30px", height:="40px", 
+            viewBox := "0 0 30 40", 
             rect(y:="5", x:="10", height:="10", width:="10"), 
             circle(r:="10",cy:="25",cx:="15")
           )
@@ -36,8 +38,7 @@ object Anniversaire {
 
     val intro_button = button(id := "intro_button",
       "They are back.",
-      /*onClick.foreach{page() = "start"}*/
-     onClick("start") --> page,
+     onClick(Some("start")) --> page,
      cursor := "pointer"
      )
 
@@ -46,8 +47,7 @@ object Anniversaire {
       backgroundSize := "cover", 
       height := "100%",
       intro_button,
-      //why do we need it a second time?
-      onClick("start") --> page,
+      onClick(Some("start")) --> page, //we want to be able to click everywhere on the page and not only on the button
       cursor := "pointer"
     )
 
@@ -65,7 +65,7 @@ object Anniversaire {
       )
 
     //val contentHandler = Var[VNode](div("empty"))
-    val contentHandler = Var[VNode](Contact.contacts)
+    val contentHandler = Var[Option[VNode]](None)
 
     val main_container = div(borderStyle := "dotted",
       marginLeft := "auto",
@@ -89,11 +89,11 @@ object Anniversaire {
      backgroundRepeat := "no-repeat",
      height := "150px",
      position:="relative",
-     light_div("info","Informations")(onClick(Infos.info1) --> contentHandler),
-     light_div("costume", "Get dressed")(onClick.map(_ =>Costume.costume(tokenValue.now)) --> contentHandler),
-     light_div("fun","DO NOT CLICK HERE")(onClick("fun") --> page),
-     light_div("photo", "Photos")(onClick(Photos.photos) --> contentHandler),
-     light_div("contact", "Contacts")(onClick(Contact.contacts) --> contentHandler)
+     light_div("info","Informations")(onClick(Some(Infos.info1)) --> contentHandler),
+     light_div("costume", "Get dressed")(onClick.mapTo(Some(Costume.costume(tokenValue.now))) --> contentHandler),
+     light_div("fun","DO NOT CLICK HERE")(onClick(Some("fun")) --> page),
+     light_div("photo", "Photos")(onClick(Some(Photos.photos)) --> contentHandler),
+     light_div("contact", "Contacts")(onClick(Some(Contact.contacts)) --> contentHandler)
      )
 
     def onClickToken(showTokenBox: Var[Boolean], tokenBorder: Var[String]) = {
@@ -116,7 +116,14 @@ object Anniversaire {
         overflow := "auto",
         height := "100%",
         lights_div,
-        main_container,
+
+        Rx{
+        if (contentHandler().isDefined)
+          main_container
+        else
+          VDomModifier.empty
+        },
+
         Rx{
           if (showTokenBox()){
             div(
@@ -158,10 +165,10 @@ object Anniversaire {
       height := "100%",
 
       Rx{
-        if (page() == "start"){
+        if (page() == Some("start")){
           home_div
         }
-        else if (page() == "fun"){
+        else if (page() == Some("fun")){
           Fun.fun(page)
         }
         else intro_div

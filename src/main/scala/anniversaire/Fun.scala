@@ -17,12 +17,12 @@ object Fun{
                             marginTop := "50px",
                           ) )
 
-   def go_back_button(page: Var[String]) = button(id := "go_back_button",
+   def go_back_button(page: Var[Option[String]]) = button(id := "go_back_button",
                                "please bring me back home", 
-                               cursor := "pointer",onClick("start") --> page)
+                               cursor := "pointer",onClick(Some("start")) --> page)
 
 
-  def fun(page: Var[String]) = div(justifyContent.center, alignItems.center,fontSize := "50px", fun_gif, go_back_button(page))
+  def fun(page: Var[Option[String]]) = div(justifyContent.center, alignItems.center,fontSize := "50px", fun_gif, go_back_button(page))
 
 }
 

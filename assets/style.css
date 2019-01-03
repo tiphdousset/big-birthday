@@ -49,6 +49,13 @@ fill: yellowGreen
 filter: drop-shadow(0px 0px 7px deepskyblue);
 }
 
+#costume .svgCls {
+    width: 50px;
+    height: 50px;
+}
+
+
+
 #photo {
     left: 693px;
     top: 57px;
@@ -59,7 +66,7 @@ fill: tomato;
 }
 
 #photo:hover circle {
-fill: orange
+fill: darkOrchid
 }
 
 #photo:hover {
@@ -107,6 +114,12 @@ fill: lightSeaGreen
 filter: drop-shadow(0px 0px 7px indigo);
 }
 
+#info .svgCls {
+    width: 50px;
+    height: 50px;
+}
+
+
 
 #fun {
     left: 524px;
@@ -131,6 +144,11 @@ filter: drop-shadow(0px 0px 7px orange);
 #fun .descriptionCls {
 font-family: monospace;
 }
+
+/* #fun .svgCls { */
+/*     width: 60px; */
+/*     height: 60px; */
+/* } */
 
 
 .lightsCls {
