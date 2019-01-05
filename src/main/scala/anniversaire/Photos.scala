@@ -16,12 +16,14 @@ object Photos{
                             attr("frame-border") := "0",
                             cls := "giphy-embed",
                             borderWidth := "0",
-                            margin := "0 auto",
+                            // margin := "0 auto",
                             display := "block",
-                            marginTop := "50px",
+                            // marginTop := "50px",
+                            marginLeft := "30px",
+                            marginRight := "30px"
                           ) )
 
-    val photos = div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", photos_under_construction, "CONSTRUCTION")
+    val photos = div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", photos_under_construction, "CONSTRUCTION", height := "500px")
 }
 
 

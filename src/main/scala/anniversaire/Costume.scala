@@ -21,11 +21,16 @@ object Costume{
      //div("token = "+token)
      //div("Guest and costume: "+GuestCostume.findNameAndCostumePerToken(token))
      //div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", costume_under_construction, "CONSTRUCTION")
-     div(""" 
-Pas grand chose à préparer pour nous rejoindre si ce n'est ... ta tenue ! La grande roue ci-après te dévoilera dans quelques mois un déguisement à revêtir le samedi. Ton personnage appartient à un duo et tu devras lors de cette première soirée retrouver ton binôme parmi les invités. Pas de stress cependant pour les allergiques aux déguisements : tu peux te contenter d'arborer l'un des accessoires fétiches du personnage en question ou au contraire le jouer à fond, l'important c'est de retrouver ta moitié. #love. 
+     div("""Pas grand chose à préparer pour nous rejoindre si ce n'est...ta tenue !
+       La grande roue ci-après te dévoilera dans quelques mois un déguisement à revêtir le samedi.
+
+Ton personnage appartient à un duo et tu devras lors de cette première soirée retrouver ton binôme parmi les invités.
+
+Pas de stress cependant pour les allergiques aux déguisements : tu peux te contenter d'arborer l'un des accessoires fétiches du personnage en question ou au contraire le jouer à fond, l'important c'est de retrouver ta moitié. """, b("#love"),""" 
+
 Pour savoir ce que le hasard te réserve, reviens donc checker cette page au printemps!
 """,
-fontSize := "30px")
+fontSize := "30px", whiteSpace := "pre-line", fontFamily := "monospace")
    }
 
  }
