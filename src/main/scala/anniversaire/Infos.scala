@@ -9,7 +9,7 @@ object Infos{
 
   val info1 = div("""Hoyé hoyé !
 
-Pour toi, cher ami.e choisis entre tous pour célébrer nos 30 ans, voici quelques informations utiles pour préparer l'événement tant attendu.
+Pour toi, cher ami.e choisis entre tous pour célébrer nos 30 ans, voici quelques informations utiles pour préparer l'évènement tant attendu.
 
 Tout d'abord la date : les festivités se dérouleront du """, b("Samedi 8 au Lundi 10 Juin"),""". Vous êtes attendus en """, b("fin d'après midi le Samedi"),""" (disons vers 17h) et nous quitterons les lieux le Lundi en fin de matinée. 
 
@@ -23,7 +23,7 @@ Si certains d'entre vous souhaitent arriver plus tôt / partir plus tard, n'hés
 
 Non-french speaker : keep calm and don't panic, you can ask us for more explanations or...""",
     
-    fontSize := "30px", whiteSpace := "pre-line", fontFamily := "monospace")
+    fontSize := "20px", whiteSpace := "pre-line", fontFamily := "montserrat")
 
 
 }
