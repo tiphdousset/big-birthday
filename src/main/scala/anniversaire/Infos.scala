@@ -19,10 +19,10 @@ Pour les non-nantais, """, b("un billet pour Nantes"),""" est à ce stade largem
 
 Pour le couchage, un champ sera mis à disposition pour planter """, b("les tentes"),""".  Pense donc à prendre ta tente ;-)
 
-Si certains d'entre vous souhaitent arriver plus tôt / partir plus tard, n'hésitez pas à nous contacter afin que l'on puisse vous accueillir chez l'un d'entre nous.
+Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous contacter afin que l'on puisse t'accueillir chez l'un d'entre nous.
 
 Non-french speaker : keep calm and don't panic, you can ask us for more explanations """,
-a(href := "https://translate.google.de/#view=home&op=translate&sl=fr&tl=en", "or"),""" """,
+a(href := "https://translate.google.de/#view=home&op=translate&sl=fr&tl=en", "or"),"""... """,
     
     fontSize := "20px", whiteSpace := "pre-line", fontFamily := "montserrat")
 
