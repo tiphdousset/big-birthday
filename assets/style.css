@@ -1,5 +1,9 @@
 html,body{height: 100%; margin: 0; padding: 0}
 
+html *{
+    font-family: Montserrat;
+}
+
 #intro_button {
     margin-left: auto;
     margin-right: auto;
@@ -28,6 +32,11 @@ html,body{height: 100%; margin: 0; padding: 0}
 #title {
     margin-top: 0;
     padding-top: 48px;
+    font-family: Great Vibes;
+}
+
+#countDown {
+    font-family: Great Vibes;
 }
 
 #costume {
@@ -160,7 +169,6 @@ font-family: monospace;
     visibility: hidden;
     /* font-family: Great Vibes; */
     /* font-family: Source Sans Pro; */
-    font-family: Montserrat;
     /* font-weight: bold; */
 }
 

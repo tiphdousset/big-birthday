@@ -51,7 +51,7 @@ object Anniversaire {
       cursor := "pointer"
     )
 
-    val countDown = div(s"J - ${CountDown.countDown}", fontSize := "40px", textAlign := "left", marginLeft :="10px")
+    val countDown = div(id := "countDown", s"J - ${CountDown.countDown}", fontSize := "40px", textAlign := "left", marginLeft :="10px")
    
     //val contentHandler = Var[VNode](div("empty"))
     val contentHandler = Var[Option[VNode]](None)
@@ -60,7 +60,6 @@ object Anniversaire {
     val title = h1(id := "title",
       countDown,
       "La Tente'aine",
-      fontFamily := "Great Vibes",
       textAlign := "center",
       textShadow := "0 1px 1px #fff",
       fontSize := "160px",
@@ -146,7 +145,6 @@ object Anniversaire {
                 fontSize := "100px",
                 cls := "innerShadow",
                 border <-- tokenBorder,
-                //fontFamily := "monospace"
                 onInput.value.foreach{str =>
                   tokenValue() = str
                   tokenBorder() = "none"

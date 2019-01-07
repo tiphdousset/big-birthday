@@ -7,7 +7,7 @@ import util._
 
 object Contact{
   def contact(name: String, email: String, phone: Seq[String], color : String)={
-    div(div(name), div(email), div(phone), padding := "10px", border := s"7px solid $color", marginTop := "5px")
+    div(div(b(name)), div(email), div(phone), padding := "10px", border := s"7px solid $color", marginTop := "5px")
   }
 
   val pic = div(backgroundImage := "url(20ans.jpg)",
@@ -32,6 +32,6 @@ object Contact{
                              marginLeft := "auto",
                              marginRight := "auto")
 
-  val contacts = div(contacts_description, pic, contacts_details, fontFamily := "montserrat")
+  val contacts = div(contacts_description, pic, contacts_details)
 }
 

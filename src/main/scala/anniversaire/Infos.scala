@@ -24,7 +24,7 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
 Non-french speaker : keep calm and don't panic, you can ask us for more explanations """,
 a(href := "https://translate.google.de/#view=home&op=translate&sl=fr&tl=en", "or"),"""... """,
     
-    fontSize := "20px", whiteSpace := "pre-line", fontFamily := "montserrat")
+    fontSize := "20px", whiteSpace := "pre-line")
 
 
 }
