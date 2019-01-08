@@ -1,9 +1,25 @@
 html,body{height: 100%; margin: 0; padding: 0}
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 html *{
     font-family: Montserrat;
 }
 
+#mainContainer {
+    border-style: dotted;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    min-height: 250px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: #ffffff85; */
+    width: 800px;
+    padding: 20px;
+}
 #intro_button {
     margin-left: auto;
     margin-right: auto;
@@ -176,6 +192,14 @@ font-family: monospace;
     visibility:visible;
     font-size: 15px;
 }
+
+/* @media only screen and (max-width: 600px) { */
+/*     .lightsCls .descriptionCls { */
+/*         visibility: visible; */
+/*         color: red; */
+/*     } */
+/* } */
+
 
 .innerShadow{
     -webkit-box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);

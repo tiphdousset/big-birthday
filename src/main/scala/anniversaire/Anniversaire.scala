@@ -45,6 +45,7 @@ object Anniversaire {
     val intro_div = div(
       backgroundImage := "url(intro.jpg)",
       backgroundSize := "cover", 
+      backgroundPosition := "center 0",
       height := "100%",
       intro_button,
       onClick(Some("start")) --> page, //we want to be able to click everywhere on the page and not only on the button
@@ -69,20 +70,13 @@ object Anniversaire {
 
       )
 
-     val main_container = div(borderStyle := "dotted",
-      marginLeft := "auto",
-      marginRight := "auto",
-      marginTop := "60px",
-      marginBottom := "30px",
-      minHeight := "250px",
-      backgroundColor := "rgba(255, 255, 255, 0.8)",
-      // backgroundColor := "#ffffff85",
-      width := "800px",
-      padding := "20px",
+     val main_container = div(
+      id := "mainContainer", 
       contentHandler
       )
 
     val lights_div = div(
+      id := "lightsDiv",
       marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
       marginRight:= "auto",
       width:= "450px", //default width for div is 100%
@@ -115,6 +109,7 @@ object Anniversaire {
         title,
         backgroundImage := "url(tente.jpg)",
         backgroundSize := "cover", 
+        backgroundPosition := "center 0",
         backgroundAttachment := "fixed",
         overflow := "auto",
         height := "100%",
