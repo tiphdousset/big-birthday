@@ -7,14 +7,14 @@ import util._
 
 object Fun{
    val fun_gif = div(iframe( src := "https://giphy.com/embed/1fkAH3zEgJ6hwZFSp5" ,
-                            attr("width") := "480",
-                            attr("height") := "360",
+                            attr("width") := "240",
+                            attr("height") := "180",
                             attr("frame-border") := "0",
                             cls := "giphy-embed",
                             borderWidth := "0",
                             margin := "0 auto",
                             display := "block",
-                            marginTop := "50px",
+                            marginTop := "25px",
                           ) )
 
    def go_back_button(page: Var[Option[String]]) = button(id := "go_back_button",
@@ -22,7 +22,7 @@ object Fun{
                                cursor := "pointer",onClick(Some("start")) --> page)
 
 
-  def fun(page: Var[Option[String]]) = div(justifyContent.center, alignItems.center,fontSize := "50px", fun_gif, go_back_button(page))
+  def fun(page: Var[Option[String]]) = div(justifyContent.center, alignItems.center,fontSize := "25px", fun_gif, go_back_button(page))
 
 }
 

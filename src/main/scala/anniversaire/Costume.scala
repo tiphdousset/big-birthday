@@ -7,14 +7,14 @@ import util._
 
 object Costume{
    val costume_under_construction = div(iframe( src := "https://giphy.com/embed/Fn1XLXZORb7H2" ,
-                            attr("width") := "480",
-                            attr("height") := "360",
+                            attr("width") := "240",
+                            attr("height") := "180",
                             attr("frame-border") := "0",
                             cls := "giphy-embed",
                             borderWidth := "0",
                             margin := "0 auto",
                             display := "block",
-                            marginTop := "50px",
+                            marginTop := "25px",
                           )
                    )
    def costume(token: String)(implicit ctx:Ctx.Owner) = {
@@ -23,7 +23,7 @@ object Costume{
      //div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", costume_under_construction, "CONSTRUCTION")
      val showWheel = Var(false)
 
-     val button_wheel = button("Qui suis-je?", fontWeight.bold,fontSize := "30px", marginTop := "100px", marginLeft := "auto",
+     val button_wheel = button("Qui suis-je?", fontWeight.bold,fontSize := "15px", marginTop := "50px", marginLeft := "auto",
        marginRight := "auto", display := "block",  onClick(true) --> showWheel)
 
      div("""Pas grand chose à préparer pour nous rejoindre si ce n'est...ta tenue !
@@ -41,7 +41,7 @@ object Costume{
          else
            button_wheel
        },
-       fontSize := "20px", whiteSpace := "pre-line")
+       fontSize := "16px", whiteSpace := "pre-line")
    }
 
 

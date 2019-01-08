@@ -26,7 +26,7 @@ object Anniversaire {
         div(
           svg(
             cls := "svgCls",
-            width:="30px", height:="40px", 
+            width:="15px", height:="20px", 
             viewBox := "0 0 30 40", 
             rect(y:="5", x:="10", height:="10", width:="10"), 
             circle(r:="10",cy:="25",cx:="15"),
@@ -51,7 +51,7 @@ object Anniversaire {
       cursor := "pointer"
     )
 
-    val countDown = div(id := "countDown", s"J - ${CountDown.countDown}", fontSize := "40px", textAlign := "left", marginLeft :="10px")
+    val countDown = div(id := "countDown", s"J - ${CountDown.countDown}", fontSize := "20px", textAlign := "left", marginLeft :="10px")
    
     //val contentHandler = Var[VNode](div("empty"))
     val contentHandler = Var[Option[VNode]](None)
@@ -62,7 +62,7 @@ object Anniversaire {
       "La Tente'aine",
       textAlign := "center",
       textShadow := "0 1px 1px #fff",
-      fontSize := "160px",
+      fontSize := "80px",
       marginBottom := "0",
       onClick(None) --> contentHandler,
       cursor := "pointer"
@@ -74,10 +74,10 @@ object Anniversaire {
       marginRight := "auto",
       marginTop := "60px",
       marginBottom := "30px",
-      minHeight := "500px",
+      minHeight := "250px",
       backgroundColor := "rgba(255, 255, 255, 0.8)",
       // backgroundColor := "#ffffff85",
-      width := "1300px",
+      width := "800px",
       padding := "20px",
       contentHandler
       )
@@ -85,12 +85,12 @@ object Anniversaire {
     val lights_div = div(
       marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
       marginRight:= "auto",
-      width:= "900px", //default width for div is 100%
+      width:= "450px", //default width for div is 100%
       /*backgroundImage := "url(lights.svg)",*/
      backgroundImage := "url(lichtketteF.svg)",
      backgroundSize := "contain", 
      backgroundRepeat := "no-repeat",
-     height := "150px",
+     height := "75px",
      position:="relative",
      light_div("info","Informations")(onClick(Some(Infos.info1)) --> contentHandler),
      light_div("costume", "Get dressed")(onClick.mapTo(Some(Costume.costume(tokenValue.now))) --> contentHandler),
