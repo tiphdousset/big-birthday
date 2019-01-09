@@ -1,5 +1,7 @@
 package anniversaire
 
+import monix.reactive._
+import concurrent.duration._
 import outwatch.dom._
 import outwatch.dom.dsl._
 import monix.execution.Scheduler.Implicits.global
@@ -173,8 +175,14 @@ object Anniversaire {
       }
       )
 
+    // val counter = Observable.interval(1 second)
+    // val main = div(
+    //   counter
+      
+      
+    //   )
 
-    OutWatch.renderReplace("#app", main).unsafeRunSync()
+     OutWatch.renderReplace("#app", main).unsafeRunSync()
 
   }
 }
