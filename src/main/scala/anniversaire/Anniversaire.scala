@@ -28,7 +28,7 @@ object Anniversaire {
         div(
           svg(
             cls := "svgCls",
-            width:="15px", height:="20px", 
+            width:="25px", height:="25px", 
             viewBox := "0 0 30 40", 
             rect(y:="5", x:="10", height:="10", width:="10"), 
             circle(r:="10",cy:="25",cx:="15"),
@@ -77,6 +77,10 @@ object Anniversaire {
       contentHandler
       )
 
+
+
+    val counter = Observable.interval(1 second)
+    var isClicked = true
     val lights_div = div(
       id := "lightsDiv",
       marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
@@ -88,12 +92,35 @@ object Anniversaire {
      backgroundRepeat := "no-repeat",
      height := "75px",
      position:="relative",
-     light_div("info","Informations")(onClick(Some(Infos.info1)) --> contentHandler),
-     light_div("costume", "Get dressed")(onClick.mapTo(Some(Costume.costume(tokenValue.now))) --> contentHandler),
-     light_div("fun","DO NOT CLICK HERE")(onClick(Some("fun")) --> page),
-     light_div("photo", "Photos")(onClick(Some(Photos.photos)) --> contentHandler),
-     light_div("contact", "Contacts")(onClick(Some(Contact.contacts)) --> contentHandler)
-     )
+
+     light_div("info","Informations")(
+      onClick(Some(Infos.info1)) --> contentHandler,
+      counter.map(x => if (x%5==0 && isClicked) cls := "activate" else VDomModifier.empty)
+     ),
+
+     light_div("costume", "Get dressed")(
+       onClick.mapTo(Some(Costume.costume(tokenValue.now))) --> contentHandler,
+       counter.map(x => if (x%5==1 && isClicked) cls := "activate" else VDomModifier.empty)
+      ),
+
+     light_div("fun","DO NOT CLICK HERE")(
+       onClick(Some("fun")) --> page,
+       counter.map(x => if (x%5==2 && isClicked) cls := "activate" else VDomModifier.empty)
+     ),
+
+     light_div("photo", "Photos")(
+       onClick(Some(Photos.photos)) --> contentHandler,
+       counter.map(x => if (x%5==3 && isClicked) cls := "activate" else VDomModifier.empty)
+     ),
+
+     light_div("contact", "Contacts")(
+       onClick(Some(Contact.contacts)) --> contentHandler,
+       counter.map(x => if (x%5==4 && isClicked) cls := "activate" else VDomModifier.empty)
+     ),
+
+
+    onClick.foreach{isClicked = false}
+  )
 
     def onClickToken(showTokenBox: Var[Boolean], tokenBorder: Var[String]) = {
       if (GuestCostume.isTokenValid(tokenValue.now)){
@@ -175,11 +202,12 @@ object Anniversaire {
       }
       )
 
-    // val counter = Observable.interval(1 second)
     // val main = div(
-    //   counter
-      
-      
+    //   div("Tiph", ), 
+    //   counter.map(_%5==1), 
+    //   counter.map(_%5==2), 
+    //   counter.map(_%5==3), 
+    //   counter.map(_%5==4), 
     //   )
 
      OutWatch.renderReplace("#app", main).unsafeRunSync()

@@ -64,56 +64,54 @@ html *{
 fill: deepskyblue;
 }
 
-#costume:hover circle {
+#costume:hover circle, #costume.activate circle  {
 fill: yellowGreen
 }
 
-#costume:hover {
+#costume:hover, #costume.activate{
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
 -webkit-filter: drop-shadow(0px 0px 7px deepskyblue); 
 filter: drop-shadow(0px 0px 7px deepskyblue);
 }
 
-#costume .svgCls {
-    width: 25px;
-    height: 25px;
-}
-
-
+/* #costume .svgCls { */
+/*     width: 25px; */
+/*     height: 25px; */
+/* } */
 
 #photo {
     left: 346px;
-    top: 29px;
+    top: 31px;
 }
 
 #photo circle{
 fill: tomato;
 }
 
-#photo:hover circle {
+#photo:hover circle, #photo.activate circle  {
 fill: darkOrchid
 }
 
-#photo:hover {
+#photo:hover, #photo.activate {
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
 -webkit-filter: drop-shadow(0px 0px 7px tomato); 
 filter: drop-shadow(0px 0px 7px tomato);
 }
 
 #contact {
-    left: 430px;
-    top: 14px;
+    left: 427px;
+    top: 12px;
 }
 
 #contact circle{
 fill: #ffcc00;
 }
 
-#contact:hover circle {
+#contact:hover circle, #contact.activate circle  {
 fill: deepskyblue
 }
 
-#contact:hover {
+#contact:hover, #contact.activate {
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
 -webkit-filter: drop-shadow(0px 0px 7px tomato); 
 filter: drop-shadow(0px 0px 7px tomato);
@@ -129,22 +127,20 @@ filter: drop-shadow(0px 0px 7px tomato);
 fill: hotPink;
 }
 
-#info:hover circle {
+#info:hover circle, #info.activate circle {
 fill: lightSeaGreen
 }
 
-#info:hover {
+#info:hover, #info.activate{
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
 -webkit-filter: drop-shadow(0px 0px 7px indigo); 
 filter: drop-shadow(0px 0px 7px indigo);
 }
 
-#info .svgCls {
-    width: 25px;
-    height: 25px;
-}
-
-
+/* #info .svgCls { */
+/*     width: 25px; */
+/*     height: 25px; */
+/* } */
 
 #fun {
     left: 262px;
@@ -156,11 +152,11 @@ filter: drop-shadow(0px 0px 7px indigo);
 fill: mediumSeaGreen;
 }
 
-#fun:hover circle {
+#fun:hover circle, #fun.activate circle  {
 fill: orange
 }
 
-#fun:hover {
+#fun:hover, #fun.activate{
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
 -webkit-filter: drop-shadow(0px 0px 7px orange); 
 filter: drop-shadow(0px 0px 7px orange);
@@ -188,7 +184,8 @@ font-family: monospace;
     /* font-weight: bold; */
 }
 
-.lightsCls:hover .descriptionCls {
+/* .lightsCls:hover .descriptionCls, .lightsCls.activate .descriptionCls{ */
+.lightsCls:hover .descriptionCls{
     visibility:visible;
     font-size: 15px;
 }
@@ -206,3 +203,5 @@ font-family: monospace;
     -moz-box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);
     box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);
 }
+
+
