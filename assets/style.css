@@ -75,8 +75,8 @@ fill: #FF70FF;
 
 #info:hover, #info.activate{
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px indigo); 
-filter: drop-shadow(0px 0px 7px indigo);
+-webkit-filter: drop-shadow(0px 0px 7px #FF70FF); 
+filter: drop-shadow(0px 0px 7px #FF70FF);
 }
 
 /* #info .svgCls { */
@@ -102,8 +102,8 @@ fill: #00DDFF
 
 #costume:hover, #costume.activate{
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px deepskyblue); 
-filter: drop-shadow(0px 0px 7px deepskyblue);
+-webkit-filter: drop-shadow(0px 0px 7px #00DDFF); 
+filter: drop-shadow(0px 0px 7px #00DDFF);
 }
 
 /* #costume .svgCls { */
@@ -128,8 +128,8 @@ fill: limeGreen;
 
 #fun:hover, #fun.activate{
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px orange); 
-filter: drop-shadow(0px 0px 7px orange);
+-webkit-filter: drop-shadow(0px 0px 7px limeGreen); 
+filter: drop-shadow(0px 0px 7px limeGreen);
 }
 
 #fun .descriptionCls {
@@ -160,8 +160,8 @@ fill: red;
 
 #photo:hover, #photo.activate {
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px tomato); 
-filter: drop-shadow(0px 0px 7px tomato);
+-webkit-filter: drop-shadow(0px 0px 7px red); 
+filter: drop-shadow(0px 0px 7px red);
 }
 
 #contact {
@@ -184,8 +184,8 @@ fill: #FFE800;
 
 #contact:hover, #contact.activate {
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px tomato); 
-filter: drop-shadow(0px 0px 7px tomato);
+-webkit-filter: drop-shadow(0px 0px 7px #FFE800); 
+filter: drop-shadow(0px 0px 7px #FFE800);
 }
 
 
