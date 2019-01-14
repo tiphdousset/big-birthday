@@ -55,68 +55,7 @@ html *{
     font-family: Great Vibes;
 }
 
-#costume {
-    left: 138px;
-    top: 36px;
-}
-
-#costume circle{
-fill: deepskyblue;
-}
-
-#costume:hover circle, #costume.activate circle  {
-fill: yellowGreen
-}
-
-#costume:hover, #costume.activate{
-/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px deepskyblue); 
-filter: drop-shadow(0px 0px 7px deepskyblue);
-}
-
-/* #costume .svgCls { */
-/*     width: 25px; */
-/*     height: 25px; */
-/* } */
-
-#photo {
-    left: 346px;
-    top: 31px;
-}
-
-#photo circle{
-fill: tomato;
-}
-
-#photo:hover circle, #photo.activate circle  {
-fill: darkOrchid
-}
-
-#photo:hover, #photo.activate {
-/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px tomato); 
-filter: drop-shadow(0px 0px 7px tomato);
-}
-
-#contact {
-    left: 427px;
-    top: 12px;
-}
-
-#contact circle{
-fill: #ffcc00;
-}
-
-#contact:hover circle, #contact.activate circle  {
-fill: deepskyblue
-}
-
-#contact:hover, #contact.activate {
-/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px tomato); 
-filter: drop-shadow(0px 0px 7px tomato);
-}
-
+/* Lights menus */
 
 #info {
     left: 18px;
@@ -125,10 +64,13 @@ filter: drop-shadow(0px 0px 7px tomato);
 
 #info circle{
 fill: hotPink;
+fill: #FD79BE;
 }
 
 #info:hover circle, #info.activate circle {
-fill: lightSeaGreen
+/* fill: lightSeaGreen */
+fill: deepPink;
+fill: #FF70FF;
 }
 
 #info:hover, #info.activate{
@@ -138,6 +80,33 @@ filter: drop-shadow(0px 0px 7px indigo);
 }
 
 /* #info .svgCls { */
+/*     width: 25px; */
+/*     height: 25px; */
+/* } */
+
+#costume {
+    left: 138px;
+    top: 36px;
+}
+
+#costume circle{
+fill: deepskyblue;
+fill: #00BCFF;
+}
+
+#costume:hover circle, #costume.activate circle  {
+/* fill: yellowGreen */
+/* fill: dodgerblue */
+fill: #00DDFF
+}
+
+#costume:hover, #costume.activate{
+/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+-webkit-filter: drop-shadow(0px 0px 7px deepskyblue); 
+filter: drop-shadow(0px 0px 7px deepskyblue);
+}
+
+/* #costume .svgCls { */
 /*     width: 25px; */
 /*     height: 25px; */
 /* } */
@@ -153,7 +122,8 @@ fill: mediumSeaGreen;
 }
 
 #fun:hover circle, #fun.activate circle  {
-fill: orange
+/* fill: orange */
+fill: limeGreen;
 }
 
 #fun:hover, #fun.activate{
@@ -170,6 +140,53 @@ font-family: monospace;
 /*     width: 60px; */
 /*     height: 60px; */
 /* } */
+
+#photo {
+    left: 346px;
+    top: 31px;
+}
+
+#photo circle{
+/* fill: red; */
+fill: #E1001B;
+}
+
+#photo:hover circle, #photo.activate circle  {
+/* fill: darkOrchid */
+/* fill: tomato; */
+/* fill: #FF002C; */
+fill: red;
+}
+
+#photo:hover, #photo.activate {
+/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+-webkit-filter: drop-shadow(0px 0px 7px tomato); 
+filter: drop-shadow(0px 0px 7px tomato);
+}
+
+#contact {
+    left: 427px;
+    top: 12px;
+}
+
+#contact circle{
+/* fill: #ffcc00; */
+/* fill: #FCC16A; */
+fill: #F9D14C;
+}
+
+#contact:hover circle, #contact.activate circle  {
+/* fill: deepskyblue */
+/* fill: yellow; */
+/* fill: #FFB83A; */
+fill: #FFE800;
+}
+
+#contact:hover, #contact.activate {
+/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+-webkit-filter: drop-shadow(0px 0px 7px tomato); 
+filter: drop-shadow(0px 0px 7px tomato);
+}
 
 
 .lightsCls {
