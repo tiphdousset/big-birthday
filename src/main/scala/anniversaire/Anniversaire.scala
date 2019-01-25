@@ -18,6 +18,7 @@ object Anniversaire {
 
     val page = Var(Option.empty[String])
     val tokenValue = Var("")
+    val language = Var[Translation](Translation_FR)
 
     def light_div(lightId:String, description:String) = { 
       import svg._
@@ -38,8 +39,7 @@ object Anniversaire {
     )
     }
 
-    val intro_button = button(id := "intro_button",
-      "They are back.",
+    val intro_button = button(id := "intro_button", "They are back.",
      onClick(Some("start")) --> page,
      cursor := "pointer"
      )
@@ -54,15 +54,59 @@ object Anniversaire {
       cursor := "pointer"
     )
 
-    val countDown = div(id := "countDown", s"J - ${CountDown.countDown}", fontSize := "20px", textAlign := "left", marginLeft :="10px")
-   
+    val fr = div(
+      backgroundImage := "url(FR_croissant.png)",
+      backgroundSize := "contain", 
+      width := "20px",
+      marginRight := "5px",
+      onClick(Translation_FR) --> language
+    )
+    val en = div(
+      backgroundImage := "url(EN_shakespeare.svg)",
+      backgroundSize := "contain", 
+      width := "20px",
+      marginRight := "5px",
+      onClick(Translation_EN) --> language
+    )
+    val de = div(
+      backgroundImage := "url(DE_beer.svg)",
+      backgroundSize := "contain", 
+      width := "20px",
+      onClick(Translation_DE) --> language
+    )
+
+    val languages = div(
+      display.flex,
+      width := "100px",
+      height := "20px",
+      id := "languages",
+      fr,
+      en,
+      de,
+      marginLeft := "auto"
+    )
+
+    val header = div(
+      id := "header",
+      display.flex,
+      Rx{
+        language().count_down(CountDown.countDown)
+      },
+      languages,
+      fontSize := "20px",
+      textAlign := "left",
+      marginLeft :="10px",
+    )
+
     //val contentHandler = Var[VNode](div("empty"))
     val contentHandler = Var[Option[VNode]](None)
 
 
     val title = h1(id := "title",
-      countDown,
-      "La Tente'aine",
+      header,
+      Rx{
+        language().title
+      },
       textAlign := "center",
       textShadow := "0 1px 1px #fff",
       fontSize := "80px",
@@ -76,8 +120,6 @@ object Anniversaire {
       id := "mainContainer", 
       contentHandler
       )
-
-
 
     val counter = Observable.interval(1 second)
     var isClicked = true
