@@ -6,33 +6,34 @@ object Translation_EN extends Translation{
   def count_down(numberOfDays : Int) : String = s"D - $numberOfDays"
 
   //Menu informations
-  def menu_info : String = """Hoyé hoyé !
+  def menu_info : String = """Hello world!
 
-    Pour toi, cher ami.e choisis entre tous pour célébrer nos 30 ans, voici quelques informations utiles pour préparer l'évènement tant attendu.
+  For you, dear friend, chosen among all to celebrate our 30th anniversary, here is some useful information to prepare for the long-awaited event.
 
-    Tout d'abord la date : les festivités se dérouleront du Samedi 8 au Lundi 10 Juin. Tu es attendu en fin d'après midi le Samedi (disons vers 17h) et nous quitterons les lieux le Lundi en fin de matinée. 
+  First of all the date: the festivities will take place from Saturday 8 to Monday 10 June. You are expected in the late afternoon on Saturday (say around 5pm) and we will leave the premises on Monday in the late morning.
 
-    Pour le lieu, nous pouvons te dire que ça se passe dans la magnifique bourgade de St Colomban (44), à 30 minutes au Sud de Nantes. La localisation précise du site te sera communiquée d'ici là. 
-    Nous te conseillons de miser sur le co-voiturage depuis Nantes, qui pourra être organisé via ce site en temps et en heure. 
-    Pour les non-nantais, un billet pour Nantes est à ce stade largement suffisant.
+  For the place, we can tell you that it is happening in the magnificent village of St Colomban, 30 minutes south of Nantes. The exact location of the site will be communicated to you by then.
+  We recommend that you take advantage of carpooling from Nantes, which can be organized via this site in due course.
+  For non-Nantes people, a train or flight ticket to Nantes is more than enough at this stage.
 
-    Pour le couchage, un champ sera mis à disposition pour planter les tentes. Pense donc à prendre ta tente ;-)
+  For sleeping, a field will be provided for tents. So don't forget to take your tent ;-)
 
-Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous contacter afin que l'on puisse t'accueillir chez l'un d'entre nous.
+  If you wish to arrive earlier / leave later, do not hesitate to contact us so that we can welcome you to one of our homes.
 
-  Non-french speaker : keep calm and don't panic, you can ask us for more explanations or..."""
+  If you didn't understand a word because you think my English is too approximate...go get French lessons and read the French version."""
+  
   def title_menu_info : String = "Informations"
 
   //Menu costume
-  def menu_costume : String = """Pas grand chose à préparer pour nous rejoindre si ce n'est...ta tenue !
-    La grande roue ci-après te dévoilera dans quelques mois un déguisement à revêtir le Samedi.
+  def menu_costume : String = """Not much to prepare to join us except... your outfit!
+  The following wheel will reveal to you in a few months a costume to wear on Saturday.
 
-    Ton personnage appartient à un duo et tu devras lors de cette première soirée retrouver ton binôme parmi les invités.
+  Your character belongs to a duo and you will have to find and meet your partner among the guests during this first evening.
 
-    Pas de stress cependant pour les allergiques aux déguisements : tu peux te contenter d'arborer l'un des accessoires fétiches du personnage en question ou au contraire le jouer à fond, l'important c'est de retrouver ta moitié. #love 
+  No stress, however, for those allergic to disguises: you can simply wear one of the character's favourite accessories or, on the contrary, play it to the fullest, the important thing is to find your half. #love
 
-  Pour savoir ce que le hasard te réserve, reviens donc checker cette page au printemps!"""
-  def menu_costume_button_wheel : String = "Who am I?"
+  To know what's in store for you, come back and check this page in the spring!"""
+  def menu_costume_button_wheel : String = "Who am I ?"
   def title_menu_costume : String = "Get dressed"
 
   //Menu fun

@@ -17,24 +17,29 @@ object Costume{
                             marginTop := "25px",
                           )
                    )
-   def costume(token: String)(implicit ctx:Ctx.Owner) = {
+   def costume(token: String, language : Var[Translation])(implicit ctx:Ctx.Owner) = {
      //div("token = "+token)
      //div("Guest and costume: "+GuestCostume.findNameAndCostumePerToken(token))
      //div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", costume_under_construction, "CONSTRUCTION")
      val showWheel = Var(false)
 
-     val button_wheel = button("Qui suis-je?", fontWeight.bold,fontSize := "15px", marginTop := "50px", marginLeft := "auto",
-       marginRight := "auto", display := "block",  onClick(true) --> showWheel)
+     val button_wheel = button(
+       Rx{
+        language().menu_costume_button_wheel
+       },
+       fontWeight.bold,
+       fontSize := "15px",
+       marginTop := "50px",
+       marginLeft := "auto",
+       marginRight := "auto",
+       display := "block",
+       onClick(true) --> showWheel
+     )
 
-     div("""Pas grand chose à préparer pour nous rejoindre si ce n'est...ta tenue !
-       La grande roue ci-après te dévoilera dans quelques mois un déguisement à revêtir le """,b("Samedi"),""".
-
-       Ton personnage appartient à un duo et tu devras lors de cette première soirée retrouver ton binôme parmi les invités.
-
-       Pas de stress cependant pour les allergiques aux déguisements : tu peux te contenter d'arborer l'un des accessoires fétiches du personnage en question ou au contraire le jouer à fond, l'important c'est de retrouver ta moitié. """, b("#love"),""" 
-
-       Pour savoir ce que le hasard te réserve, reviens donc checker cette page au printemps!
-       """,
+     div(
+       Rx{
+        language().menu_costume
+       },
        Rx {
          if (showWheel())
            wheelOfFortune

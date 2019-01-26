@@ -22,7 +22,14 @@ object Contact{
   val tiph = div(contact("Tiph", "tiphdousset@gmail.com", Seq("06.63.88.31.50 / 0049 1573 0983456"), "gold"))
   val fanch = div(contact("Fanch","francois.sail@gmail.com", Seq("06.76.29.51.25"), "pink"))
   val bene = div(contact("Béné","benedicte.gourdon@gmail.com", Seq("07.81.18.84.63"), "yellowGreen"))
-  val contacts_description = div("Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!", textAlign := "center", fontSize := "18px", marginTop := "5px")
+  def contacts_description(language: Var[Translation]) (implicit ctx:Ctx.Owner) = div(
+    Rx{
+      language().menu_contact
+    },
+    textAlign := "center", 
+    fontSize := "18px",
+    marginTop := "5px"
+  )
   val contacts_details = div(tiph, fanch, bene,
                              display := "flex", 
                              justifyContent := "space-between",
@@ -33,6 +40,6 @@ object Contact{
                              marginRight := "auto",
                              fontSize := "10px")
 
-  val contacts = div(contacts_description, pic, contacts_details)
+  def contacts(language : Var[Translation]) (implicit ctx:Ctx.Owner) = div(contacts_description(language), pic, contacts_details)
 }
 

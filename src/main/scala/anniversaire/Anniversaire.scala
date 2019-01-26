@@ -39,7 +39,10 @@ object Anniversaire {
     )
     }
 
-    val intro_button = button(id := "intro_button", "They are back.",
+    val intro_button = button(id := "intro_button",
+      Rx{
+        language().intro_button
+      },
      onClick(Some("start")) --> page,
      cursor := "pointer"
      )
@@ -55,24 +58,32 @@ object Anniversaire {
     )
 
     val fr = div(
-      backgroundImage := "url(FR_croissant.png)",
+      backgroundImage := "url(FR_tour_eiffel.svg)",
+      //backgroundImage := "url(FR_croissant.png)",
       backgroundSize := "contain", 
       width := "20px",
       marginRight := "5px",
-      onClick(Translation_FR) --> language
+      onClick(Translation_FR) --> language,
+      backgroundRepeat := "no-repeat",
     )
+
     val en = div(
-      backgroundImage := "url(EN_shakespeare.svg)",
+      backgroundImage := "url(EN_bigben.svg)",
+      //backgroundImage := "url(EN_shakespear.svg)",
       backgroundSize := "contain", 
       width := "20px",
       marginRight := "5px",
-      onClick(Translation_EN) --> language
+      onClick(Translation_EN) --> language,
+      backgroundRepeat := "no-repeat",
     )
+
     val de = div(
-      backgroundImage := "url(DE_beer.svg)",
+      backgroundImage := "url(DE_bretzel.svg)",
+      //backgroundImage := "url(DE_beer.svg)",
       backgroundSize := "contain", 
       width := "20px",
-      onClick(Translation_DE) --> language
+      onClick(Translation_DE) --> language,
+      backgroundRepeat := "no-repeat",
     )
 
     val languages = div(
@@ -135,30 +146,57 @@ object Anniversaire {
      height := "75px",
      position:="relative",
 
-     light_div("info","Informations")(
-      onClick(Some(Infos.info1)) --> contentHandler,
-      counter.map(x => if (x%5==0 && isClicked) cls := "activate" else VDomModifier.empty)
-     ),
+     Rx{
+       light_div(
+         "info",
+         language().title_menu_info
+       )(
+         onClick(Some(Infos.info(language))) --> contentHandler,
+         counter.map(x => if (x%5==0 && isClicked) cls := "activate" else VDomModifier.empty)
+       )
+     },
 
-     light_div("costume", "Get dressed")(
-       onClick.mapTo(Some(Costume.costume(tokenValue.now))) --> contentHandler,
-       counter.map(x => if (x%5==1 && isClicked) cls := "activate" else VDomModifier.empty)
-      ),
 
-     light_div("fun","DO NOT CLICK HERE")(
-       onClick(Some("fun")) --> page,
-       counter.map(x => if (x%5==2 && isClicked) cls := "activate" else VDomModifier.empty)
-     ),
+     Rx{
+       light_div(
+         "costume",
+         language().title_menu_costume
+       )(
+         onClick.mapTo(Some(Costume.costume(tokenValue.now, language))) --> contentHandler,
+         counter.map(x => if (x%5==1 && isClicked) cls := "activate" else VDomModifier.empty)
+       )
+     },
 
-     light_div("photo", "Photos")(
-       onClick(Some(Photos.photos)) --> contentHandler,
-       counter.map(x => if (x%5==3 && isClicked) cls := "activate" else VDomModifier.empty)
-     ),
+     Rx{
+       light_div(
+         "fun",
+          language().title_menu_fun
+       )(
+         //should redirect to another page !!! (like before)
+         onClick(Some(Fun.fun(page, language))) --> contentHandler,
+         counter.map(x => if (x%5==2 && isClicked) cls := "activate" else VDomModifier.empty)
+       )
+     },
 
-     light_div("contact", "Contacts")(
-       onClick(Some(Contact.contacts)) --> contentHandler,
-       counter.map(x => if (x%5==4 && isClicked) cls := "activate" else VDomModifier.empty)
-     ),
+     Rx{
+       light_div(
+         "photo", 
+         language().title_menu_photo
+       )(
+         onClick(Some(Photos.photos)) --> contentHandler,
+         counter.map(x => if (x%5==3 && isClicked) cls := "activate" else VDomModifier.empty)
+       )
+     },
+
+     Rx{
+       light_div(
+         "contact",
+          language().title_menu_contact
+       )(
+         onClick(Some(Contact.contacts(language))) --> contentHandler,
+         counter.map(x => if (x%5==4 && isClicked) cls := "activate" else VDomModifier.empty)
+       )
+     },
 
 
     onClick.foreach{isClicked = false}
@@ -235,9 +273,6 @@ object Anniversaire {
       Rx{
         if (page() == Some("start")){
           home_div
-        }
-        else if (page() == Some("fun")){
-          Fun.fun(page)
         }
         else intro_div
         //home_div //temporary for test purpose

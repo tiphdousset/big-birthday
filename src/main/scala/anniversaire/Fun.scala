@@ -17,12 +17,18 @@ object Fun{
                             marginTop := "25px",
                           ) )
 
-   def go_back_button(page: Var[Option[String]]) = button(id := "go_back_button",
-                               "please bring me back home", 
-                               cursor := "pointer",onClick(Some("start")) --> page)
+   def go_back_button(page: Var[Option[String]], language : Var[Translation]) (implicit ctx:Ctx.Owner)=
+     button(
+       id := "go_back_button",
+       Rx{
+         language().menu_fun
+       },
+       cursor := "pointer",onClick(Some("start")) --> page
+      )
 
 
-  def fun(page: Var[Option[String]]) = div(justifyContent.center, alignItems.center,fontSize := "25px", fun_gif, go_back_button(page))
+  def fun(page: Var[Option[String]], language : Var[Translation]) (implicit ctx:Ctx.Owner) = div(justifyContent.center, alignItems.center,fontSize := "25px",
+    fun_gif, go_back_button(page, language))
 
 }
 
