@@ -19,8 +19,10 @@ object Anniversaire {
     val page = Var(Option.empty[String])
     val tokenValue = Var("")
     val language = Var[Translation](Translation_FR)
+    val counter = Observable.interval(1 second)
+    var isClicked = true
 
-    def light_div(lightId:String, description:String) = { 
+    def light_div(lightId:String, description:String, onClick_function:VDomModifier, number:Int) = { 
       import svg._
       div(
         cls := "lightsCls",
@@ -35,7 +37,9 @@ object Anniversaire {
             circle(r:="10",cy:="25",cx:="15"),
           )
         ),
-      div(cls := "descriptionCls", description)
+      div(cls := "descriptionCls", description),
+      onClick_function,
+      counter.map(x => if (x%5==number && isClicked) cls := "activate" else VDomModifier.empty)
     )
     }
 
@@ -57,16 +61,19 @@ object Anniversaire {
       cursor := "pointer"
     )
 
-    val fr = div(
-      backgroundImage := "url(FR_tour_eiffel.svg)",
-      //backgroundImage := "url(FR_croissant.png)",
+    def createTranslationIcon(image : String, language_class : Translation) = {   
+      div(
+      backgroundImage := s"url($image)",
       backgroundSize := "contain", 
       width := "20px",
       marginRight := "5px",
-      onClick(Translation_FR) --> language,
-      backgroundRepeat := "no-repeat",
+      onClick(language_class) --> language,
+      backgroundRepeat := "no-repeat"
     )
+    }
 
+    val fr = createTranslationIcon("FR_tour_eiffel.svg", Translation_FR)
+    
     val en = div(
       backgroundImage := "url(EN_bigben.svg)",
       //backgroundImage := "url(EN_shakespear.svg)",
@@ -132,8 +139,6 @@ object Anniversaire {
       contentHandler
       )
 
-    val counter = Observable.interval(1 second)
-    var isClicked = true
     val lights_div = div(
       id := "lightsDiv",
       marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
@@ -149,10 +154,9 @@ object Anniversaire {
      Rx{
        light_div(
          "info",
-         language().title_menu_info
-       )(
+         language().title_menu_info,
          onClick(Some(Infos.info(language))) --> contentHandler,
-         counter.map(x => if (x%5==0 && isClicked) cls := "activate" else VDomModifier.empty)
+         0
        )
      },
 
@@ -160,41 +164,36 @@ object Anniversaire {
      Rx{
        light_div(
          "costume",
-         language().title_menu_costume
-       )(
+         language().title_menu_costume,
          onClick.mapTo(Some(Costume.costume(tokenValue.now, language))) --> contentHandler,
-         counter.map(x => if (x%5==1 && isClicked) cls := "activate" else VDomModifier.empty)
+         1
        )
      },
 
      Rx{
        light_div(
          "fun",
-          language().title_menu_fun
-       )(
-         //should redirect to another page !!! (like before)
-         onClick(Some(Fun.fun(page, language))) --> contentHandler,
-         counter.map(x => if (x%5==2 && isClicked) cls := "activate" else VDomModifier.empty)
+         language().title_menu_fun,
+         onClick(Some("fun")) --> page,
+         2
        )
      },
 
      Rx{
        light_div(
          "photo", 
-         language().title_menu_photo
-       )(
+         language().title_menu_photo,
          onClick(Some(Photos.photos)) --> contentHandler,
-         counter.map(x => if (x%5==3 && isClicked) cls := "activate" else VDomModifier.empty)
+         3
        )
      },
 
      Rx{
        light_div(
          "contact",
-          language().title_menu_contact
-       )(
+          language().title_menu_contact,
          onClick(Some(Contact.contacts(language))) --> contentHandler,
-         counter.map(x => if (x%5==4 && isClicked) cls := "activate" else VDomModifier.empty)
+         4
        )
      },
 
@@ -274,18 +273,13 @@ object Anniversaire {
         if (page() == Some("start")){
           home_div
         }
+        else if (page() == Some("fun")){
+          Fun.fun(page, language)
+        }
         else intro_div
         //home_div //temporary for test purpose
       }
       )
-
-    // val main = div(
-    //   div("Tiph", ), 
-    //   counter.map(_%5==1), 
-    //   counter.map(_%5==2), 
-    //   counter.map(_%5==3), 
-    //   counter.map(_%5==4), 
-    //   )
 
      OutWatch.renderReplace("#app", main).unsafeRunSync()
 
