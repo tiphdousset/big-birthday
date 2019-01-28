@@ -61,31 +61,25 @@ object Anniversaire {
       cursor := "pointer"
     )
 
-    def createTranslationIcon(image : String, language_class : Translation) = {   
+    def createTranslationIcon(language_hover : String, image : String, language_class : Translation) = {   
       div(
+        cls:= "language",
         backgroundImage := s"url($image)",
         backgroundSize := "contain", 
         width := "20px",
         flexShrink := 0,
         marginRight := "10px",
         onClick(language_class) --> language,
-        backgroundRepeat := "no-repeat"
+        backgroundRepeat := "no-repeat",
+        div(cls:= "language_description", language_hover)
       )
     }
 
-    // val fr = createTranslationIcon("FR_tour_eiffel.svg", Translation_FR)
-    val fr = createTranslationIcon("FR.svg", Translation_FR)
-    //val fr = createTranslationIcon("FR_eiffel.svg", Translation_FR)
-    // val en = createTranslationIcon("EN_bigben.svg", Translation_EN)
-    val en = createTranslationIcon("EN.svg", Translation_EN)
-    //val en = createTranslationIcon("EN_liberty.svg", Translation_EN)
-    // val de = createTranslationIcon("DE_bretzel.svg", Translation_DE)
-    val de = createTranslationIcon("DE0.svg", Translation_DE)
-    //val be = createTranslationIcon("BE_frenchfries.svg", Translation_FR)
-    // val be = createTranslationIcon("BE_atomium.svg", Translation_FR)
-    val be = createTranslationIcon("BE.svg", Translation_FR)
-    // val ca = createTranslationIcon("CA_maple.svg", Translation_FR)
-    val ca = createTranslationIcon("CA.svg", Translation_FR)
+    val fr = createTranslationIcon("fr", "FR.svg", Translation_FR)
+    val en = createTranslationIcon("en", "EN.svg", Translation_EN)
+    val de = createTranslationIcon("de", "DE0.svg", Translation_DE)
+    val be = createTranslationIcon("be", "BE.svg", Translation_FR)
+    val ca = createTranslationIcon("ca", "CA.svg", Translation_FR)
 
     val languages = div(
       display.flex,

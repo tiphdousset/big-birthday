@@ -68,7 +68,6 @@ fill: #FD79BE;
 }
 
 #info:hover circle, #info.activate circle {
-/* fill: lightSeaGreen */
 fill: deepPink;
 fill: #FF70FF;
 }
@@ -78,11 +77,6 @@ fill: #FF70FF;
 -webkit-filter: drop-shadow(0px 0px 7px #FF70FF); 
 filter: drop-shadow(0px 0px 7px #FF70FF);
 }
-
-/* #info .svgCls { */
-/*     width: 25px; */
-/*     height: 25px; */
-/* } */
 
 #costume {
     left: 138px;
@@ -95,8 +89,6 @@ fill: #00BCFF;
 }
 
 #costume:hover circle, #costume.activate circle  {
-/* fill: yellowGreen */
-/* fill: dodgerblue */
 fill: #00DDFF
 }
 
@@ -105,11 +97,6 @@ fill: #00DDFF
 -webkit-filter: drop-shadow(0px 0px 7px #00DDFF); 
 filter: drop-shadow(0px 0px 7px #00DDFF);
 }
-
-/* #costume .svgCls { */
-/*     width: 25px; */
-/*     height: 25px; */
-/* } */
 
 #fun {
     left: 262px;
@@ -122,7 +109,6 @@ fill: mediumSeaGreen;
 }
 
 #fun:hover circle, #fun.activate circle  {
-/* fill: orange */
 fill: limeGreen;
 }
 
@@ -136,11 +122,6 @@ filter: drop-shadow(0px 0px 7px limeGreen);
 font-family: monospace;
 }
 
-/* #fun .svgCls { */
-/*     width: 60px; */
-/*     height: 60px; */
-/* } */
-
 #photo {
     left: 346px;
     top: 31px;
@@ -152,9 +133,6 @@ fill: #E1001B;
 }
 
 #photo:hover circle, #photo.activate circle  {
-/* fill: darkOrchid */
-/* fill: tomato; */
-/* fill: #FF002C; */
 fill: red;
 }
 
@@ -170,15 +148,10 @@ filter: drop-shadow(0px 0px 7px red);
 }
 
 #contact circle{
-/* fill: #ffcc00; */
-/* fill: #FCC16A; */
 fill: #F9D14C;
 }
 
 #contact:hover circle, #contact.activate circle  {
-/* fill: deepskyblue */
-/* fill: yellow; */
-/* fill: #FFB83A; */
 fill: #FFE800;
 }
 
@@ -186,6 +159,20 @@ fill: #FFE800;
 /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
 -webkit-filter: drop-shadow(0px 0px 7px #FFE800); 
 filter: drop-shadow(0px 0px 7px #FFE800);
+}
+
+.language{
+    cursor: pointer;
+}
+
+.language .language_description {
+    visibility: hidden;
+}
+
+.language:hover .language_description {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -196,9 +183,6 @@ filter: drop-shadow(0px 0px 7px #FFE800);
 
 .lightsCls .descriptionCls {
     visibility: hidden;
-    /* font-family: Great Vibes; */
-    /* font-family: Source Sans Pro; */
-    /* font-weight: bold; */
 }
 
 /* .lightsCls:hover .descriptionCls, .lightsCls.activate .descriptionCls{ */
