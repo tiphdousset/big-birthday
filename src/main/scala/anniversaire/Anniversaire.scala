@@ -71,7 +71,7 @@ object Anniversaire {
         marginRight := "10px",
         onClick(language_class) --> language,
         backgroundRepeat := "no-repeat",
-        div(cls:= "language_description", language_hover)
+        div(cls:= "language_description", language_hover, marginTop := "30px", fontSize := "15px")
       )
     }
 
