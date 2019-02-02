@@ -4,6 +4,7 @@ import outwatch.dom.dsl._
 import monix.execution.Scheduler.Implicits.global
 import rx._
 import util._
+import monix.reactive._
 
 object Costume{
    val costume_under_construction = div(iframe( src := "https://giphy.com/embed/Fn1XLXZORb7H2" ,
@@ -17,16 +18,14 @@ object Costume{
                             marginTop := "25px",
                           )
                    )
-   def costume(token: String, language : Var[Translation])(implicit ctx:Ctx.Owner) = {
+   def costume(token: String, language : Observable[Translation])(implicit ctx:Ctx.Owner) = {
      //div("token = "+token)
      //div("Guest and costume: "+GuestCostume.findNameAndCostumePerToken(token))
      //div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", costume_under_construction, "CONSTRUCTION")
      val showWheel = Var(false)
 
      val button_wheel = button(
-       Rx{
-        language().menu_costume_button_wheel
-       },
+       language.map(_.menu_costume_button_wheel),
        fontWeight.bold,
        fontSize := "15px",
        marginTop := "50px",
@@ -37,9 +36,7 @@ object Costume{
      )
 
      div(
-       Rx{
-        language().menu_costume
-       },
+       language.map(_.menu_costume),
        Rx {
          if (showWheel())
            wheelOfFortune

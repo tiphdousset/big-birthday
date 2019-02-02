@@ -18,7 +18,7 @@ object Anniversaire {
 
     val page = Var(Option.empty[String])
     val tokenValue = Var("")
-    val language = Var[Translation](Translation_FR)
+    val language = Handler.unsafe[Translation](Translation_FR)
     val counter = Observable.interval(1 second)
     var isClicked = true
 
@@ -44,9 +44,7 @@ object Anniversaire {
     }
 
     val intro_button = button(id := "intro_button",
-      Rx{
-        language().intro_button
-      },
+      language.map( _.intro_button ),
      onClick(Some("start")) --> page,
      cursor := "pointer"
      )
@@ -93,27 +91,24 @@ object Anniversaire {
       marginLeft := "auto"
     )
 
-    val header = div(
+    val header = h1(
       id := "header",
       display.flex,
-      Rx{
-        language().count_down(CountDown.countDown)
-      },
+      language.map(
+        _.count_down(CountDown.countDown)
+      ),
       languages,
       fontSize := "20px",
       textAlign := "left",
       marginLeft :="10px",
     )
 
-    //val contentHandler = Var[VNode](div("empty"))
-    val contentHandler = Var[Option[VNode]](None)
-
+    val contentHandler = Handler.unsafe[Option[VNode]](None)
 
     val title = h1(id := "title",
-      header,
-      Rx{
-        language().title
-      },
+      language.map(
+        _.title
+      ),
       textAlign := "center",
       textShadow := "0 1px 1px #fff",
       fontSize := "80px",
@@ -140,47 +135,47 @@ object Anniversaire {
      height := "75px",
      position:="relative",
 
-     Rx{
+     language.map{l =>
        light_div(
          "info",
-         language().title_menu_info,
+         l.title_menu_info,
          onClick(Some(Infos.info(language))) --> contentHandler,
          0
        )
      },
 
 
-     Rx{
+     language.map{l =>
        light_div(
          "costume",
-         language().title_menu_costume,
+         l.title_menu_costume,
          onClick.mapTo(Some(Costume.costume(tokenValue.now, language))) --> contentHandler,
          1
        )
      },
 
-     Rx{
+     language.map{l =>
        light_div(
          "fun",
-         language().title_menu_fun,
+         l.title_menu_fun,
          onClick(Some("fun")) --> page,
          2
        )
      },
 
-     Rx{
+     language.map{l =>
        light_div(
          "photo", 
-         language().title_menu_photo,
+         l.title_menu_photo,
          onClick(Some(Photos.photos)) --> contentHandler,
          3
        )
      },
 
-     Rx{
+     language.map{l =>
        light_div(
          "contact",
-          language().title_menu_contact,
+         l.title_menu_contact,
          onClick(Some(Contact.contacts(language))) --> contentHandler,
          4
        )
@@ -203,6 +198,7 @@ object Anniversaire {
       val showTokenBox = Var(false)
       val tokenBorder = Var("none")
       div(
+        header,
         title,
         backgroundImage := "url(tente.jpg)",
         backgroundSize := "cover", 
@@ -212,8 +208,8 @@ object Anniversaire {
         height := "100%",
         lights_div,
 
-        Rx{
-        if (contentHandler().isDefined)
+        contentHandler.map{content =>
+        if (content.isDefined)
           main_container
         else
           VDomModifier.empty

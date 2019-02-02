@@ -4,6 +4,7 @@ import outwatch.dom.dsl._
 import monix.execution.Scheduler.Implicits.global
 import rx._
 import util._
+import monix.reactive._
 
 object Contact{
   def contact(name: String, email: String, phone: Seq[String], color : String)={
@@ -22,10 +23,8 @@ object Contact{
   val tiph = div(contact("Tiph", "tiphdousset@gmail.com", Seq("06.63.88.31.50 / 0049 1573 0983456"), "gold"))
   val fanch = div(contact("Fanch","francois.sail@gmail.com", Seq("06.76.29.51.25"), "pink"))
   val bene = div(contact("Béné","benedicte.gourdon@gmail.com", Seq("07.81.18.84.63"), "yellowGreen"))
-  def contacts_description(language: Var[Translation]) (implicit ctx:Ctx.Owner) = div(
-    Rx{
-      language().menu_contact
-    },
+  def contacts_description(language: Observable[Translation]) (implicit ctx:Ctx.Owner) = div(
+    language.map(_.menu_contact),
     textAlign := "center", 
     fontSize := "18px",
     marginTop := "5px"
@@ -40,6 +39,6 @@ object Contact{
                              marginRight := "auto",
                              fontSize := "10px")
 
-  def contacts(language : Var[Translation]) (implicit ctx:Ctx.Owner) = div(contacts_description(language), pic, contacts_details)
+  def contacts(language : Observable[Translation]) (implicit ctx:Ctx.Owner) = div(contacts_description(language), pic, contacts_details)
 }
 
