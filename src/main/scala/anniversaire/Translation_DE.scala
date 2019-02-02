@@ -7,6 +7,7 @@ object Translation_DE extends Translation{
 
   //Menu informations
   def menu_info : String = """Halli hallo!
+
     Für dich, lieber Freund, der auserwählt wurde, um unser 30-jähriges Jubiläum zu feiern gibt es hier einige nützliche Informationen zur Vorbereitung auf die lang erwartete Veranstaltung.
     Zunächst das Datum: Die Feierlichkeiten finden vom Samstag, den 8. bis Montag, den 10. Juni statt. Du wirst am späten Nachmittag am Samstag erwartet (z.B. gegen 17 Uhr) und wir werden das Gelände am Montag am späten Vormittag verlassen. 
 
