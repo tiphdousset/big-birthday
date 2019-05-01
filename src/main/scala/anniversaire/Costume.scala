@@ -53,16 +53,10 @@ object Costume{
      attr("frame-border") := "0",
      cls := "giphy-embed",
      borderWidth := "0",
-     // margin := "0 auto",
      display := "block",
-     // marginTop := "50px",
      marginLeft := "auto",
      marginRight := "auto"
      ) )
-
-
-   // val photos = div(display.flex, justifyContent.center, alignItems.center,fontSize := "50px", "UNDER", photos_under_construction, "CONSTRUCTION", height := "500px")
-   // <iframe src="https://giphy.com/embed/2SX8z3bnvJe3C" width="480" height="217" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/episode-wheel-fortune-2SX8z3bnvJe3C">via GIPHY</a></p>
 
 }
 

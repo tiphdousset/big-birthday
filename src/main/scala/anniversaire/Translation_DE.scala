@@ -5,7 +5,6 @@ object Translation_DE extends Translation{
   def title : String = "La Tente'aine"
   def count_down(numberOfDays: Int) : String = s"Noch $numberOfDays Tage"
 
-  //Menu informations
   def menu_info : String = """Halli hallo!
 
     Für dich, lieber Freund, der auserwählt wurde, um unser 30-jähriges Jubiläum zu feiern gibt es hier einige nützliche Informationen zur Vorbereitung auf die lang erwartete Veranstaltung.
@@ -23,7 +22,6 @@ object Translation_DE extends Translation{
   
   def title_menu_info : String = "Informationen"
 
-  //Menu costume
   def menu_costume : String = """Du hast nicht viel vorzubereiten, außer.... deinem Outfit!
     Das folgende Glücksrad wird dir in wenigen Monaten eine Verkleidung zeigen, die du am Samstag tragen musst.
 
@@ -36,15 +34,12 @@ object Translation_DE extends Translation{
   def menu_costume_button_wheel : String = "Wer bin ich?"
   def title_menu_costume : String = "Get dressed"
 
-  //Menu fun
   def menu_fun : String = "please bring me back home"
   def title_menu_fun : String = "DO NOT CLICK HERE"
 
-  //Menu photos
   def menu_photo : String = "UNDER CONSTRUCTION"
   def title_menu_photo : String = "Fotos"
 
-  //Menu contacts
   def menu_contact : String = """Du hast ein Frage? Oder du willst uns eine Liebeserklärung machen? Kein Problem, wir freuen uns auf deine Nachricht!"""
   def title_menu_contact : String = "Kontakt"
 
