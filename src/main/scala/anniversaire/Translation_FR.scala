@@ -42,4 +42,5 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
   def menu_contact : String = "Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!"
   def title_menu_contact : String = "Contacts"
 
+  def display_costume(guestName: String, costume: String): String = s"Felicitation $guestName! ton costume pour Samedi est: $costume"
 }

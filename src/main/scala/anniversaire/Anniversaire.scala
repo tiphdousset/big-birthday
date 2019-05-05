@@ -195,7 +195,7 @@ object Anniversaire {
     }
 
     val home_div = {
-      val showTokenBox = Var(false)
+      val showTokenBox = Var(true)
       val tokenBorder = Var("none")
       div(
         header,

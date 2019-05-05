@@ -9,7 +9,7 @@ object GuestCostume{
     Guest("Julie", List("T", "B"), "B"),
     Guest("Manon", List("F"), "C"),
     Guest("Jeremy", List("T", "F", "B"), "D"),
-    Guest("Clemi", List("T", "F" ), "E")
+    Guest("Clemi", List("T", "F" ), "E"!
   )
 
   val guestsNames = guests.map(guest => guest.name)
