@@ -9,8 +9,6 @@ import rx._
 import util._
 import org.scalajs.dom.ext.KeyCode
 
-
-
 object Anniversaire {
   implicit val ctx: Ctx.Owner = Ctx.Owner.safe()
 
@@ -22,7 +20,10 @@ object Anniversaire {
     val counter = Observable.interval(1 second)
     var isClicked = true
 
-    def light_div(lightId:String, description:String, onClick_function:VDomModifier, number:Int) = { 
+    def light_div(lightId: String,
+                  description: String,
+                  onClick_function: VDomModifier,
+                  number: Int) = {
       import svg._
       div(
         cls := "lightsCls",
@@ -31,27 +32,30 @@ object Anniversaire {
         div(
           svg(
             cls := "svgCls",
-            width:="25px", height:="25px", 
-            viewBox := "0 0 30 40", 
-            rect(y:="5", x:="10", height:="10", width:="10"), 
-            circle(r:="10",cy:="25",cx:="15"),
+            width := "25px",
+            height := "25px",
+            viewBox := "0 0 30 40",
+            rect(y := "5", x := "10", height := "10", width := "10"),
+            circle(r := "10", cy := "25", cx := "15"),
           )
         ),
-      div(cls := "descriptionCls", description),
-      onClick_function,
-      counter.map(x => if (x%5==number && isClicked) cls := "activate" else VDomModifier.empty)
-    )
+        div(cls := "descriptionCls", description),
+        onClick_function,
+        counter.map(
+          x =>
+            if (x % 5 == number && isClicked) cls := "activate"
+            else VDomModifier.empty)
+      )
     }
 
     val intro_button = button(id := "intro_button",
-      language.map( _.intro_button ),
-     onClick(Some("start")) --> page,
-     cursor := "pointer"
-     )
+                              language.map(_.intro_button),
+                              onClick(Some("start")) --> page,
+                              cursor := "pointer")
 
     val intro_div = div(
       backgroundImage := "url(intro.jpg)",
-      backgroundSize := "cover", 
+      backgroundSize := "cover",
       backgroundPosition := "center 0",
       height := "100%",
       intro_button,
@@ -59,17 +63,22 @@ object Anniversaire {
       cursor := "pointer"
     )
 
-    def createTranslationIcon(language_hover : String, image : String, language_class : Translation) = {   
+    def createTranslationIcon(language_hover: String,
+                              image: String,
+                              language_class: Translation) = {
       div(
-        cls:= "language",
+        cls := "language",
         backgroundImage := s"url($image)",
-        backgroundSize := "contain", 
+        backgroundSize := "contain",
         width := "20px",
         flexShrink := 0,
         marginRight := "10px",
         onClick(language_class) --> language,
         backgroundRepeat := "no-repeat",
-        div(cls:= "language_description", language_hover, marginTop := "30px", fontSize := "15px")
+        div(cls := "language_description",
+            language_hover,
+            marginTop := "30px",
+            fontSize := "15px")
       )
     }
 
@@ -100,12 +109,13 @@ object Anniversaire {
       languages,
       fontSize := "20px",
       textAlign := "left",
-      marginLeft :="10px",
+      marginLeft := "10px",
     )
 
     val contentHandler = Handler.unsafe[Option[VNode]](None)
 
-    val title = h1(id := "title",
+    val title = h1(
+      id := "title",
       language.map(
         _.title
       ),
@@ -115,81 +125,72 @@ object Anniversaire {
       marginBottom := "0",
       onClick(None) --> contentHandler,
       cursor := "pointer"
+    )
 
-      )
-
-     val main_container = div(
-      id := "mainContainer", 
+    val main_container = div(
+      id := "mainContainer",
       contentHandler
-      )
+    )
 
     val lights_div = div(
       id := "lightsDiv",
-      marginLeft:= "auto", //auto for marginLeft&Right to have the div centered
-      marginRight:= "auto",
-      width:= "450px", //default width for div is 100%
+      marginLeft := "auto", //auto for marginLeft&Right to have the div centered
+      marginRight := "auto",
+      width := "450px", //default width for div is 100%
       /*backgroundImage := "url(lights.svg)",*/
-     backgroundImage := "url(lichtketteF.svg)",
-     backgroundSize := "contain", 
-     backgroundRepeat := "no-repeat",
-     height := "75px",
-     position:="relative",
-
-     language.map{l =>
-       light_div(
-         "info",
-         l.title_menu_info,
-         onClick(Some(Infos.info(language))) --> contentHandler,
-         0
-       )
-     },
-
-
-     language.map{l =>
-       light_div(
-         "costume",
-         l.title_menu_costume,
-         onClick.mapTo(Some(Costume.costume(tokenValue.now, language))) --> contentHandler,
-         1
-       )
-     },
-
-     language.map{l =>
-       light_div(
-         "fun",
-         l.title_menu_fun,
-         onClick(Some("fun")) --> page,
-         2
-       )
-     },
-
-     language.map{l =>
-       light_div(
-         "photo", 
-         l.title_menu_photo,
-         onClick(Some(Photos.photos)) --> contentHandler,
-         3
-       )
-     },
-
-     language.map{l =>
-       light_div(
-         "contact",
-         l.title_menu_contact,
-         onClick(Some(Contact.contacts(language))) --> contentHandler,
-         4
-       )
-     },
-
-
-    onClick.foreach{isClicked = false}
-  )
+      backgroundImage := "url(lichtketteF.svg)",
+      backgroundSize := "contain",
+      backgroundRepeat := "no-repeat",
+      height := "75px",
+      position := "relative",
+      language.map { l =>
+        light_div(
+          "info",
+          l.title_menu_info,
+          onClick(Some(Infos.info(language))) --> contentHandler,
+          0
+        )
+      },
+      language.map { l =>
+        light_div(
+          "costume",
+          l.title_menu_costume,
+          onClick
+            .mapTo(Some(Costume.costume(tokenValue.now, language))) --> contentHandler,
+          1
+        )
+      },
+      language.map { l =>
+        light_div(
+          "fun",
+          l.title_menu_fun,
+          onClick(Some("fun")) --> page,
+          2
+        )
+      },
+      language.map { l =>
+        light_div(
+          "photo",
+          l.title_menu_photo,
+          onClick(Some(Photos.photos)) --> contentHandler,
+          3
+        )
+      },
+      language.map { l =>
+        light_div(
+          "contact",
+          l.title_menu_contact,
+          onClick(Some(Contact.contacts(language))) --> contentHandler,
+          4
+        )
+      },
+      onClick.foreach { isClicked = false }
+    )
 
     def onClickToken(showTokenBox: Var[Boolean], tokenBorder: Var[String]) = {
-      if (GuestCostume.isTokenValid(tokenValue.now)){
+      if (GuestCostume.isTokenValid(tokenValue.now)) {
         showTokenBox() = false
-      }
-      else {
+      } else {
         tokenBorder() = "4px solid red"
       }
     }
@@ -201,22 +202,20 @@ object Anniversaire {
         header,
         title,
         backgroundImage := "url(tente.jpg)",
-        backgroundSize := "cover", 
+        backgroundSize := "cover",
         backgroundPosition := "center 0",
         backgroundAttachment := "fixed",
         overflow := "auto",
         height := "100%",
         lights_div,
-
-        contentHandler.map{content =>
-        if (content.isDefined)
-          main_container
-        else
-          VDomModifier.empty
+        contentHandler.map { content =>
+          if (content.isDefined)
+            main_container
+          else
+            VDomModifier.empty
         },
-
-        Rx{
-          if (showTokenBox()){
+        Rx {
+          if (showTokenBox()) {
             div(
               height := "100%",
               backgroundColor := "rgba(0,0,0,0.8)",
@@ -233,40 +232,36 @@ object Anniversaire {
                 fontSize := "100px",
                 cls := "innerShadow",
                 border <-- tokenBorder,
-                onInput.value.foreach{str =>
+                onInput.value.foreach { str =>
                   tokenValue() = str
                   tokenBorder() = "none"
                 },
-                onKeyDown.filter(_.keyCode == KeyCode.Enter).foreach{onClickToken(showTokenBox, tokenBorder)}
-                ),
-              button("OK",
-                onClick.foreach{onClickToken(showTokenBox, tokenBorder) },
-                fontSize := "100px",
-                marginLeft := "20px"
-                ),
-              )
-          }
-          else VDomModifier.empty
+                onKeyDown.filter(_.keyCode == KeyCode.Enter).foreach {
+                  onClickToken(showTokenBox, tokenBorder)
+                }
+              ),
+              button("OK", onClick.foreach {
+                onClickToken(showTokenBox, tokenBorder)
+              }, fontSize := "100px", marginLeft := "20px"),
+            )
+          } else VDomModifier.empty
         }
-        )
+      )
     }
 
     val main = div(
       height := "100%",
-
-      Rx{
-        if (page() == Some("start")){
+      Rx {
+        if (page() == Some("start")) {
           home_div
-        }
-        else if (page() == Some("fun")){
+        } else if (page() == Some("fun")) {
           Fun.fun(page, language)
-        }
-        else intro_div
+        } else intro_div
         //home_div //temporary for test purpose
       }
-      )
+    )
 
-     OutWatch.renderReplace("#app", main).unsafeRunSync()
+    OutWatch.renderReplace("#app", main).unsafeRunSync()
 
   }
 }

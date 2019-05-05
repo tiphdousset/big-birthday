@@ -7,13 +7,12 @@ import rx._
 import util._
 import monix.reactive._
 
-object Infos{
+object Infos {
 
-  def info(language : Observable[Translation])(implicit ctx : Ctx.Owner) = div(
-    language.map(
-      _.menu_info
-    ),
-    fontSize := "16px", 
-    whiteSpace := "pre-line")
+  def info(language: Observable[Translation])(implicit ctx: Ctx.Owner) =
+    div(language.map(
+          _.menu_info
+        ),
+        fontSize := "16px",
+        whiteSpace := "pre-line")
 }
-

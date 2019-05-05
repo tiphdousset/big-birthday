@@ -1,11 +1,12 @@
 package anniversaire
-object Translation_FR extends Translation{
+object Translation_FR extends Translation {
 
-  def intro_button : String = "They are back."
-  def title : String = "La Tente'aine"
-  def count_down(numberOfDays : Int) : String = s"J - $numberOfDays"
+  def intro_button: String = "They are back."
+  def title: String = "La Tente'aine"
+  def count_down(numberOfDays: Int): String = s"J - $numberOfDays"
 
-  def menu_info : String = """Hoyé hoyé !
+  def menu_info: String =
+    """Hoyé hoyé !
 
     Pour toi, cher ami.e choisis entre tous pour célébrer nos 30 ans, voici quelques informations utiles pour préparer l'évènement tant attendu.
 
@@ -20,9 +21,10 @@ object Translation_FR extends Translation{
 Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous contacter afin que l'on puisse t'accueillir chez l'un d'entre nous.
 
   Non-french speaker : keep calm and don't panic, you can ask us for more explanations or..."""
-  def title_menu_info : String = "Informations"
+  def title_menu_info: String = "Informations"
 
-  def menu_costume : String = """Pas grand chose à préparer pour nous rejoindre si ce n'est...ta tenue!
+  def menu_costume: String =
+    """Pas grand chose à préparer pour nous rejoindre si ce n'est...ta tenue!
     La grande roue ci-après te dévoilera dans quelques mois un déguisement à revêtir le Samedi.
 
     Ton personnage appartient à un duo et tu devras lors de cette première soirée retrouver ton binôme parmi les invités.
@@ -30,17 +32,19 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
     Pas de stress cependant pour les allergiques aux déguisements: tu peux te contenter d'arborer l'un des accessoires fétiches du personnage en question ou au contraire le jouer à fond, l'important c'est de retrouver ta moitié. #love 
 
   Pour savoir ce que le hasard te réserve, reviens donc checker cette page au printemps!"""
-  def menu_costume_button_wheel : String = "Qui suis-je?"
-  def title_menu_costume : String = "Get dressed"
+  def menu_costume_button_wheel: String = "Qui suis-je?"
+  def title_menu_costume: String = "Get dressed"
 
-  def menu_fun : String = "please bring me back home"
-  def title_menu_fun : String = "DO NOT CLICK HERE"
+  def menu_fun: String = "please bring me back home"
+  def title_menu_fun: String = "DO NOT CLICK HERE"
 
-  def menu_photo : String = "UNDER CONSTRUCTION"
-  def title_menu_photo : String = "Photos"
+  def menu_photo: String = "UNDER CONSTRUCTION"
+  def title_menu_photo: String = "Photos"
 
-  def menu_contact : String = "Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!"
-  def title_menu_contact : String = "Contacts"
+  def menu_contact: String =
+    "Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!"
+  def title_menu_contact: String = "Contacts"
 
-  def display_costume(guestName: String, costume: String): String = s"Felicitation $guestName! ton costume pour Samedi est: $costume"
+  def display_costume(guestName: String, costume: String): String =
+    s"Felicitation $guestName! Ton costume pour Samedi est: $costume"
 }

@@ -5,41 +5,47 @@ import rx._
 import util._
 import monix.reactive._
 
-object Costume{
+object Costume {
 
-   def costume(token: String, language : Observable[Translation])(implicit ctx:Ctx.Owner) = {
+  def costume(token: String, language: Observable[Translation])(
+      implicit ctx: Ctx.Owner) = {
 //     val showWheel = Var(false)
-     val showCostume = Var(false)
+    val showCostume = Var(false)
 
-     val button_wheel = button(
-       language.map(_.menu_costume_button_wheel),
-       fontWeight.bold,
-       fontSize := "15px",
-       marginTop := "50px",
-       marginLeft := "auto",
-       marginRight := "auto",
-       display := "block",
+    val button_wheel = button(
+      language.map(_.menu_costume_button_wheel),
+      fontWeight.bold,
+      fontSize := "15px",
+      marginTop := "50px",
+      marginLeft := "auto",
+      marginRight := "auto",
+      display := "block",
 //       onClick(true) --> showWheel ,
-       onClick(true) --> showCostume
-     )
+      onClick(true) --> showCostume
+    )
 
-     div(
-       language.map(_.menu_costume),
-       Rx {
+    div(
+      language.map(_.menu_costume),
+      Rx {
 //         if (showWheel())
 //           wheelOfFortune
-         if (showCostume())
-           displayCostume(token, language)
-         else
-           button_wheel
-       },
-       fontSize := "16px", whiteSpace := "pre-line")
-   }
+        if (showCostume())
+          displayCostume(token, language)
+        else
+          button_wheel
+      },
+      fontSize := "16px",
+      whiteSpace := "pre-line"
+    )
+  }
 
-  def displayCostume(token: String, language : Observable[Translation])(implicit ctx:Ctx.Owner) = {
+  def displayCostume(token: String, language: Observable[Translation])(
+      implicit ctx: Ctx.Owner) = {
     val guestName = GuestCostume.findNameAndCostumePerToken(token).toList(0)._1
     val costume = GuestCostume.findNameAndCostumePerToken(token).toList(0)._2
+    //Todo: add empty line
     div(language.map(_.display_costume(guestName, costume)))
+    //Todo: add the info: look for $costume_partner at the Party!  // If you don't know how you personnage look like, Google knows.
   }
 
 //   val wheelOfFortune = div(iframe( src := "https://giphy.com/embed/2SX8z3bnvJe3C" ,
@@ -54,5 +60,3 @@ object Costume{
 //     ) )
 
 }
-
-
