@@ -45,6 +45,9 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
     "Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!"
   def title_menu_contact: String = "Contacts"
 
-  def display_costume(guestName: String, costume: String): String =
-    s"Felicitation $guestName! Ton costume pour Samedi est: $costume"
+  def display_costume(guestName: String, costume: String, costumePartner: String): String =
+    s"""Felicitation $guestName! Ton costume pour Samedi est: $costume.
+        Il faudra donc que tu cherches $costumePartner.
+        Tu ne sais pas a quoi tout ca doit ressembler? Excuse non acceptee! Google sait lui....
+     """
 }

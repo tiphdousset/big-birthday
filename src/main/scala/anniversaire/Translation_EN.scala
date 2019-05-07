@@ -47,7 +47,10 @@ object Translation_EN extends Translation {
     "You have a question? Or you just want to make us a declaration of love? Don't hesitate, we are looking forward to receive your message!"
   def title_menu_contact: String = "Contacts"
 
-  def display_costume(guestName: String, costume: String): String =
-    s"Congratulation $guestName! Your costume for Saturday is: $costume"
+  def display_costume(guestName: String, costume: String, costumePartner: String): String =
+    s"""Congratulation $guestName! Your costume for Saturday is: $costume.
+        You should look for $costumePartner on Saturday!
+        You don't know it will look like? No excuse, Google knows it!
+     """
 
 }

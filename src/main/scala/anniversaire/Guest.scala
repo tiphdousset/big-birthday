@@ -12,8 +12,8 @@ object GuestCostume {
     Guest("Clemi", List("T", "F"), "E")
   )
   //Todo
-  //generate list of guests with a CSV file that contains name and host?
-  //token = UUID?
+  //generate list of guests with a CSV file that contains name and host? --> scala code
+  //token = random string with 5 letters
 
   val guestsNames = guests.map(guest => guest.name)
 
@@ -23,7 +23,7 @@ object GuestCostume {
     ("Asterix", "Obelix")
   )
   //Todo
-  //generate list of costumes with a CSV file?
+  //generate list of costumes with a CSV file? --> scala code
 
   def getListPairGuests(guests: List[Guest]): List[(Guest, Guest, Int)] = {
     val g = for (List(guest, guest2) <- guests.combinations(2)) yield {
@@ -102,5 +102,29 @@ object GuestCostume {
     //guests.exists(guest => guest.token == token)
     guests.exists(_.token == token)
   }
+
+  def fromTupleToList(costumes: (String, String)): List[String] = {
+    costumes match {
+      case (a,b) => List(a,b)
+    }
+  }
+
+
+  def findCostumePartner(costumeA: String) : String = {
+    val costumePair = costumes.find( x => fromTupleToList(x).contains(costumeA)).get
+    costumePair match {
+      case (partner, `costumeA`) => partner
+      case (`costumeA`, partner) => partner
+    }
+  }
+
+//  costumes.collectFirst{
+//    case (partner, `costumeA`) => partner
+//    case (`costumeA`, partner) => partner
+//  }
+//
+//  costumes.collectFirst{
+//    case (a,b) if List(a,b).contains(costumeA) => Set(a,b)-costumeA
+//  }
 
 }

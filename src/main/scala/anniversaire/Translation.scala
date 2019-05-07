@@ -20,6 +20,6 @@ trait Translation {
 
   def menu_contact: String
   def title_menu_contact: String
-
-  def display_costume(guestName: String, costume: String): String
+  //Todo: Link google image (costume, costumePartner)
+  def display_costume(guestName: String, costume: String, costumePartner: String): String
 }
