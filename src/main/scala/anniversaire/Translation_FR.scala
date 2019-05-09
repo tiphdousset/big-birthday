@@ -1,4 +1,7 @@
 package anniversaire
+import outwatch.dom.VDomModifier
+import outwatch.dom._
+import outwatch.dom.dsl._
 object Translation_FR extends Translation {
 
   def intro_button: String = "They are back."
@@ -45,9 +48,20 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
     "Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!"
   def title_menu_contact: String = "Contacts"
 
-  def display_costume(guestName: String, costume: String, costumePartner: String): String =
-    s"""Felicitation $guestName! Ton costume pour Samedi est: $costume.
-        Il faudra donc que tu cherches $costumePartner.
-        Tu ne sais pas a quoi tout ca doit ressembler? Excuse non acceptee! Google sait lui....
-     """
+
+  def display_costume(guestName: String,
+                      costume: String,
+                      costumePartner: String): VDomModifier =
+    VDomModifier(
+      "Felicitations ",
+      b(s"$guestName! "),
+      "Ton deguisement pour Samedi est: ",
+      b(s"$costume. "),
+      "Il te faudra donc chercher: ",
+      b(s"$costumePartner. "),
+      "Tu ne sais pas à quoi ces personnages ressemblent? Pas d'excuse, ",
+      a("Google est ton ami! ",
+        href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
+        target := "_blank")
+    )
 }

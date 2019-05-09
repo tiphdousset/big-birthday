@@ -1,4 +1,7 @@
 package anniversaire
+
+import outwatch.dom.VDomModifier
+
 trait Translation {
 
   def intro_button: String
@@ -21,5 +24,6 @@ trait Translation {
   def menu_contact: String
   def title_menu_contact: String
   //Todo: Link google image (costume, costumePartner)
-  def display_costume(guestName: String, costume: String, costumePartner: String): String
+  def display_costume(guestName: String, costume: String, costumePartner: String): VDomModifier
+  //https://www.google.com/search?tbm=isch&q=mario+luigi&oq=mario+luigi
 }

@@ -4,26 +4,11 @@ case class Guest(name: String, host: List[String], token: String)
 
 object GuestCostume {
 
-  val guests = List(
-    Guest("Felix", List("T"), "A"),
-    Guest("Julie", List("T", "B"), "B"),
-    Guest("Manon", List("F"), "C"),
-    Guest("Jeremy", List("T", "F", "B"), "D"),
-    Guest("Clemi", List("T", "F"), "E")
-  )
-  //Todo
-  //generate list of guests with a CSV file that contains name and host? --> scala code
-  //token = random string with 5 letters
+  val guests = Guests.listGuests
 
   val guestsNames = guests.map(guest => guest.name)
 
-  val costumes = List(
-    ("Mario", "Luigi"),
-    ("Roméo", "Juliette"),
-    ("Asterix", "Obelix")
-  )
-  //Todo
-  //generate list of costumes with a CSV file? --> scala code
+  val costumes: List[(String, String)] = Costumes.costumesList
 
   def getListPairGuests(guests: List[Guest]): List[(Guest, Guest, Int)] = {
     val g = for (List(guest, guest2) <- guests.combinations(2)) yield {

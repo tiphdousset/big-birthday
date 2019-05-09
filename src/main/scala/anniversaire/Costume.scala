@@ -44,10 +44,7 @@ object Costume {
     val guestName = GuestCostume.findNameAndCostumePerToken(token).toList(0)._1
     val costume = GuestCostume.findNameAndCostumePerToken(token).toList(0)._2
     val costumePartner = GuestCostume.findCostumePartner(costume)
-    //Todo: bold usw
     div(language.map(_.display_costume(guestName, costume, costumePartner)), marginTop:="20px")
-    //Todo: add the info: look for $costume_partner at the Party!  // If you don't know how you personnage looks like, Google knows.
-    //Todo: add link google image
   }
 
 //   val wheelOfFortune = div(iframe( src := "https://giphy.com/embed/2SX8z3bnvJe3C" ,

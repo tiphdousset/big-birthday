@@ -1,8 +1,13 @@
 package anniversaire
+import outwatch.dom.VDomModifier
+import outwatch.dom._
+import outwatch.dom.dsl._
 object Translation_EN extends Translation {
 
   def intro_button: String = "They are back."
+
   def title: String = "La Tente'aine"
+
   def count_down(numberOfDays: Int): String = s"D - $numberOfDays"
 
   def menu_info: String =
@@ -35,22 +40,35 @@ object Translation_EN extends Translation {
   To know what awaits you, come back in spring and have a look at this page!"""
 
   def menu_costume_button_wheel: String = "Who am I?"
+
   def title_menu_costume: String = "Get dressed"
 
   def menu_fun: String = "please bring me back home"
+
   def title_menu_fun: String = "DO NOT CLICK HERE"
 
   def menu_photo: String = "UNDER CONSTRUCTION"
+
   def title_menu_photo: String = "Photos"
 
   def menu_contact: String =
     "You have a question? Or you just want to make us a declaration of love? Don't hesitate, we are looking forward to receive your message!"
+
   def title_menu_contact: String = "Contacts"
 
-  def display_costume(guestName: String, costume: String, costumePartner: String): String =
-    s"""Congratulation $guestName! Your costume for Saturday is: $costume.
-        You should look for $costumePartner on Saturday!
-        You don't know it will look like? No excuse, Google knows it!
-     """
-
+  def display_costume(guestName: String,
+                      costume: String,
+                      costumePartner: String): VDomModifier =
+    VDomModifier(
+      "Congratulation ",
+      b(s"$guestName! "),
+      "Your costume for Saturday is: ",
+      b(s"$costume. "),
+      "You should look for: ",
+      b(s"$costumePartner. "),
+      "You don't know how it should look like? No excuse, ",
+      a("Google knows it!",
+        href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
+        target := "_blank")
+    )
 }
