@@ -1,4 +1,5 @@
-package anniversaire
+package anniversaire.resources
+import Guest._
 
 object Guests {
   val listGuests: List[Guest] = List(

@@ -54,17 +54,14 @@ object Translation_DE extends Translation {
   def display_costume(guestName: String,
                       costume: String,
                       costumePartner: String): VDomModifier =
-    VDomModifier(
-      "Glückwunsch ",
-      b(s"$guestName! "),
-      "Dein Kostüm für Samstag ist: ",
-      b(s"$costume. "),
-      "Du muss dann am Samstag nach ",
-      b(s"$costumePartner suchen. "),
-      "Du weiss nicht wie es alles aussehen sollte? Keine Ausrede, ",
-      a("Google weiss es aber!",
-        href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
-        target := "_blank")
-    )
 
+  VDomModifier(
+    div("Du bist: "),
+    div(b(s"$costume"), fontSize:="35px"),
+    div("Such nach: "),
+    div(b(s"$costumePartner "), fontSize:="35px"),
+    div("Du weiss nicht wie die aussehen? Keine Ausrede, ", a("frag Google! ",
+      href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
+      target := "_blank"))
+  )
 }

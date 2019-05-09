@@ -1,4 +1,4 @@
-package anniversaire
+package anniversaire.resources
 
 object Costumes {
   val costumesList: List[(String, String)] = List(

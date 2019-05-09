@@ -1,6 +1,8 @@
 package anniversaire
 
+import anniversaire.resources.GuestCostume
 import monix.reactive._
+
 import concurrent.duration._
 import outwatch.dom._
 import outwatch.dom.dsl._
@@ -15,7 +17,7 @@ object Anniversaire {
   def main(args: Array[String]): Unit = {
 
     val page = Var(Option.empty[String])
-    val tokenValue = Var("")
+    val tokenValue = Var("old-trump-boobs-fuck-birthday")
     val language = Handler.unsafe[Translation](Translation_FR)
     val counter = Observable.interval(1 second)
     var isClicked = true

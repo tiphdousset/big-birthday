@@ -53,15 +53,12 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
                       costume: String,
                       costumePartner: String): VDomModifier =
     VDomModifier(
-      "Felicitations ",
-      b(s"$guestName! "),
-      "Ton deguisement pour Samedi est: ",
-      b(s"$costume. "),
-      "Il te faudra donc chercher: ",
-      b(s"$costumePartner. "),
-      "Tu ne sais pas à quoi ces personnages ressemblent? Pas d'excuse, ",
-      a("Google est ton ami! ",
+     div("Tu es: "),
+      div(b(s"$costume"), fontSize:="35px"),
+      div("Tu dois donc retrouver: "),
+      div(b(s"$costumePartner "), fontSize:="35px"),
+      div("Tu ne sais pas à quoi ces personnages ressemblent? Pas d'excuse, ", a("Google est ton ami! ",
         href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
-        target := "_blank")
+        target := "_blank"))
     )
 }

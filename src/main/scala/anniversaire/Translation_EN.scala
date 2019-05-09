@@ -59,16 +59,13 @@ object Translation_EN extends Translation {
   def display_costume(guestName: String,
                       costume: String,
                       costumePartner: String): VDomModifier =
-    VDomModifier(
-      "Congratulation ",
-      b(s"$guestName! "),
-      "Your costume for Saturday is: ",
-      b(s"$costume. "),
-      "You should look for: ",
-      b(s"$costumePartner. "),
-      "You don't know how it should look like? No excuse, ",
-      a("Google knows it!",
-        href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
-        target := "_blank")
-    )
+  VDomModifier(
+    div("You are: "),
+    div(b(s"$costume"), fontSize:="35px"),
+    div("Look for: "),
+    div(b(s"$costumePartner "), fontSize:="35px"),
+    div("You don't know how they look like? No excuse, ", a("ask Google! ",
+      href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
+      target := "_blank"))
+  )
 }

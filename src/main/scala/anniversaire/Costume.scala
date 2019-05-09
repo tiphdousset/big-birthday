@@ -1,4 +1,5 @@
 package anniversaire
+import anniversaire.resources.GuestCostume
 import outwatch.dom._
 import outwatch.dom.dsl._
 import rx._
@@ -44,7 +45,7 @@ object Costume {
     val guestName = GuestCostume.findNameAndCostumePerToken(token).toList(0)._1
     val costume = GuestCostume.findNameAndCostumePerToken(token).toList(0)._2
     val costumePartner = GuestCostume.findCostumePartner(costume)
-    div(language.map(_.display_costume(guestName, costume, costumePartner)), marginTop:="20px")
+    div(language.map(_.display_costume(guestName, costume, costumePartner)), marginTop:="20px", display.flex, flexDirection:="column", alignItems:="center")
   }
 
 //   val wheelOfFortune = div(iframe( src := "https://giphy.com/embed/2SX8z3bnvJe3C" ,

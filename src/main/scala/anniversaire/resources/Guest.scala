@@ -1,4 +1,4 @@
-package anniversaire
+package anniversaire.resources
 
 case class Guest(name: String, host: List[String], token: String)
 
