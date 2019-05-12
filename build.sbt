@@ -7,7 +7,7 @@ scalaVersion := "2.12.6"
 resolvers += "jitpack" at "https://jitpack.io"
 
 libraryDependencies ++= Seq(
-  "com.github.outwatch" % "outwatch" % "e27dc4f",
+  "com.github.outwatch" % "outwatch" % "781a8a7",
   "io.monix" %%% "monix" % "3.0.0-RC1",
   "org.scalatest" %%% "scalatest" % "3.0.5" % Test,
   "com.lihaoyi" %%% "scalarx" % "0.4.0"
