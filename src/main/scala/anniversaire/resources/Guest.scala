@@ -57,9 +57,11 @@ object GuestCostume {
   }
 
   val listGuestAndCostume = getListGuestAndCostume(listBestPairGuests, costumes)
-  //Todo: use this algorithm to generate the list. Move also 2 other Todos in another file; because we need only once to generate all of this
+  //Todo: save list and print the pairs for Saturday!
+  //Todo: add a flag to costume already distributed in Costumes
+  //Todo: add a flag to guest already distributed in Guests
   //Check for uneven guest numbers!
-//println(listGuestAndCostume.mkString("\n"))
+  //println(listGuestAndCostume.mkString("\n"))
 
   def findNameAndCostumePerToken(token: String): Option[(String, String)] = {
 
@@ -93,7 +95,6 @@ object GuestCostume {
       case (a,b) => List(a,b)
     }
   }
-
 
   def findCostumePartner(costumeA: String) : String = {
     val costumePair = costumes.find( x => fromTupleToList(x).contains(costumeA)).get

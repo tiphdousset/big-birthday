@@ -231,7 +231,8 @@ object Anniversaire {
               input(
                 tpe := "text",
                 placeholder := "Please enter your token",
-                fontSize := "100px",
+                fontSize := "30px",
+                width := "500px",
                 cls := "innerShadow",
                 border <-- tokenBorder,
                 onInput.value.foreach { str =>
@@ -244,7 +245,7 @@ object Anniversaire {
               ),
               button("OK", onClick.foreach {
                 onClickToken(showTokenBox, tokenBorder)
-              }, fontSize := "100px", marginLeft := "20px"),
+              }, fontSize := "30px", marginLeft := "20px", backgroundColor:="#fd22c4", color:="white", fontWeight.bold, borderRadius:="3px", border:="none"),
             )
           } else VDomModifier.empty
         }

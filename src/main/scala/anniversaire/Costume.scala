@@ -20,6 +20,8 @@ object Costume {
       marginTop := "50px",
       marginLeft := "auto",
       marginRight := "auto",
+      backgroundColor:="#fd22c4",
+      color:="white",
       display := "block",
 //       onClick(true) --> showWheel ,
       onClick(true) --> showCostume
