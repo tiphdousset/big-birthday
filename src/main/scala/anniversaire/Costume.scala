@@ -5,13 +5,15 @@ import rx._
 import util._
 import monix.reactive._
 import TokenLogic._
+import concurrent.duration._
+import org.scalajs.dom.window.setTimeout
 
 object Costume {
 
   def costume(token: String, language: Observable[Translation])(
       implicit ctx: Ctx.Owner) = {
 //     val showWheel = Var(false)
-    val showCostume = Var(false)
+    val showCostume = Var(1)
 
     val button_wheel = button(
       language.map(_.menu_costume_button_wheel),
@@ -23,16 +25,18 @@ object Costume {
       backgroundColor:="#fd22c4",
       color:="white",
       display := "block",
-//       onClick(true) --> showWheel ,
-      onClick(true) --> showCostume
+      onClick(2) --> showCostume,
+      onClick.foreach{ _ =>
+        setTimeout(() => showCostume()=3,3000.0)
+      }
     )
 
     div(
       language.map(_.menu_costume),
       Rx {
-//         if (showWheel())
-//           wheelOfFortune
-        if (showCostume())
+        if (showCostume()==2)
+          wheelOfFortune
+        else if (showCostume()==3)
           displayCostume(token, language)
         else
           button_wheel
@@ -52,16 +56,15 @@ object Costume {
     println("costumePartner = "+ costumePartner)
     div(language.map(_.display_costume(guestName, costume, costumePartner)), marginTop:="20px", display.flex, flexDirection:="column", alignItems:="center")
   }
-
-//   val wheelOfFortune = div(iframe( src := "https://giphy.com/embed/2SX8z3bnvJe3C" ,
-//     attr("width") := "480",
-//     attr("height") := "360",
-//     attr("frame-border") := "0",
-//     cls := "giphy-embed",
-//     borderWidth := "0",
-//     display := "block",
-//     marginLeft := "auto",
-//     marginRight := "auto"
-//     ) )
+   val wheelOfFortune = div(iframe( src := "https://giphy.com/embed/6CovzgyTig7M4",
+     attr("width") := "480",
+     attr("height") := "360",
+     attr("frame-border") := "0",
+     cls := "giphy-embed",
+     borderWidth := "0",
+     display := "block",
+     marginLeft := "auto",
+     marginRight := "auto"
+     ) )
 
 }
