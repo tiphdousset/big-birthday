@@ -5,7 +5,7 @@ case class Guest(name: String, host: List[String], token: String)
 object Guests {
   val listGuests: List[Guest] = List(
 
-    Guest("glescornet@gmail.com", List("B"), "chocolat-queen-baguette-bene-banana"),
+    Guest("glescornet@gmail.com", List("B"), "king-baguette-party-tente-banana"),
     Guest("sml.vgr@gmail.com", List("T"), "chocolat-queen-baguette-bene-banana"),
     Guest("quentinburban@laposte.net", List("F"), "baguette-birthday-love-france-tente"),
     Guest("marionmetivier86@gmail.com", List("F"), "birthday-tiphanie-banana-queen-fun"),
@@ -93,7 +93,6 @@ object Guests {
     Guest("lucie.rouland@gmail.com", List("B"), "party-love-fun-bene-tiphanie"),
     Guest("anthony-pacaud@laposte.net", List("T"), "party-king-birthday-banana-fun"),
     Guest("vivet.lucie@gmail.com", List("T"), "baguette-francois-king-france-party"),
-    // "king-baguette-party-tente-banana"
     // "queen-banana-chocolat-bene-king"
     // "birthday-banana-francois-gold-chocolat"
     // "king-birthday-banana-gold-fun"
@@ -108,8 +107,10 @@ object Guests {
     // "party-tiphanie-banana-birthday-love"
   )
 
-  val emails: Set[String] = listGuests.map{ _.name }.toSet
+  val emails: Set[String] = listGuests.map{ _.name}.toSet
   assert(listGuests.size==emails.size)
+  val tokens: Set[String] = listGuests.map{ _.token}.toSet
+  assert(listGuests.size==tokens.size)
 
   //val words = List("tiphanie", "bene", "francois", "penis", "boobs", "fuck", "love", "shit", "sheet", "fun", "dog", "france", "baguette", "god", "dad", "mom", "ass", "fat", "birthday", "chocolat", "trump", "banana", "tente", "old")
   //List.fill(100)(List.fill(5)(words(util.Random.nextInt(words.length))).mkString("-"))
