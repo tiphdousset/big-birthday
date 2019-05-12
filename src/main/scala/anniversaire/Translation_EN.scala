@@ -65,7 +65,7 @@ object Translation_EN extends Translation {
     div("Look for: "),
     div(b(s"$costumePartner "), fontSize:="35px"),
     div("You don't know how they look like? No excuse, ", a("ask Google! ",
-      href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
+      href := s"https://www.google.com/search?tbm=isch&q=$costume+and+$costumePartner",
       target := "_blank"))
   )
 }

@@ -58,7 +58,7 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
       div("Tu dois donc retrouver: "),
       div(b(s"$costumePartner "), fontSize:="35px"),
       div("Tu ne sais pas à quoi ces personnages ressemblent? Pas d'excuse, ", a("Google est ton ami! ",
-        href := s"https://www.google.com/search?tbm=isch&q=$costume+$costumePartner",
+        href := s"https://www.google.com/search?tbm=isch&q=$costume+and+$costumePartner",
         target := "_blank"))
     )
 }
