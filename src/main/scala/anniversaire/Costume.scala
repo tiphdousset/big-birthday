@@ -1,10 +1,10 @@
 package anniversaire
-import anniversaire.resources.GuestCostume
 import outwatch.dom._
 import outwatch.dom.dsl._
 import rx._
 import util._
 import monix.reactive._
+import TokenLogic._
 
 object Costume {
 
@@ -44,9 +44,12 @@ object Costume {
 
   def displayCostume(token: String, language: Observable[Translation])(
       implicit ctx: Ctx.Owner) = {
-    val guestName = GuestCostume.findNameAndCostumePerToken(token).toList(0)._1
-    val costume = GuestCostume.findNameAndCostumePerToken(token).toList(0)._2
-    val costumePartner = GuestCostume.findCostumePartner(costume)
+    val guestName = TokenLogic.findNameAndCostumePerToken(token).toList(0)._1
+    println("guestName = "+guestName)
+    val costume = TokenLogic.findNameAndCostumePerToken(token).toList(0)._2
+    println("costume = "+costume)
+    val costumePartner = TokenLogic.findCostumePartner(costume)
+    println("costumePartner = "+ costumePartner)
     div(language.map(_.display_costume(guestName, costume, costumePartner)), marginTop:="20px", display.flex, flexDirection:="column", alignItems:="center")
   }
 

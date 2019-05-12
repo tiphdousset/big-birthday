@@ -1,8 +1,8 @@
-package anniversaire.resources
+package anniversaire
 
-case class Guest(name: String, host: List[String], token: String)
+import anniversaire.resources.{Guest, GuestsAndCostumes, Guests, Costumes}
 
-object GuestCostume {
+object TokenLogic {
 
   val guests = Guests.listGuests
 
@@ -18,10 +18,10 @@ object GuestCostume {
     return g.toList.sortBy(i => i._3)
   }
 
-//println(getListPairGuests(guests).mkString("\n"))
+  //println(getListPairGuests(guests).mkString("\n"))
 
   def getListBestPairGuests(
-      listPairGuests: List[(Guest, Guest, Int)]): Seq[(String, String)] = {
+                             listPairGuests: List[(Guest, Guest, Int)]): Seq[(String, String)] = {
     val used = collection.mutable.HashSet[Guest]()
     val result = collection.mutable.ArrayBuffer[(String, String)]()
 
@@ -36,7 +36,7 @@ object GuestCostume {
   }
 
   val listBestPairGuests = getListBestPairGuests(getListPairGuests(guests))
-//println(listBestPairGuests.mkString("\n"))
+  //println(listBestPairGuests.mkString("\n"))
   val listBestPairGuestsName = listBestPairGuests.flatMap {
     case (name1, name2) => List(name1, name2)
   }
@@ -46,42 +46,22 @@ object GuestCostume {
     allGuestsNames.diff(usedGuestsNames)
   }
 
-  def getListGuestAndCostume(listPairGuests: Seq[(String, String)],
-                             listCostumes: List[(String, String)])
-    : Seq[((String, String), (String, String))] = {
-    val unzip_listCostumes = listCostumes.unzip
-    val unzip_listPairGuests = listPairGuests.toList.unzip
-    val unzip1 = unzip_listPairGuests._1.zip(unzip_listCostumes._1)
-    val unzip2 = unzip_listPairGuests._2.zip(unzip_listCostumes._2)
-    unzip1.zip(unzip2) // ( ((Felix,Mario),(Manon,Luigi)), ((Julie, Roméo),(Clemi, Juliette)) )
-  }
-
-  val listGuestAndCostume = getListGuestAndCostume(listBestPairGuests, costumes)
-  //Todo: save list and print the pairs for Saturday!
-  //Todo: add a flag to costume already distributed in Costumes
-  //Todo: add a flag to guest already distributed in Guests
-  //Check for uneven guest numbers!
-  //println(listGuestAndCostume.mkString("\n"))
 
   def findNameAndCostumePerToken(token: String): Option[(String, String)] = {
 
     val listAllGuests: List[Guest] = guests
 
-    val listGuestAndCostume: Seq[((String, String), (String, String))] =
-      getListGuestAndCostume(listBestPairGuests, costumes);
+    val listGuestAndCostume: Seq[((String, String), (String, String))] = GuestsAndCostumes.listGuests
 
     val name: Option[String] =
       listAllGuests.find(guest => guest.token == token).map(guest => guest.name)
+    println("name = "+name)
     name.flatMap { name =>
       val flatListGuestAndCostume = listGuestAndCostume.flatMap {
         case (tuple1, tuple2) => List(tuple1, tuple2)
       }
-      val costume: Option[String] = flatListGuestAndCostume
+      flatListGuestAndCostume
         .find { case (guestName, costume) => guestName == name }
-        .map { case (guestName, costume) => costume }
-      costume.map { costume =>
-        (name, costume)
-      }
     }
   }
 
@@ -97,20 +77,22 @@ object GuestCostume {
   }
 
   def findCostumePartner(costumeA: String) : String = {
+    println("TEST")
     val costumePair = costumes.find( x => fromTupleToList(x).contains(costumeA)).get
+    println("costumePair= "+costumePair)
     costumePair match {
       case (partner, `costumeA`) => partner
       case (`costumeA`, partner) => partner
     }
   }
 
-//  costumes.collectFirst{
-//    case (partner, `costumeA`) => partner
-//    case (`costumeA`, partner) => partner
-//  }
-//
-//  costumes.collectFirst{
-//    case (a,b) if List(a,b).contains(costumeA) => Set(a,b)-costumeA
-//  }
+  //  costumes.collectFirst{
+  //    case (partner, `costumeA`) => partner
+  //    case (`costumeA`, partner) => partner
+  //  }
+  //
+  //  costumes.collectFirst{
+  //    case (a,b) if List(a,b).contains(costumeA) => Set(a,b)-costumeA
+  //  }
 
 }

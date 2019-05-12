@@ -1,6 +1,7 @@
 package anniversaire
 
-import anniversaire.resources.GuestCostume
+import anniversaire.resources.{Guests, GuestsAndCostumes}
+import TokenLogic._
 import monix.reactive._
 
 import concurrent.duration._
@@ -16,8 +17,13 @@ object Anniversaire {
 
   def main(args: Array[String]): Unit = {
 
+    assert(GuestsAndCostumes.guestemails == Guests.emails, "!!!!!!! Ooops, it looks like one guest does not have a costume !!!!!!!")
+    println("Guests and costumes = "+GuestsAndCostumes.guestemails.size)
+    println("guests = "+ Guests.emails.size)
+
     val page = Var(Option.empty[String])
-    val tokenValue = Var("old-trump-boobs-fuck-birthday")
+//    val tokenValue = Var("old-trump-boobs-fuck-birthday")
+    val tokenValue = Var("")
     val language = Handler.unsafe[Translation](Translation_FR)
     val counter = Observable.interval(1 second)
     var isClicked = true
@@ -190,7 +196,7 @@ object Anniversaire {
     )
 
     def onClickToken(showTokenBox: Var[Boolean], tokenBorder: Var[String]) = {
-      if (GuestCostume.isTokenValid(tokenValue.now)) {
+      if (TokenLogic.isTokenValid(tokenValue.now)) {
         showTokenBox() = false
       } else {
         tokenBorder() = "4px solid red"
@@ -232,7 +238,7 @@ object Anniversaire {
                 tpe := "text",
                 placeholder := "Please enter your token",
                 fontSize := "30px",
-                width := "500px",
+                width := "600px",
                 cls := "innerShadow",
                 border <-- tokenBorder,
                 onInput.value.foreach { str =>
