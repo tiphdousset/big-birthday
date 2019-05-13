@@ -77,7 +77,6 @@ object TokenLogic {
   }
 
   def findCostumePartner(costumeA: String) : String = {
-    println("TEST")
     val costumePair = costumes.find( x => fromTupleToList(x).contains(costumeA)).get
     println("costumePair= "+costumePair)
     costumePair match {
