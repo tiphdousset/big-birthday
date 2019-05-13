@@ -51,7 +51,7 @@ object Costumes {
     ("Olive", "Tom"),
     ("Jeanne", "Serge"),
     ("G. de Montmirail", "Jacquouille la Fripouille"),
-    ("Bébé", "Johnny (dirty dancing)"),
+    ("Bébé (dirty dancing)", "Johnny"),
     ("Vincent Vega", "Jules Winnfield"),
     ("Sartre", "Beauvoir"),
     ("Danny Zuko", "Dandy Olsson (Grease)"),
