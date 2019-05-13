@@ -62,7 +62,7 @@ object Translation_DE extends Translation {
       div(
         "Du weisst nicht wie sie aussehen? Keine Ausreden, ",
         a("frag mal Google! ",
-          href := s"https://www.google.com/search?tbm=isch&q=$costume+and+$costumePartner",
+          href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
           target := "_blank")
       )
     )

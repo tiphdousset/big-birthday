@@ -47,11 +47,14 @@ object GuestsAndCostumes {
   (("g.muenkel@gmail.com","Dr Jekyll"),("lucie.rouland@gmail.com","Mr Hyde")),
   (("anthony-pacaud@laposte.net","Johnny"),("vivet.lucie@gmail.com","Bébé (dirty dancing)"))
   )
-  val guestemails = listGuests.flatMap{
+  val guestemails: Set[String] = listGuests.flatMap{
     case((email1,_), (email2,_)) => List(email1, email2)
   }.toSet
   assert((listGuests.size*2)==guestemails.size)
 
+  val guestCostumes: Set[String] = listGuests.flatMap{
+    case((_,costume1), (_,costume2)) => List(costume1, costume2)
+  }.toSet
 }
 
 

@@ -1,6 +1,6 @@
 package anniversaire
 
-import anniversaire.resources.{Guests, GuestsAndCostumes}
+import anniversaire.resources.{Costumes, Guests, GuestsAndCostumes}
 import TokenLogic._
 import monix.reactive._
 
@@ -18,11 +18,12 @@ object Anniversaire {
   def main(args: Array[String]): Unit = {
 
     assert(GuestsAndCostumes.guestemails == Guests.emails, "!!!!!!! Ooops, it looks like one guest does not have a costume !!!!!!!")
-    println("Guests and costumes = "+GuestsAndCostumes.guestemails.size)
-    println("guests = "+ Guests.emails.size)
+    val c: Set[String] = GuestsAndCostumes.guestCostumes intersect Costumes.names
+    val u: Set[String] = GuestsAndCostumes.guestCostumes union Costumes.names
+    assert(GuestsAndCostumes.guestCostumes == Costumes.names , "!!!!!!! Ooops, errors in costumes!!!!!!!!!!")
 
     val page = Var(Option.empty[String])
-//    val tokenValue = Var("old-trump-boobs-fuck-birthday")
+//    val tokenValue = Var("queen-bene-francois-fun-king")
     val tokenValue = Var("")
     val language = Handler.unsafe[Translation](Translation_FR)
     val counter = Observable.interval(1 second)
