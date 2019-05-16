@@ -4,12 +4,6 @@ import outwatch.dom.dsl._
 import rx._
 import util._
 import monix.reactive._
-import TokenLogic._
-import org.scalajs.dom.raw.HTMLIFrameElement
-
-import concurrent.duration._
-import org.scalajs.dom.window.setTimeout
-
 object Costume {
 
   def costume(token: String, language: Observable[Translation])(
@@ -17,7 +11,7 @@ object Costume {
 
     val showCostume = Var(1)
 
-    val button_wheel = button(
+    val button_costume = button(
       language.map(_.menu_costume_button_wheel),
       fontWeight.bold,
       fontSize := "15px",
@@ -27,7 +21,9 @@ object Costume {
       backgroundColor := "#fd22c4",
       color := "white",
       display := "block",
-      onClick(2) --> showCostume,
+      if (token == "jenesuispaslasamedi") {
+        onClick(4) --> showCostume,
+      } else { onClick(2) --> showCostume }
     )
 
     div(
@@ -37,8 +33,10 @@ object Costume {
           magicGif(showCostume)
         else if (showCostume() == 3)
           displayCostume(token, language)
+        else if (showCostume() == 4)
+          loserGif
         else
-          button_wheel
+          button_costume
       },
       fontSize := "16px",
       whiteSpace := "pre-line",
@@ -61,9 +59,9 @@ object Costume {
   }
   def magicGif(showCostume: Var[Int]) =
     div(
-      display:="flex",
+      display := "flex",
       video(
-        margin:="20px auto",
+        margin := "20px auto",
         source(src := "https://media.giphy.com/media/6CovzgyTig7M4/giphy.mp4",
                tpe := "video/mp4"),
         attr("autoplay") := true,
@@ -72,6 +70,22 @@ object Costume {
             showCostume() = 3
           }
         }
-      ))
+      )
+    )
+  val loserGif =
+    div(
+      display := "flex",
+      video(
+        margin := "20px auto",
+        source(src := "https://media.giphy.com/media/6CovzgyTig7M4/giphy.mp4",
+               tpe := "video/mp4"),
+        attr("autoplay") := true,
+        onDomMount.asHtml.foreach { x =>
+          x.onended = { _ =>
+            println("Looser!")
+          }
+        }
+      )
+    )
 
 }

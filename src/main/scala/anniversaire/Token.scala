@@ -4,11 +4,11 @@ import anniversaire.resources.{Guest, GuestsAndCostumes, Guests, Costumes}
 
 object TokenLogic {
 
-  val guests = Guests.listGuests
+  val guests = Guests.guests
 
   val guestsNames = guests.map(guest => guest.name)
 
-  val costumes: List[(String, String)] = Costumes.costumesList
+  val costumes: List[(String, String)] = Costumes.costumes
 
   def getListPairGuests(guests: List[Guest]): List[(Guest, Guest, Int)] = {
     val g = for (List(guest, guest2) <- guests.combinations(2)) yield {
@@ -21,7 +21,7 @@ object TokenLogic {
   //println(getListPairGuests(guests).mkString("\n"))
 
   def getListBestPairGuests(
-                             listPairGuests: List[(Guest, Guest, Int)]): Seq[(String, String)] = {
+      listPairGuests: List[(Guest, Guest, Int)]): Seq[(String, String)] = {
     val used = collection.mutable.HashSet[Guest]()
     val result = collection.mutable.ArrayBuffer[(String, String)]()
 
@@ -46,16 +46,16 @@ object TokenLogic {
     allGuestsNames.diff(usedGuestsNames)
   }
 
-
   def findNameAndCostumePerToken(token: String): Option[(String, String)] = {
 
     val listAllGuests: List[Guest] = guests
 
-    val listGuestAndCostume: Seq[((String, String), (String, String))] = GuestsAndCostumes.listGuests
+    val listGuestAndCostume: Seq[((String, String), (String, String))] =
+      GuestsAndCostumes.guestsAndCostumes
 
     val name: Option[String] =
       listAllGuests.find(guest => guest.token == token).map(guest => guest.name)
-    println("name = "+name)
+    println("name = " + name)
     name.flatMap { name =>
       val flatListGuestAndCostume = listGuestAndCostume.flatMap {
         case (tuple1, tuple2) => List(tuple1, tuple2)
@@ -68,17 +68,19 @@ object TokenLogic {
   def isTokenValid(token: String) = {
     //guests.exists(guest => guest.token == token)
     guests.exists(_.token == token)
+
   }
 
   def fromTupleToList(costumes: (String, String)): List[String] = {
     costumes match {
-      case (a,b) => List(a,b)
+      case (a, b) => List(a, b)
     }
   }
 
-  def findCostumePartner(costumeA: String) : String = {
-    val costumePair = costumes.find( x => fromTupleToList(x).contains(costumeA)).get
-    println("costumePair= "+costumePair)
+  def findCostumePartner(costumeA: String): String = {
+    val costumePair =
+      costumes.find(x => fromTupleToList(x).contains(costumeA)).get
+    println("costumePair= " + costumePair)
     costumePair match {
       case (partner, `costumeA`) => partner
       case (`costumeA`, partner) => partner

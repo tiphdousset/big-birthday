@@ -1,7 +1,6 @@
 package anniversaire
 
 import anniversaire.resources.{Costumes, Guests, GuestsAndCostumes}
-import TokenLogic._
 import monix.reactive._
 
 import concurrent.duration._
@@ -15,12 +14,16 @@ import org.scalajs.dom.ext.KeyCode
 object Anniversaire {
   implicit val ctx: Ctx.Owner = Ctx.Owner.safe()
 
+  val defaultToken = "jenesuispaslasamedi"
   def main(args: Array[String]): Unit = {
 
-    assert(GuestsAndCostumes.guestemails == Guests.emails, "!!!!!!! Ooops, it looks like one guest does not have a costume !!!!!!!")
-    val c: Set[String] = GuestsAndCostumes.guestCostumes intersect Costumes.names
-    val u: Set[String] = GuestsAndCostumes.guestCostumes union Costumes.names
-    assert(GuestsAndCostumes.guestCostumes == Costumes.names , "!!!!!!! Ooops, errors in costumes!!!!!!!!!!")
+//    val intersection: Set[String] = GuestsAndCostumes.guestsEmails intersect Guests.emails
+//    val union: Set[String] = GuestsAndCostumes.guestsEmails union Guests.emails
+    assert(
+      GuestsAndCostumes.guestsEmails == Guests.emails,
+      "!!!!!!! Ooops, it looks like one guest does not have a costume !!!!!!!")
+    assert(GuestsAndCostumes.guestCostumes == Costumes.names,
+           "!!!!!!! Ooops, errors in costumes!!!!!!!!!!")
 
     val page = Var(Option.empty[String])
 //    val tokenValue = Var("queen-bene-francois-fun-king")
@@ -250,9 +253,19 @@ object Anniversaire {
                   onClickToken(showTokenBox, tokenBorder)
                 }
               ),
-              button("OK", onClick.foreach {
-                onClickToken(showTokenBox, tokenBorder)
-              }, fontSize := "30px", marginLeft := "20px", backgroundColor:="#fd22c4", color:="white", fontWeight.bold, borderRadius:="3px", border:="none"),
+              button(
+                "OK",
+                onClick.foreach {
+                  onClickToken(showTokenBox, tokenBorder)
+                },
+                fontSize := "30px",
+                marginLeft := "20px",
+                backgroundColor := "#fd22c4",
+                color := "white",
+                fontWeight.bold,
+                borderRadius := "3px",
+                border := "none"
+              ),
             )
           } else VDomModifier.empty
         }
@@ -267,7 +280,6 @@ object Anniversaire {
         } else if (page() == Some("fun")) {
           Fun.fun(page, language)
         } else intro_div
-        //home_div //temporary for test purpose
       }
     )
 

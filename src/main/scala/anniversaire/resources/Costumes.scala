@@ -1,11 +1,12 @@
 package anniversaire.resources
 
 object Costumes {
-  val costumesList: List[(String, String)] =
-    GuestsAndCostumes.listGuests.map{
+  val costumes: List[(String, String)] =
+    GuestsAndCostumes.guestsAndCostumes.map{
       case ((_,costume1),(_,costume2)) => (costume1, costume2)
     }
 
+// Costumes not yet distributed
 //    ("Serena Williams", "Venus Williams"),
 //    ("Bonnie", "Clyde"),
 //    ("Olive", "Tom"),
@@ -23,6 +24,6 @@ object Costumes {
 //    ("Igor Bogdanoff", "Grichka Bogdanoff"),
 //    ("tic", "tac")
 
-  val names: Set[String] = costumesList.flatMap{case (costume1, costume2) => List(costume1,costume2)}.toSet
+  val names: Set[String] = costumes.flatMap{case (costume1, costume2) => List(costume1,costume2)}.toSet
 
 }
