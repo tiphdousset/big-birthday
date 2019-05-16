@@ -66,4 +66,6 @@ object Translation_DE extends Translation {
           target := "_blank")
       )
     )
+
+  def display_no_costume: String = "Keine Token, kein Verkleidung!"
 }

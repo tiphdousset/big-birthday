@@ -21,7 +21,7 @@ object Costume {
       backgroundColor := "#fd22c4",
       color := "white",
       display := "block",
-      if (token == "jenesuispaslasamedi") {
+      if (token == "jenesuispaslasamedi" || token == "") {
         onClick(4) --> showCostume,
       } else { onClick(2) --> showCostume }
     )
@@ -34,7 +34,7 @@ object Costume {
         else if (showCostume() == 3)
           displayCostume(token, language)
         else if (showCostume() == 4)
-          loserGif
+          loserGif(language)
         else
           button_costume
       },
@@ -72,17 +72,18 @@ object Costume {
         }
       )
     )
-  val loserGif =
+  def loserGif(language: Observable[Translation]) =
     div(
       display := "flex",
       video(
         margin := "20px auto",
+        //Todo: change GIF for a LoserGif
         source(src := "https://media.giphy.com/media/6CovzgyTig7M4/giphy.mp4",
                tpe := "video/mp4"),
         attr("autoplay") := true,
         onDomMount.asHtml.foreach { x =>
           x.onended = { _ =>
-            println("Looser!")
+            language.map(_.display_no_costume)
           }
         }
       )

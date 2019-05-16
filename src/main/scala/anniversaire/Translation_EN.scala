@@ -68,4 +68,6 @@ object Translation_EN extends Translation {
       href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
       target := "_blank"))
   )
+
+  def display_no_costume: String = "No token, no costume!"
 }

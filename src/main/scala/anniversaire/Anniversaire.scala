@@ -266,6 +266,17 @@ object Anniversaire {
                 borderRadius := "3px",
                 border := "none"
               ),
+              button(
+                "I'm feeling lucky",
+                onClick.foreach { showTokenBox() = false },
+                fontSize := "30px",
+                marginLeft := "20px",
+                backgroundColor := "#fd22c4",
+                color := "white",
+                fontWeight.bold,
+                borderRadius := "3px",
+                border := "none"
+              ),
             )
           } else VDomModifier.empty
         }

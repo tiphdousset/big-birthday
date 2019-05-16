@@ -61,4 +61,6 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
         href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
         target := "_blank"))
     )
+
+  def display_no_costume: String = "Pas de token, pas de costume!"
 }

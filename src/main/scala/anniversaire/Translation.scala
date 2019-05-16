@@ -25,4 +25,6 @@ trait Translation {
   def title_menu_contact: String
 
   def display_costume(guestName: String, costume: String, costumePartner: String): VDomModifier
+
+  def display_no_costume: String
 }
