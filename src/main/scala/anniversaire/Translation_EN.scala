@@ -59,15 +59,17 @@ object Translation_EN extends Translation {
   def display_costume(guestName: String,
                       costume: String,
                       costumePartner: String): VDomModifier =
-  VDomModifier(
-    div("You are: "),
-    div(b(s"$costume"), fontSize:="35px"),
-    div("Look for: "),
-    div(b(s"$costumePartner "), fontSize:="35px"),
-    div("You don't know how they look like? No excuse, ", a("ask Google! ",
-      href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
-      target := "_blank"))
-  )
+    VDomModifier(
+      div("You are: "),
+      div(b(s"$costume"), fontSize := "35px"),
+      div("Look for: "),
+      div(b(s"$costumePartner "), fontSize := "35px"),
+      div("You don't know how they look like? No excuse, ",
+          a("ask Google! ",
+            href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
+            target := "_blank"))
+    )
 
-  def display_no_costume: String = "No token, no costume!"
+  def display_no_costume: VDomModifier =
+    VDomModifier(div(b("No token, no costume!")), fontSize := "20px")
 }

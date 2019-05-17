@@ -67,5 +67,6 @@ object Translation_DE extends Translation {
       )
     )
 
-  def display_no_costume: String = "Keine Token, kein Verkleidung!"
+  def display_no_costume: VDomModifier =
+    VDomModifier(div(b("Kein Token, keine Verkleidung!")), fontSize := "20px")
 }

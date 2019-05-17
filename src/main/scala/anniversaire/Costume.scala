@@ -34,7 +34,9 @@ object Costume {
         else if (showCostume() == 3)
           displayCostume(token, language)
         else if (showCostume() == 4)
-          loserGif(language)
+          loserGif(showCostume)
+        else if (showCostume() == 5)
+          displayLoser(language)
         else
           button_costume
       },
@@ -42,6 +44,13 @@ object Costume {
       whiteSpace := "pre-line",
     )
   }
+
+  def displayLoser(language: Observable[Translation]): BasicVNode =
+    div(language.map(_.display_no_costume),
+        marginTop := "20px",
+        display.flex,
+        flexDirection := "column",
+        alignItems := "center")
 
   def displayCostume(token: String, language: Observable[Translation])(
       implicit ctx: Ctx.Owner) = {
@@ -72,21 +81,20 @@ object Costume {
         }
       )
     )
-  def loserGif(language: Observable[Translation]) =
+  def loserGif(showCostume: Var[Int]) =
     div(
       display := "flex",
       video(
         margin := "20px auto",
-        //Todo: change GIF for a LoserGif
-        source(src := "https://media.giphy.com/media/6CovzgyTig7M4/giphy.mp4",
-               tpe := "video/mp4"),
+        source(
+          src := "https://media.giphy.com/media/YOkrK8agZLEk2cXeLi/giphy.mp4",
+          tpe := "video/mp4"),
         attr("autoplay") := true,
         onDomMount.asHtml.foreach { x =>
           x.onended = { _ =>
-            language.map(_.display_no_costume)
+            showCostume() = 5
           }
         }
       )
     )
-
 }

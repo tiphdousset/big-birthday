@@ -48,19 +48,22 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
     "Tu as une question? Ou tu veux simplement nous faire une déclaration d'amour? N'hésite pas!"
   def title_menu_contact: String = "Contacts"
 
-
   def display_costume(guestName: String,
                       costume: String,
                       costumePartner: String): VDomModifier =
     VDomModifier(
-     div("Tu es: "),
-      div(b(s"$costume"), fontSize:="35px"),
+      div("Tu es: "),
+      div(b(s"$costume"), fontSize := "35px"),
       div("Tu dois donc retrouver: "),
-      div(b(s"$costumePartner "), fontSize:="35px"),
-      div("Tu ne sais pas à quoi ces personnages ressemblent? Pas d'excuse, ", a("Google est ton ami! ",
-        href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
-        target := "_blank"))
+      div(b(s"$costumePartner "), fontSize := "35px"),
+      div(
+        "Tu ne sais pas à quoi ces personnages ressemblent? Pas d'excuse, ",
+        a("Google est ton ami! ",
+          href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
+          target := "_blank")
+      )
     )
 
-  def display_no_costume: String = "Pas de token, pas de costume!"
+  def display_no_costume: VDomModifier =
+    VDomModifier(div(b("Pas de token, pas de costume!"), fontSize := "20px"))
 }
