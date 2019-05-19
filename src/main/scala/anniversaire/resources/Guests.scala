@@ -132,7 +132,7 @@ object Guests {
     Guest("carole.legall89@gmail.com",
           List("T"),
           "love-baguette-queen-francois-birthday"),
-    Guest("maxime.ezequel@laposte.net",
+    Guest("pierrel_claire@hotmail.com",
           List("B"),
           "banana-bene-fun-tiphanie-birthday"),
     Guest("gourdon_denis@yahoo.fr",
@@ -244,15 +244,26 @@ object Guests {
           List("T"),
           "baguette-francois-king-france-party"),
     Guest("", List(""), defaultToken),
-
+    Guest("dousset.guillaume@gmail.com",
+          List("T"),
+          "queen-banana-chocolat-bene-king"),
+    Guest("jeremie.dubois56@gmail.com",
+          List("F"),
+          "birthday-banana-francois-gold-chocolat"),
+    Guest("Deborah.jeune@gmail.com ",
+          List("B"),
+          "king-birthday-banana-gold-fun"),
+    Guest("laure.kerfourn@gmail.com ",
+          List("F"),
+          "gold-bene-queen-birthday-banana"),
+    Guest("Zapater_aurelie@hotmail.fr",
+          List("F"),
+          "love-birthday-tente-gold-francois"),
+    Guest("david.foisnon@hotmail.fr",
+          List("B"),
+          "gold-party-king-tente-banana"),
     //Tokens not yet distributed
-    // "queen-banana-chocolat-bene-king"
-    // "birthday-banana-francois-gold-chocolat"
-    // "king-birthday-banana-gold-fun"
-    // "gold-bene-queen-birthday-banana"
     // "banana-tiphanie-love-francois-party"
-    // "gold-party-king-tente-banana"
-    // "love-birthday-tente-gold-francois"
     // "party-birthday-bene-love-gold"
     // "tiphanie-birthday-francois-banana-chocolat"
     // "queen-chocolat-banana-bene-party"
