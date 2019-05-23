@@ -7,19 +7,18 @@ object Costumes {
     }
 
 // Costumes not yet distributed
+//    ("Veronique", "Davina"),
+//    ("G. de Montmirail", "Jacquouille la Fripouille"),
+//    ("Tomtom", "Nana"),
 //    ("Olive", "Tom"),
 //    ("Jeanne", "Serge"),
-//    ("G. de Montmirail", "Jacquouille la Fripouille"),
 //    ("Sartre", "Beauvoir"),
 //    ("Danny Zuko", "Dandy Olsson (Grease)"),
-//    ("Tomtom", "Nana"),
 //    ("Lenon", "Mccartney"),
 //    ("Thelma", "Louise"),
 //    ("Austin power", "La copine de Austin power"),
-//    ("Veronique", "Davina"),
 //    ("Igor Bogdanoff", "Grichka Bogdanoff"),
 //    ("tic", "tac")
-//    ("power ranger rouge", "power ranger bleu")
 
   val names: Set[String] = costumes.flatMap{case (costume1, costume2) => List(costume1,costume2)}.toSet
 

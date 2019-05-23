@@ -40,7 +40,7 @@ object GuestsAndCostumes {
     (("Lea.reyx@yahoo.fr", "Schtroumpf"),
      ("Florence.gourdon@gmail.com", "Schtroumpfette")),
     (("anais.rbt@gmail.com", "Ange"), ("Sayemoon@free.fr", "Démon")),
-    (("anais73@gmail.com", "Mini"), ("pierrel_claire@hotmail.com", "Mickey")),
+    (("matgilbert@hotmail.fr", "Mini"), ("pierrel_claire@hotmail.com", "Mickey")),
     (("aureliaguil@gmail.com", "Hermione Granger"),
      ("gourdon_denis@yahoo.fr", "Harry Potter")),
     (("Matthiasrock@hotmail.fr", "Tintin"), ("sevmarion@hotmail.com", "Milou")),
@@ -88,6 +88,8 @@ object GuestsAndCostumes {
      ("Deborah.jeune@gmail.com ", "Venus Williams")),
     (("david.foisnon@hotmail.fr", "Clyde"),
      ("Zapater_aurelie@hotmail.fr", "Bonnie")),
+    (("solo.natuka@gmail.com", "Power rangers bleu"),
+      ("clarisse.loiseau1@gmail.com", "Power rangers rouge")),
   )
   val guestsEmails: Set[String] = guestsAndCostumes.flatMap {
     case ((email1, _), (email2, _)) => List(email1, email2)

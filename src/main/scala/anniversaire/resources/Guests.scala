@@ -106,7 +106,6 @@ object Guests {
     Guest("Theophile.moreau@gmail.com",
           List("T, F"),
           "france-fun-queen-tiphanie-tente"),
-    Guest("anais73@gmail.com", List("T"), "fun-gold-queen-party-francois"),
     Guest("choutet.isabelle@gmail.com",
           List("F"),
           "gold-love-francois-king-france"),
@@ -262,13 +261,21 @@ object Guests {
     Guest("david.foisnon@hotmail.fr",
           List("B"),
           "gold-party-king-tente-banana"),
+    Guest("solo.natuka@gmail.com",
+      List("F"),
+      "banana-tiphanie-love-francois-party"),
+    Guest("matgilbert@hotmail.fr",
+      List("F"),
+      "fun-gold-queen-party-francois"),
+    Guest("clarisse.loiseau1@gmail.com",
+      List("T"),
+      "party-tiphanie-banana-birthday-love"),
+
     //Tokens not yet distributed
-    // "banana-tiphanie-love-francois-party"
     // "party-birthday-bene-love-gold"
     // "tiphanie-birthday-francois-banana-chocolat"
     // "queen-chocolat-banana-bene-party"
     // "birthday-love-francois-chocolat-fun"
-    // "party-tiphanie-banana-birthday-love"
   )
 
   val emails: Set[String] =
