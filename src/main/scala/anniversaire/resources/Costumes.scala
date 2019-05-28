@@ -7,7 +7,6 @@ object Costumes {
     }
 
 // Costumes not yet distributed
-//    ("Veronique", "Davina"),
 //    ("G. de Montmirail", "Jacquouille la Fripouille"),
 //    ("Tomtom", "Nana"),
 //    ("Olive", "Tom"),

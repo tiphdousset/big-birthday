@@ -270,12 +270,16 @@ object Guests {
     Guest("clarisse.loiseau1@gmail.com",
       List("T"),
       "party-tiphanie-banana-birthday-love"),
+    Guest("bastien.merlet44@gmail.com",
+      List("F"),
+      "birthday-love-francois-chocolat-fun"),
+    Guest("gaelleboue44@gmail.com",
+      List("T"),
+      "tiphanie-birthday-francois-banana-chocolat"),
 
     //Tokens not yet distributed
     // "party-birthday-bene-love-gold"
-    // "tiphanie-birthday-francois-banana-chocolat"
     // "queen-chocolat-banana-bene-party"
-    // "birthday-love-francois-chocolat-fun"
   )
 
   val emails: Set[String] =
