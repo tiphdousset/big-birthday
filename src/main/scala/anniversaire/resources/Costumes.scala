@@ -8,7 +8,6 @@ object Costumes {
 
 // Costumes not yet distributed
 //    ("G. de Montmirail", "Jacquouille la Fripouille"),
-//    ("Tomtom", "Nana"),
 //    ("Olive", "Tom"),
 //    ("Jeanne", "Serge"),
 //    ("Sartre", "Beauvoir"),
