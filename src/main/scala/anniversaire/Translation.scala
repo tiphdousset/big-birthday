@@ -6,7 +6,9 @@ trait Translation {
 
   def intro_button: String
   def title: String
-  def count_down(numberOfDays: Int): String
+  def count_down(numberOfDays: String): String
+  def count_downNow: String
+  def count_downAfter: String
 
   def menu_info: String
   def title_menu_info: String

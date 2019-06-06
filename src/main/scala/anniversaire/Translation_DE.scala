@@ -8,7 +8,9 @@ object Translation_DE extends Translation {
 
   def intro_button: String = "They are back."
   def title: String = "La Tente'aine"
-  def count_down(numberOfDays: Int): String = s"Noch $numberOfDays Tage"
+  def count_down(numberOfDays: String): String = s"Noch $numberOfDays Tage"
+  def count_downNow: String = s"Viel Spass!"
+  def count_downAfter: String = s"Wir sehen uns in 5 Jahren!"
 
   def menu_info: String =
     """Halli hallo!

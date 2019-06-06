@@ -115,9 +115,7 @@ object Anniversaire {
     val header = h1(
       id := "header",
       display.flex,
-      language.map(
-        _.count_down(CountDown.countDown)
-      ),
+      language.map(translation => CountDown.countDown(translation)),
       languages,
       fontSize := "20px",
       textAlign := "left",
