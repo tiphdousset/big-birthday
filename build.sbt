@@ -2,7 +2,7 @@ organization := "Your organization"
 name := "Anniversaire"
 version := "0.1.0"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.8"
 
 resolvers += "jitpack" at "https://jitpack.io"
 
