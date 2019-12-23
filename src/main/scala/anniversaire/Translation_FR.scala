@@ -60,12 +60,18 @@ Si tu souhaites arriver plus tôt / partir plus tard, n'hésite pas à nous cont
       div(b(s"$costumePartner "), fontSize := "35px"),
       div(
         "Tu ne sais pas à quoi ces personnages ressemblent? Pas d'excuse, ",
-        a("Google est ton ami! ",
+        a(
+          "Google est ton ami! ",
           href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
-          target := "_blank")
+          target := "_blank"
+        )
       )
     )
 
   def display_no_costume: VDomModifier =
     VDomModifier(div(b("Pas de token, pas de costume!"), fontSize := "20px"))
+
+  def guest_book: String = "Livre d'or"
+  def duo: String = "Duo"
+  def appareil_jetable: String = "Appareils jetables"
 }

@@ -31,4 +31,8 @@ trait Translation {
                       costumePartner: String): VDomModifier
 
   def display_no_costume: VDomModifier
+
+  def guest_book: String
+  def duo: String
+  def appareil_jetable: String
 }

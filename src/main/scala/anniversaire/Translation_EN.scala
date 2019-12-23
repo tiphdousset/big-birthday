@@ -66,12 +66,21 @@ object Translation_EN extends Translation {
       div(b(s"$costume"), fontSize := "35px"),
       div("Look for: "),
       div(b(s"$costumePartner "), fontSize := "35px"),
-      div("You don't know how they look like? No excuse, ",
-          a("ask Google! ",
-            href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
-            target := "_blank"))
+      div(
+        "You don't know how they look like? No excuse, ",
+        a(
+          "ask Google! ",
+          href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
+          target := "_blank"
+        )
+      )
     )
 
   def display_no_costume: VDomModifier =
     VDomModifier(div(b("No token, no costume!")), fontSize := "20px")
+
+  def guest_book: String = "Guest book"
+  def duo: String = "Pairs"
+  def appareil_jetable: String = "Disposable cameras"
+
 }

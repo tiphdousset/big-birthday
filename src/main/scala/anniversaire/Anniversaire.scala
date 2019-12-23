@@ -21,11 +21,14 @@ object Anniversaire {
 //    val union: Set[String] = GuestsAndCostumes.guestsEmails union Guests.emails
     assert(
       GuestsAndCostumes.guestsEmails == Guests.emails,
-      "!!!!!!! Ooops, it looks like one guest does not have a costume !!!!!!!")
-    assert(GuestsAndCostumes.guestCostumes == Costumes.names,
-           "!!!!!!! Ooops, errors in costumes!!!!!!!!!!")
+      "!!!!!!! Ooops, it looks like one guest does not have a costume !!!!!!!"
+    )
+    assert(
+      GuestsAndCostumes.guestCostumes == Costumes.names,
+      "!!!!!!! Ooops, errors in costumes!!!!!!!!!!"
+    )
 
-    val page = Var(Option.empty[String])
+    val page = Var(Option("start"))
 //    val tokenValue = Var("queen-bene-francois-fun-king")
     val tokenValue = Var("")
     val language = Handler.unsafe[Translation](Translation_FR)
@@ -56,14 +59,17 @@ object Anniversaire {
         counter.map(
           x =>
             if (x % 5 == number && isClicked) cls := "activate"
-            else VDomModifier.empty)
+            else VDomModifier.empty
+        )
       )
     }
 
-    val intro_button = button(id := "intro_button",
-                              language.map(_.intro_button),
-                              onClick(Some("start")) --> page,
-                              cursor := "pointer")
+    val intro_button = button(
+      id := "intro_button",
+      language.map(_.intro_button),
+      onClick(Some("start")) --> page,
+      cursor := "pointer"
+    )
 
     val intro_div = div(
       backgroundImage := "url(intro.jpg)",
@@ -87,10 +93,12 @@ object Anniversaire {
         marginRight := "10px",
         onClick(language_class) --> language,
         backgroundRepeat := "no-repeat",
-        div(cls := "language_description",
-            language_hover,
-            marginTop := "30px",
-            fontSize := "15px")
+        div(
+          cls := "language_description",
+          language_hover,
+          marginTop := "30px",
+          fontSize := "15px"
+        )
       )
     }
 
@@ -122,13 +130,12 @@ object Anniversaire {
       marginLeft := "10px",
     )
 
-    val contentHandler = Handler.unsafe[Option[VNode]](None)
+    val contentHandler =
+      Handler.unsafe[Option[VNode]](None)
 
     val title = h1(
       id := "title",
-      language.map(
-        _.title
-      ),
+      language.map(_.title),
       textAlign := "center",
       textShadow := "0 1px 1px #fff",
       fontSize := "80px",
@@ -137,10 +144,7 @@ object Anniversaire {
       cursor := "pointer"
     )
 
-    val main_container = div(
-      id := "mainContainer",
-      contentHandler
-    )
+    val main_container = div(id := "mainContainer", contentHandler)
 
     val lights_div = div(
       id := "lightsDiv",
@@ -171,18 +175,13 @@ object Anniversaire {
         )
       },
       language.map { l =>
-        light_div(
-          "fun",
-          l.title_menu_fun,
-          onClick(Some("fun")) --> page,
-          2
-        )
+        light_div("fun", l.title_menu_fun, onClick(Some("fun")) --> page, 2)
       },
       language.map { l =>
         light_div(
           "photo",
           l.title_menu_photo,
-          onClick(Some(Photos.photos)) --> contentHandler,
+          onClick.mapTo(Some(Photos.photos(language))) --> contentHandler,
           3
         )
       },
@@ -251,46 +250,25 @@ object Anniversaire {
                   onClickToken(showTokenBox, tokenBorder)
                 }
               ),
-              button(
-                "OK",
-                onClick.foreach {
-                  onClickToken(showTokenBox, tokenBorder)
-                },
-                fontSize := "30px",
-                marginLeft := "20px",
-                backgroundColor := "#fd22c4",
-                color := "white",
-                fontWeight.bold,
-                borderRadius := "3px",
-                border := "none"
-              ),
-              button(
-                "I'm feeling lucky",
-                onClick.foreach { showTokenBox() = false },
-                fontSize := "30px",
-                marginLeft := "20px",
-                backgroundColor := "#fd22c4",
-                color := "white",
-                fontWeight.bold,
-                borderRadius := "3px",
-                border := "none"
-              ),
+              button("OK", onClick.foreach {
+                onClickToken(showTokenBox, tokenBorder)
+              }, fontSize := "30px", marginLeft := "20px", backgroundColor := "#fd22c4", color := "white", fontWeight.bold, borderRadius := "3px", border := "none"),
+              button("I'm feeling lucky", onClick.foreach {
+                showTokenBox() = false
+              }, fontSize := "30px", marginLeft := "20px", backgroundColor := "#fd22c4", color := "white", fontWeight.bold, borderRadius := "3px", border := "none"),
             )
           } else VDomModifier.empty
         }
       )
     }
 
-    val main = div(
-      height := "100%",
-      Rx {
-        if (page() == Some("start")) {
-          home_div
-        } else if (page() == Some("fun")) {
-          Fun.fun(page, language)
-        } else intro_div
-      }
-    )
+    val main = div(height := "100%", Rx {
+      if (page() == Some("start")) {
+        home_div
+      } else if (page() == Some("fun")) {
+        Fun.fun(page, language)
+      } else intro_div
+    })
 
     OutWatch.renderReplace("#app", main).unsafeRunSync()
 

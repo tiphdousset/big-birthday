@@ -63,12 +63,18 @@ object Translation_DE extends Translation {
       div(b(s"$costumePartner "), fontSize := "35px"),
       div(
         "Du weisst nicht wie sie aussehen? Keine Ausreden, ",
-        a("frag mal Google! ",
+        a(
+          "frag mal Google! ",
           href := s"http://lmgtfy.com/?t=i&q=$costume+et+$costumePartner",
-          target := "_blank")
+          target := "_blank"
+        )
       )
     )
 
   def display_no_costume: VDomModifier =
     VDomModifier(div(b("Kein Token, keine Verkleidung!")), fontSize := "20px")
+
+  def guest_book: String = "Gästebuch"
+  def duo: String = "Pärchen"
+  def appareil_jetable: String = "Einwegcameras"
 }
