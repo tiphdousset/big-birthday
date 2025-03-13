@@ -1,10 +1,8 @@
 package anniversaire
-import outwatch.dom._
-import outwatch.dom.dsl._
-import monix.execution.Scheduler.Implicits.global
-import rx._
-import util._
-import monix.reactive._
+import outwatch._
+import outwatch.dsl._
+import colibri._
+import colibri.reactive._
 
 object Fun {
   val fun_gif = div(
@@ -22,16 +20,15 @@ object Fun {
 
   def go_back_button(
       page: Var[Option[String]],
-      language: Observable[Translation])(implicit ctx: Ctx.Owner) =
+      language: Observable[Translation]) =
     button(
       id := "go_back_button",
       language.map(_.menu_fun),
       cursor := "pointer",
-      onClick(Some("start")) --> page
+      onClick.as(Some("start")) --> page
     )
 
-  def fun(page: Var[Option[String]], language: Observable[Translation])(
-      implicit ctx: Ctx.Owner) =
+  def fun(page: Var[Option[String]], language: Observable[Translation]) =
     div(justifyContent.center,
         alignItems.center,
         fontSize := "25px",

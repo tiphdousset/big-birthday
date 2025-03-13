@@ -1,6 +1,6 @@
 package anniversaire
 
-import outwatch.dom.VDomModifier
+import outwatch.VDomModifier
 
 trait Translation {
 

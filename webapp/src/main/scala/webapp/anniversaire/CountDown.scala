@@ -1,8 +1,6 @@
 package anniversaire
-import outwatch.dom._
-import outwatch.dom.dsl._
-import monix.execution.Scheduler.Implicits.global
-import rx._
+import outwatch._
+import outwatch.dsl._
 import util._
 import java.util.Date
 

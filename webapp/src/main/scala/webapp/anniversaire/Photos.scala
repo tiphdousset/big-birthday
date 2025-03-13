@@ -1,11 +1,9 @@
 package anniversaire
-import rx._
-import monix.execution.Cancelable
-import monix.reactive.{Observable, OverflowStrategy}
 import org.scalajs.dom
-import outwatch.dom._
-import outwatch.dom.dsl._
-import util._
+import outwatch._
+import outwatch.dsl._
+import colibri._
+import colibri.reactive._
 
 object Photos {
 
@@ -14,12 +12,12 @@ object Photos {
   val daySelected = Var(Option.empty[String])
 
   def getList(day: String): Observable[Seq[String]] =
-    Observable.create(OverflowStrategy.Unbounded) { observer =>
+    Observable.create { observer =>
       val xhr = new dom.XMLHttpRequest()
       xhr.open("GET", s"${pictures}/${day}/getPicturesList.php")
       xhr.onload = { (e: dom.Event) =>
         if (xhr.status == 200) {
-          observer.onNext(xhr.responseText.split("\n"))
+          observer.unsafeOnNext(xhr.responseText.split("\n"))
         }
       }
       xhr.send()
@@ -50,9 +48,9 @@ object Photos {
     width := "100%",
     height := "100%",
     backgroundColor := "rgba(0,0,0,0.9)",
-    onClick.foreach(showFullImage() = None)
+    onClick.foreach(showFullImage.set(None))
   )
-  def activeFolder(folder: String, x: VDomModifier)(implicit ctx: Ctx.Owner) =
+  def activeFolder(folder: String, x: VDomModifier) =
     Rx {
       if (daySelected() == Some(folder)) {
         x
@@ -61,7 +59,7 @@ object Photos {
       }
     }
 
-  def photos(language: Observable[Translation])(implicit ctx: Ctx.Owner) = div(
+  def photos(language: Observable[Translation]) = div(
     div(
       marginBottom := "30px",
       div(
@@ -69,7 +67,7 @@ object Photos {
           cls := "picFolder",
           activeFolder("guestBook", cls := "picFolderActive"),
           language.map(_.guest_book),
-          onClick.foreach(daySelected() = Some("guestBook"))
+          onClick.foreach(daySelected.set(Some("guestBook")))
         ),
         activeFolder(
           "guestBook",
@@ -84,7 +82,7 @@ object Photos {
           activeFolder("duo", cls := "picFolderActive"),
           cls := "picFolder",
           language.map(_.duo),
-          onClick.foreach(daySelected() = Some("duo"))
+          onClick.foreach(daySelected.set(Some("duo")))
         ),
         activeFolder(
           "duo",
@@ -99,7 +97,7 @@ object Photos {
           activeFolder("appareilJetable", cls := "picFolderActive"),
           cls := "picFolder",
           language.map(_.appareil_jetable),
-          onClick.foreach(daySelected() = Some("appareilJetable"))
+          onClick.foreach(daySelected.set(Some("appareilJetable")))
         ),
         activeFolder(
           "appareilJetable",
@@ -133,7 +131,7 @@ object Photos {
       width := "100px",
       height := "100px",
       cursor.pointer,
-      onClick.foreach(showFullImage() = Some(getPic(day, fileName)))
+      onClick.foreach(showFullImage.set(Some(getPic(day, fileName))))
     )
   }
 }

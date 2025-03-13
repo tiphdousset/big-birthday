@@ -1,8 +1,8 @@
 package anniversaire
 
-import outwatch.dom.VDomModifier
-import outwatch.dom._
-import outwatch.dom.dsl._
+import outwatch.VDomModifier
+import outwatch._
+import outwatch.dsl._
 
 object Translation_DE extends Translation {
 

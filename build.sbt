@@ -1,79 +1,71 @@
-organization := "Your organization"
-name := "Anniversaire"
-version := "0.1.0"
+Global / onChangedBuildSource := IgnoreSourceChanges // not working well with webpack devserver
 
-scalaVersion := "2.12.10"
+name                     := "Anniversaire"
+ThisBuild / version      := "0.1.0-SNAPSHOT"
+ThisBuild / scalaVersion := "2.13.16"
 
-resolvers += "jitpack" at "https://jitpack.io"
-
-libraryDependencies ++= Seq(
-  "com.github.outwatch.outwatch" %%% "outwatch" % "bde138ca186ea1eb5a5d8d870e37542fc8d5d2fe",
-  "io.monix" %%% "monix" % "3.0.0",
-  "org.scalatest" %%% "scalatest" % "3.0.5" % Test,
-  "com.lihaoyi" %%% "scalarx" % "0.4.0"
-)
-
-enablePlugins(ScalaJSBundlerPlugin)
-scalacOptions += "-P:scalajs:sjsDefinedByDefault"
-useYarn := true // makes scalajs-bundler use yarn instead of npm
-requiresDOM in Test := true
-scalaJSUseMainModuleInitializer := true
-scalaJSModuleKind := ModuleKind.CommonJSModule // configure Scala.js to emit a JavaScript module instead of a top-level script
-
-scalacOptions ++=
-  "-encoding" :: "UTF-8" ::
-    "-unchecked" ::
-    "-deprecation" ::
-    "-explaintypes" ::
-    "-feature" ::
-    "-language:_" ::
-    "-Xfuture" ::
-    /* "-Xlint" :: */
-    "-Ypartial-unification" ::
-    "-Yno-adapted-args" ::
-    /* "-Ywarn-extra-implicit" :: */
-    /* "-Ywarn-infer-any" :: */
-    /* "-Ywarn-value-discard" :: */
-    /* "-Ywarn-nullary-override" :: */
-    /* "-Ywarn-nullary-unit" :: */
-    Nil
-
-// hot reloading configuration:
-// https://github.com/scalacenter/scalajs-bundler/issues/180
-addCommandAlias(
-  "dev",
-  "; compile; fastOptJS::startWebpackDevServer; devwatch; fastOptJS::stopWebpackDevServer"
-)
-addCommandAlias("devwatch", "~; fastOptJS; copyFastOptJS")
-
-version in webpack := "4.16.1"
-version in startWebpackDevServer := "3.1.4"
-webpackDevServerExtraArgs := Seq("--progress", "--color")
-webpackConfigFile in fastOptJS := Some(
-  baseDirectory.value / "webpack.config.dev.js"
-)
-
-webpackBundlingMode in fastOptJS := BundlingMode
-  .LibraryOnly() // https://scalacenter.github.io/scalajs-bundler/cookbook.html#performance
-
-// when running the "dev" alias, after every fastOptJS compile all artifacts are copied into
-// a folder which is served and watched by the webpack devserver.
-// this is a workaround for: https://github.com/scalacenter/scalajs-bundler/issues/180
-lazy val copyFastOptJS =
-  TaskKey[Unit]("copyFastOptJS", "Copy javascript files to target directory")
-copyFastOptJS := {
-  val inDir = (crossTarget in (Compile, fastOptJS)).value
-  val outDir = (crossTarget in (Compile, fastOptJS)).value / "dev"
-  val files = Seq(
-    name.value.toLowerCase + "-fastopt-loader.js",
-    name.value.toLowerCase + "-fastopt.js"
-  ) map { p =>
-    (inDir / p, outDir / p)
-  }
-  IO.copy(
-    files,
-    overwrite = true,
-    preserveLastModified = true,
-    preserveExecutable = true
-  )
+val versions = new {
+  val outwatch  = "1.0.0"
+  val scalaTest = "3.2.19"
+  val colibri  = "0.8.6"
 }
+
+lazy val scalaJsMacrotaskExecutor = Seq(
+  // https://github.com/scala-js/scala-js-macrotask-executor
+  libraryDependencies       += "org.scala-js" %%% "scala-js-macrotask-executor" % "1.1.1",
+  Compile / npmDependencies += "setimmediate"  -> "1.0.5", // polyfill
+)
+
+def readJsDependencies(baseDirectory: File, field: String): Seq[(String, String)] = {
+  val packageJson = ujson.read(IO.read(new File(s"$baseDirectory/package.json")))
+  packageJson(field).obj.mapValues(_.str).toSeq
+}
+
+lazy val webapp = project
+  .enablePlugins(
+    ScalaJSPlugin,
+    ScalaJSBundlerPlugin,
+  )
+  .settings(scalaJsMacrotaskExecutor)
+  .settings(
+    libraryDependencies          ++= Seq(
+      "io.github.outwatch" %%% "outwatch"  % versions.outwatch,
+      "org.scalatest"      %%% "scalatest" % versions.scalaTest % Test,
+      "com.github.cornerman" %%% "colibri" % versions.colibri,
+      "com.github.cornerman" %%% "colibri-reactive" % versions.colibri,
+      "com.github.cornerman" %%% "colibri-fs2" % versions.colibri,
+      "com.github.cornerman" %%% "colibri-router" % versions.colibri,
+    ),
+    Compile / npmDependencies    ++= readJsDependencies(baseDirectory.value, "dependencies"),
+    Compile / npmDevDependencies ++= readJsDependencies(baseDirectory.value, "devDependencies"),
+    scalacOptions --= Seq(
+      "-Xfatal-warnings",
+    ), // overwrite option from https://github.com/DavidGregory084/sbt-tpolecat
+
+    useYarn                           := true, // Makes scalajs-bundler use yarn instead of npm
+    yarnExtraArgs                     += "--prefer-offline",
+    scalaJSLinkerConfig ~= (_.withModuleKind(
+      ModuleKind.CommonJSModule,
+    )), // configure Scala.js to emit a JavaScript module instead of a top-level script
+    scalaJSUseMainModuleInitializer   := true, // On Startup, call the main function
+    webpackDevServerPort              := sys.env
+      .get("FRONTEND_PORT")
+      .flatMap(port => scala.util.Try(port.toInt).toOption)
+      .getOrElse(12345),
+    webpackDevServerExtraArgs         := Seq("--color"),
+    webpack / version                 := "5.75.0",
+    webpackCliVersion                 := "5.0.0",
+    startWebpackDevServer / version   := "4.11.1",
+    webpackDevServerExtraArgs         := Seq("--color"),
+    fullOptJS / webpackEmitSourceMaps := true,
+    fastOptJS / webpackBundlingMode   := BundlingMode.LibraryOnly(),
+    fastOptJS / webpackConfigFile     := Some(baseDirectory.value / "webpack.config.dev.js"),
+    fullOptJS / webpackConfigFile     := Some(baseDirectory.value / "webpack.config.prod.js"),
+    Test / requireJsDomEnv            := true,
+  )
+
+addCommandAlias("prod", "fullOptJS/webpack")
+addCommandAlias("dev", "devInit; devWatchAll; devDestroy")
+addCommandAlias("devInit", "; webapp/fastOptJS/startWebpackDevServer")
+addCommandAlias("devWatchAll", "~; webapp/fastOptJS/webpack")
+addCommandAlias("devDestroy", "webapp/fastOptJS/stopWebpackDevServer")

@@ -1,10 +1,8 @@
 package anniversaire
-import outwatch.dom._
-import outwatch.dom.dsl._
-import monix.execution.Scheduler.Implicits.global
-import rx._
-import util._
-import monix.reactive._
+import outwatch._
+import outwatch.dsl._
+import colibri._
+import colibri.reactive._
 
 object Contact {
   def contact(name: String,
@@ -39,8 +37,7 @@ object Contact {
             "benedicte.gourdon@gmail.com",
             Seq("07.81.18.84.63"),
             "yellowGreen"))
-  def contacts_description(language: Observable[Translation])(
-      implicit ctx: Ctx.Owner) = div(
+  def contacts_description(language: Observable[Translation]) = div(
     language.map(_.menu_contact),
     textAlign := "center",
     fontSize := "18px",
@@ -60,6 +57,6 @@ object Contact {
     fontSize := "10px"
   )
 
-  def contacts(language: Observable[Translation])(implicit ctx: Ctx.Owner) =
+  def contacts(language: Observable[Translation]) =
     div(contacts_description(language), pic, contacts_details)
 }

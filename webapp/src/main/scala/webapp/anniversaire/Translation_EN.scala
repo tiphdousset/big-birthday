@@ -1,7 +1,7 @@
 package anniversaire
-import outwatch.dom.VDomModifier
-import outwatch.dom._
-import outwatch.dom.dsl._
+import outwatch.VDomModifier
+import outwatch._
+import outwatch.dsl._
 object Translation_EN extends Translation {
 
   def intro_button: String = "They are back."
