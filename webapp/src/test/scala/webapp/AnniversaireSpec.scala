@@ -4,7 +4,6 @@ import org.scalatest._
 import org.scalajs.dom._
 import outwatch.dom._
 import outwatch.dom.dsl._
-import monix.execution.Scheduler.Implicits.global
 
 class AnniversaireSpec extends JSDomSpec {
 

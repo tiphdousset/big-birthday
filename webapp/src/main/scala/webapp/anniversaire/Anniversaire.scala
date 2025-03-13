@@ -1,18 +1,19 @@
 package anniversaire
 
 import anniversaire.resources.{Costumes, Guests, GuestsAndCostumes}
-import monix.reactive._
 
 import concurrent.duration._
-import outwatch.dom._
-import outwatch.dom.dsl._
-import monix.execution.Scheduler.Implicits.global
-import rx._
-import util._
+import outwatch._
+import outwatch.dsl._
 import org.scalajs.dom.ext.KeyCode
+import colibri.reactive._
+import colibri._
+import cats.effect.IO
+import cats.effect.IOApp
+import cats.effect.SyncIO
+
 
 object Anniversaire {
-  implicit val ctx: Ctx.Owner = Ctx.Owner.safe()
 
   val defaultToken = "jenesuispaslasamedi"
   def main(args: Array[String]): Unit = {
@@ -31,8 +32,8 @@ object Anniversaire {
     val page = Var(Option("start"))
 //    val tokenValue = Var("queen-bene-francois-fun-king")
     val tokenValue = Var("")
-    val language = Handler.unsafe[Translation](Translation_FR)
-    val counter = Observable.interval(1 second)
+    val language = Var[Translation](Translation_FR)
+    val counter = Observable.interval(1.second)
     var isClicked = true
 
     def light_div(lightId: String,
@@ -67,7 +68,7 @@ object Anniversaire {
     val intro_button = button(
       id := "intro_button",
       language.map(_.intro_button),
-      onClick(Some("start")) --> page,
+      onClick.as(Some("start")) --> page,
       cursor := "pointer"
     )
 
@@ -77,7 +78,7 @@ object Anniversaire {
       backgroundPosition := "center 0",
       height := "100%",
       intro_button,
-      onClick(Some("start")) --> page, //we want to be able to click everywhere on the page and not only on the button
+      onClick.as(Some("start")) --> page, //we want to be able to click everywhere on the page and not only on the button
       cursor := "pointer"
     )
 
@@ -131,7 +132,7 @@ object Anniversaire {
     )
 
     val contentHandler =
-      Handler.unsafe[Option[VNode]](None)
+     Var[Option[VNode]](None)
 
     val title = h1(
       id := "title",
@@ -140,7 +141,7 @@ object Anniversaire {
       textShadow := "0 1px 1px #fff",
       fontSize := "80px",
       marginBottom := "0",
-      onClick(None) --> contentHandler,
+      onClick.as(None) --> contentHandler,
       cursor := "pointer"
     )
 
@@ -161,7 +162,7 @@ object Anniversaire {
         light_div(
           "info",
           l.title_menu_info,
-          onClick(Some(Infos.info(language))) --> contentHandler,
+          onClick.as(Some(Infos.info(language.observable))) --> contentHandler,
           0
         )
       },
@@ -170,18 +171,18 @@ object Anniversaire {
           "costume",
           l.title_menu_costume,
           onClick
-            .mapTo(Some(Costume.costume(tokenValue.now, language))) --> contentHandler,
+            .mapTo(Some(Costume.costume(tokenValue.now, language.observable))) --> contentHandler,
           1
         )
       },
       language.map { l =>
-        light_div("fun", l.title_menu_fun, onClick(Some("fun")) --> page, 2)
+        light_div("fun", l.title_menu_fun, onClick.as(Some("fun")) --> page, 2)
       },
       language.map { l =>
         light_div(
           "photo",
           l.title_menu_photo,
-          onClick.mapTo(Some(Photos.photos(language))) --> contentHandler,
+          onClick.mapTo(Some(Photos.photos(language.observable))) --> contentHandler,
           3
         )
       },
@@ -189,7 +190,7 @@ object Anniversaire {
         light_div(
           "contact",
           l.title_menu_contact,
-          onClick(Some(Contact.contacts(language))) --> contentHandler,
+          onClick.as(Some(Contact.contacts(language.observable))) --> contentHandler,
           4
         )
       },
@@ -198,9 +199,9 @@ object Anniversaire {
 
     def onClickToken(showTokenBox: Var[Boolean], tokenBorder: Var[String]) = {
       if (TokenLogic.isTokenValid(tokenValue.now)) {
-        showTokenBox() = false
+        showTokenBox.set(false)
       } else {
-        tokenBorder() = "4px solid red"
+        tokenBorder.set("4px solid red")
       }
     }
 
@@ -243,8 +244,8 @@ object Anniversaire {
                 cls := "innerShadow",
                 border <-- tokenBorder,
                 onInput.value.foreach { str =>
-                  tokenValue() = str
-                  tokenBorder() = "none"
+                  tokenValue.set(str)
+                  tokenBorder.set("none")
                 },
                 onKeyDown.filter(_.keyCode == KeyCode.Enter).foreach {
                   onClickToken(showTokenBox, tokenBorder)
@@ -254,7 +255,7 @@ object Anniversaire {
                 onClickToken(showTokenBox, tokenBorder)
               }, fontSize := "30px", marginLeft := "20px", backgroundColor := "#fd22c4", color := "white", fontWeight.bold, borderRadius := "3px", border := "none"),
               button("I'm feeling lucky", onClick.foreach {
-                showTokenBox() = false
+                showTokenBox.set(false)
               }, fontSize := "30px", marginLeft := "20px", backgroundColor := "#fd22c4", color := "white", fontWeight.bold, borderRadius := "3px", border := "none"),
             )
           } else VDomModifier.empty
@@ -266,11 +267,13 @@ object Anniversaire {
       if (page() == Some("start")) {
         home_div
       } else if (page() == Some("fun")) {
-        Fun.fun(page, language)
+        Fun.fun(page, language.observable)
       } else intro_div
     })
 
-    OutWatch.renderReplace("#app", main).unsafeRunSync()
+    // OutWatch.renderReplace("#app", main).unsafeRunSync()
+    Outwatch.renderReplace[SyncIO]("#app", main).unsafeRunSync()
+    
 
   }
 }

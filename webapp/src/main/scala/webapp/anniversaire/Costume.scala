@@ -1,13 +1,11 @@
 package anniversaire
-import outwatch.dom._
-import outwatch.dom.dsl._
-import rx._
-import util._
-import monix.reactive._
+import outwatch._
+import outwatch.dsl._
+import colibri._
+import colibri.reactive._
 object Costume {
 
-  def costume(token: String, language: Observable[Translation])(
-      implicit ctx: Ctx.Owner) = {
+  def costume(token: String, language: Observable[Translation]) = {
 
     val showCostume = Var(1)
 
@@ -22,7 +20,7 @@ object Costume {
       color := "white",
       display := "block",
       if (token == "jenesuispaslasamedi" || token == "") {
-        onClick(4) --> showCostume,
+        onClick(4) --> showCostume
       } else { onClick(2) --> showCostume }
     )
 
@@ -45,15 +43,14 @@ object Costume {
     )
   }
 
-  def displayLoser(language: Observable[Translation]): BasicVNode =
+  def displayLoser(language: Observable[Translation]): VNode =
     div(language.map(_.display_no_costume),
         marginTop := "20px",
         display.flex,
         flexDirection := "column",
         alignItems := "center")
 
-  def displayCostume(token: String, language: Observable[Translation])(
-      implicit ctx: Ctx.Owner) = {
+  def displayCostume(token: String, language: Observable[Translation]) = {
     val guestName = TokenLogic.findNameAndCostumePerToken(token).toList(0)._1
     println("guestName = " + guestName)
     val costume = TokenLogic.findNameAndCostumePerToken(token).toList(0)._2
@@ -76,7 +73,7 @@ object Costume {
         attr("autoplay") := true,
         onDomMount.asHtml.foreach { x =>
           x.onended = { _ =>
-            showCostume() = 3
+            showCostume.set(3)
           }
         }
       )
@@ -92,7 +89,7 @@ object Costume {
         attr("autoplay") := true,
         onDomMount.asHtml.foreach { x =>
           x.onended = { _ =>
-            showCostume() = 5
+            showCostume.set(5)
           }
         }
       )

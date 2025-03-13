@@ -32,7 +32,7 @@ object TokenLogic {
         result += ((guest.name, guest2.name))
       }
     }
-    return result // ( (Felix, Manon), (Julie, Clemi) )
+    return result.toSeq // ( (Felix, Manon), (Julie, Clemi) )
   }
 
   val listBestPairGuests = getListBestPairGuests(getListPairGuests(guests))
