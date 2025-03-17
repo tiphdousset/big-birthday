@@ -21,7 +21,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -44,12 +43,22 @@ jobs:
           jvm: temurin:1.11
           apps: sbt
       - name: build
-        run: sbt prod
+        run: |
+          git checkout main
+          set -e 
+          mkdir upload
+          sbt prod
+          mv webapp/target/scala-2.13/scalajs-bundler/main/dist upload/35
+      - name: build 30
+        run: |
+          set -e 
+          git checkout version-30-ans-tentaine
+          sbt prod
+          mv webapp/target/scala-2.13/scalajs-bundler/main/dist upload/30
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: 'webapp/target/scala-2.13/scalajs-bundler/main/dist'
+          path: 'upload'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
