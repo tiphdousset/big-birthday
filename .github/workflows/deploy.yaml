@@ -29,6 +29,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with: 
+          fetch-tags: true
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Cache Coursier cache
@@ -42,9 +44,8 @@ jobs:
         with:
           jvm: temurin:1.11
           apps: sbt
-      - name: build
+      - name: build main
         run: |
-          git checkout main
           set -e 
           mkdir upload
           sbt prod
