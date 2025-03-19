@@ -27,15 +27,18 @@ object Contact {
 
   val tiph = div(
     contact("Tiph",
-            "tiphdousset@gmail.com",
-            Seq("06.63.88.31.50 / 0049 1573 0983456"),
+            environment.BuildInfo.email_tiph,
+            Seq(s"${environment.BuildInfo.phone_tiph_fr} / ${environment.BuildInfo.phone_tiph_de}"),
             "gold"))
   val fanch = div(
-    contact("Fanch", "francois.sail@gmail.com", Seq("06.76.29.51.25"), "pink"))
+    contact("Fanch", 
+            environment.BuildInfo.email_fanch,
+            Seq(environment.BuildInfo.phone_fanch),
+            "pink"))
   val bene = div(
     contact("Béné",
-            "benedicte.gourdon@gmail.com",
-            Seq("07.81.18.84.63"),
+            environment.BuildInfo.email_bene,
+            Seq(environment.BuildInfo.phone_bene),
             "yellowGreen"))
   def contacts_description(language: Observable[Translation]) = div(
     language.map(_.menu_contact),
