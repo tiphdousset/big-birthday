@@ -4,5 +4,7 @@ addSbtPlugin("ch.epfl.scala" % "sbt-scalajs-bundler" % "0.21.1")
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.4")
 addSbtPlugin("org.typelevel" % "sbt-tpolecat" % "0.5.2")
 
+addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.11.0")
+
 // for reading npmDependencies from package.json
 libraryDependencies ++= Seq("com.lihaoyi" %% "upickle" % "4.1.0")

@@ -20,6 +20,15 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  EMAIL_FANCH: ${{ secrets.EMAIL_FANCH }}
+  PHONE_FANCH: ${{ secrets.PHONE_FANCH }}
+  EMAIL_BENE: ${{ secrets.EMAIL_BENE }}
+  PHONE_BENE: ${{ secrets.PHONE_BENE }}
+  EMAIL_TIPH: ${{ secrets.EMAIL_TIPH }}
+  PHONE_TIPH_FR: ${{ secrets.PHONE_TIPH_FR }}
+  PHONE_TIPH_DE: ${{ secrets.PHONE_TIPH_DE }}
+
 jobs:
   deploy:
     environment:

@@ -25,8 +25,21 @@ lazy val webapp = project
   .enablePlugins(
     ScalaJSPlugin,
     ScalaJSBundlerPlugin,
+    BuildInfoPlugin
   )
-  .settings(scalaJsMacrotaskExecutor)
+  .settings(
+    scalaJsMacrotaskExecutor,
+    buildInfoKeys := Seq[BuildInfoKey]( 
+      "email_fanch" -> sys.env("EMAIL_FANCH"),
+      "email_tiph" -> sys.env("EMAIL_TIPH"),
+      "email_bene" -> sys.env("EMAIL_BENE"),
+      "phone_fanch" -> sys.env("PHONE_FANCH"),
+      "phone_tiph_de" -> sys.env("PHONE_TIPH_DE"),
+      "phone_tiph_fr" -> sys.env("PHONE_TIPH_FR"),
+      "phone_bene" -> sys.env("PHONE_BENE"),
+      ),
+    buildInfoPackage := "environment"
+    )
   .settings(
     libraryDependencies          ++= Seq(
       "io.github.outwatch" %%% "outwatch"  % versions.outwatch,
