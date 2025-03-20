@@ -7,7 +7,7 @@ import outwatch.dsl._
 object Translation_DE extends Translation {
 
   def intro_button: String = "They are back."
-  def title: String = "La Tente'aine"
+  def title: String = "Last Call For 35"
   def count_down(numberOfDays: String): String = s"Noch $numberOfDays Tage"
   def count_downNow: String = s"Viel Spass!"
   def count_downAfter: String = s"Wir sehen uns in 5 Jahren!"

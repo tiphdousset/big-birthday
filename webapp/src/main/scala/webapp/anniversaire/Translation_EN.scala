@@ -6,7 +6,7 @@ object Translation_EN extends Translation {
 
   def intro_button: String = "They are back."
 
-  def title: String = "La Tente'aine"
+  def title: String = "Last Call For 35"
 
   def count_down(numberOfDays: String): String = s"D - $numberOfDays"
   def count_downNow: String = s"Have Fun!"

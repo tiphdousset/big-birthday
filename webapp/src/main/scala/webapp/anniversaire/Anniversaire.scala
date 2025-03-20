@@ -12,7 +12,6 @@ import cats.effect.IO
 import cats.effect.IOApp
 import cats.effect.SyncIO
 
-
 object Anniversaire {
 
   val defaultToken = "jenesuispaslasamedi"
@@ -29,17 +28,19 @@ object Anniversaire {
       "!!!!!!! Ooops, errors in costumes!!!!!!!!!!"
     )
 
-    val page = Var(Option("start"))
+    val page = Var(Option(""))
 //    val tokenValue = Var("queen-bene-francois-fun-king")
     val tokenValue = Var("")
     val language = Var[Translation](Translation_FR)
     val counter = Observable.interval(1.second)
     var isClicked = true
 
-    def light_div(lightId: String,
-                  description: String,
-                  onClick_function: VDomModifier,
-                  number: Int) = {
+    def light_div(
+        lightId: String,
+        description: String,
+        onClick_function: VDomModifier,
+        number: Int
+    ) = {
       import svg._
       div(
         cls := "lightsCls",
@@ -52,15 +53,14 @@ object Anniversaire {
             height := "25px",
             viewBox := "0 0 30 40",
             rect(y := "5", x := "10", height := "10", width := "10"),
-            circle(r := "10", cy := "25", cx := "15"),
+            circle(r := "10", cy := "25", cx := "15")
           )
         ),
         div(cls := "descriptionCls", description),
         onClick_function,
-        counter.map(
-          x =>
-            if (x % 5 == number && isClicked) cls := "activate"
-            else VDomModifier.empty
+        counter.map(x =>
+          if (x % 5 == number && isClicked) cls := "activate"
+          else VDomModifier.empty
         )
       )
     }
@@ -78,13 +78,17 @@ object Anniversaire {
       backgroundPosition := "center 0",
       height := "100%",
       intro_button,
-      onClick.as(Some("start")) --> page, //we want to be able to click everywhere on the page and not only on the button
+      onClick.as(
+        Some("start")
+      ) --> page, // we want to be able to click everywhere on the page and not only on the button
       cursor := "pointer"
     )
 
-    def createTranslationIcon(language_hover: String,
-                              image: String,
-                              language_class: Translation) = {
+    def createTranslationIcon(
+        language_hover: String,
+        image: String,
+        language_class: Translation
+    ) = {
       div(
         cls := "language",
         backgroundImage := s"url($image)",
@@ -128,11 +132,11 @@ object Anniversaire {
       languages,
       fontSize := "20px",
       textAlign := "left",
-      marginLeft := "10px",
+      marginLeft := "10px"
     )
 
     val contentHandler =
-     Var[Option[VNode]](None)
+      Var[Option[VNode]](None)
 
     val title = h1(
       id := "title",
@@ -149,9 +153,9 @@ object Anniversaire {
 
     val lights_div = div(
       id := "lightsDiv",
-      marginLeft := "auto", //auto for marginLeft&Right to have the div centered
+      marginLeft := "auto", // auto for marginLeft&Right to have the div centered
       marginRight := "auto",
-      width := "450px", //default width for div is 100%
+      width := "450px", // default width for div is 100%
       /*backgroundImage := "url(lights.svg)",*/
       backgroundImage := "url(lichtketteF.svg)",
       backgroundSize := "contain",
@@ -171,7 +175,9 @@ object Anniversaire {
           "costume",
           l.title_menu_costume,
           onClick
-            .mapTo(Some(Costume.costume(tokenValue.now, language.observable))) --> contentHandler,
+            .mapTo(
+              Some(Costume.costume(tokenValue.now, language.observable))
+            ) --> contentHandler,
           1
         )
       },
@@ -182,7 +188,9 @@ object Anniversaire {
         light_div(
           "photo",
           l.title_menu_photo,
-          onClick.mapTo(Some(Photos.photos(language.observable))) --> contentHandler,
+          onClick.mapTo(
+            Some(Photos.photos(language.observable))
+          ) --> contentHandler,
           3
         )
       },
@@ -190,7 +198,9 @@ object Anniversaire {
         light_div(
           "contact",
           l.title_menu_contact,
-          onClick.as(Some(Contact.contacts(language.observable))) --> contentHandler,
+          onClick.as(
+            Some(Contact.contacts(language.observable))
+          ) --> contentHandler,
           4
         )
       },
@@ -206,7 +216,7 @@ object Anniversaire {
     }
 
     val home_div = {
-      val showTokenBox = Var(true)
+      val showTokenBox = Var(false)
       val tokenBorder = Var("none")
       div(
         header,
@@ -251,29 +261,51 @@ object Anniversaire {
                   onClickToken(showTokenBox, tokenBorder)
                 }
               ),
-              button("OK", onClick.foreach {
-                onClickToken(showTokenBox, tokenBorder)
-              }, fontSize := "30px", marginLeft := "20px", backgroundColor := "#fd22c4", color := "white", fontWeight.bold, borderRadius := "3px", border := "none"),
-              button("I'm feeling lucky", onClick.foreach {
-                showTokenBox.set(false)
-              }, fontSize := "30px", marginLeft := "20px", backgroundColor := "#fd22c4", color := "white", fontWeight.bold, borderRadius := "3px", border := "none"),
+              button(
+                "OK",
+                onClick.foreach {
+                  onClickToken(showTokenBox, tokenBorder)
+                },
+                fontSize := "30px",
+                marginLeft := "20px",
+                backgroundColor := "#fd22c4",
+                color := "white",
+                fontWeight.bold,
+                borderRadius := "3px",
+                border := "none"
+              ),
+              button(
+                "I'm feeling lucky",
+                onClick.foreach {
+                  showTokenBox.set(false)
+                },
+                fontSize := "30px",
+                marginLeft := "20px",
+                backgroundColor := "#fd22c4",
+                color := "white",
+                fontWeight.bold,
+                borderRadius := "3px",
+                border := "none"
+              )
             )
           } else VDomModifier.empty
         }
       )
     }
 
-    val main = div(height := "100%", Rx {
-      if (page() == Some("start")) {
-        home_div
-      } else if (page() == Some("fun")) {
-        Fun.fun(page, language.observable)
-      } else intro_div
-    })
+    val main = div(
+      height := "100%",
+      Rx {
+        if (page() == Some("start")) {
+          home_div
+        } else if (page() == Some("fun")) {
+          Fun.fun(page, language.observable)
+        } else intro_div
+      }
+    )
 
     // OutWatch.renderReplace("#app", main).unsafeRunSync()
     Outwatch.renderReplace[SyncIO]("#app", main).unsafeRunSync()
-    
 
   }
 }
