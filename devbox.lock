@@ -1,11 +1,62 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "resolved": "github:NixOS/nixpkgs/dd613136ee91f67e5dba3f3f41ac99ae89c5406b?lastModified=1742707865&narHash=sha256-RVQQZy38O3Zb8yoRJhuFgWo%2FiDIDj0hEdRTVfhOtzRk%3D"
+    },
     "openjdk8@latest": {
       "last_modified": "2023-02-24T09:01:09Z",
       "resolved": "github:NixOS/nixpkgs/7d0ed7f2e5aea07ab22ccb338d27fbe347ed2f11#openjdk8",
       "source": "devbox-search",
       "version": "8u352-ga"
+    },
+    "sbt@latest": {
+      "last_modified": "2025-03-18T04:27:45Z",
+      "resolved": "github:NixOS/nixpkgs/3549532663732bfd89993204d40543e9edaec4f2#sbt",
+      "source": "devbox-search",
+      "version": "1.10.10",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pjr6n5ddlar3l7wn9ysfxhrrpkalp4qv-sbt-1.10.10",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pjr6n5ddlar3l7wn9ysfxhrrpkalp4qv-sbt-1.10.10"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/sy06miv8fam6m32f62pn85kvyqbf78qg-sbt-1.10.10",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/sy06miv8fam6m32f62pn85kvyqbf78qg-sbt-1.10.10"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xnslbxipbmkp8pmn2kg5f0njl5wbpmds-sbt-1.10.10",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xnslbxipbmkp8pmn2kg5f0njl5wbpmds-sbt-1.10.10"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vn52ryf8n8rddbcp68a5cydjmagnx792-sbt-1.10.10",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vn52ryf8n8rddbcp68a5cydjmagnx792-sbt-1.10.10"
+        }
+      }
     }
   }
 }
