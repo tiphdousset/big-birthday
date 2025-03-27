@@ -189,7 +189,7 @@ object Anniversaire {
           "photo",
           l.title_menu_photo,
           onClick.mapTo(
-            Some(Photos.photos(language.observable))
+            Some(Photos.photo_before_party(language.observable))
           ) --> contentHandler,
           3
         )

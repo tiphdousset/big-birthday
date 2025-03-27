@@ -59,6 +59,17 @@ object Photos {
       }
     }
 
+  def photo_before_party(language: Observable[Translation]) = div(
+    div(
+      marginBottom := "30px",
+      "UNDER CONSTRUCTION",
+      display.flex,
+      justifyContent.center,
+      alignItems.flexStart,
+      fontSize := "25px"
+    )
+  )
+
   def photos(language: Observable[Translation]) = div(
     div(
       marginBottom := "30px",
@@ -109,20 +120,25 @@ object Photos {
               href := getZip("appareilJetable")
             )
           )
-        ),
+        )
       ),
       showFullImage.map(_.map(renderFullImage)),
       display.flex,
       justifyContent.center,
       alignItems.flexStart,
-      fontSize := "25px",
+      fontSize := "25px"
     ),
-    div(display.flex, flexWrap.wrap, justifyContent.center, Rx {
-      daySelected().map { day =>
-        val list = getList(day)
-        list.map(l => l.map(x => showPicture(day, x)))
+    div(
+      display.flex,
+      flexWrap.wrap,
+      justifyContent.center,
+      Rx {
+        daySelected().map { day =>
+          val list = getList(day)
+          list.map(l => l.map(x => showPicture(day, x)))
+        }
       }
-    })
+    )
   )
 
   def showPicture(day: String, fileName: String): VNode = {
