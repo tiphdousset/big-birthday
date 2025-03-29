@@ -136,7 +136,7 @@ object Anniversaire {
     )
 
     val contentHandler =
-      Var[Option[VNode]](None)
+      Var[Option[VMod]](None)
 
     val title = h1(
       id := "title",
@@ -166,7 +166,9 @@ object Anniversaire {
         light_div(
           "info",
           l.title_menu_info,
-          onClick.as(Some(Infos.info(language.observable))) --> contentHandler,
+          onClick.as(
+            Some(Infos.info(language.observable))
+          ) --> contentHandler,
           0
         )
       },

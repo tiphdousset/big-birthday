@@ -50,6 +50,8 @@ object Translation_EN extends Translation {
   def title_menu_fun: String = "DO NOT CLICK HERE"
 
   def menu_photo: String = "UNDER CONSTRUCTION"
+  def menu_photo_before_party =
+    "Go, dance and come back (to download the pictures of the party)!"
 
   def title_menu_photo: String = "Photos"
 
@@ -58,9 +60,11 @@ object Translation_EN extends Translation {
 
   def title_menu_contact: String = "Contacts"
 
-  def display_costume(guestName: String,
-                      costume: String,
-                      costumePartner: String): VDomModifier =
+  def display_costume(
+      guestName: String,
+      costume: String,
+      costumePartner: String
+  ): VDomModifier =
     VDomModifier(
       div("You are: "),
       div(b(s"$costume"), fontSize := "35px"),

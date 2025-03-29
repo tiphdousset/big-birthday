@@ -1,11 +1,23 @@
-html,body{height: 100%; margin: 0; padding: 0}
-
-*, *:before, *:after {
-  box-sizing: border-box;
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0
 }
 
-html *{
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html * {
     font-family: Montserrat;
+}
+
+h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
 }
 
 #mainContainer {
@@ -20,6 +32,7 @@ html *{
     width: 800px;
     padding: 20px;
 }
+
 #intro_button {
     margin-left: auto;
     margin-right: auto;
@@ -30,7 +43,7 @@ html *{
     font-size: 27px;
     border: 4px solid black;
     box-shadow: 3px 2px 0px 0px #b5224d;
-    }
+}
 
 #go_back_button {
     margin-left: auto;
@@ -42,7 +55,7 @@ html *{
     font-size: 27px;
     border: 4px solid black;
     box-shadow: 3px 2px 0px 0px #b5224d;
-    }
+}
 
 
 #title {
@@ -62,20 +75,22 @@ html *{
     top: 29px;
 }
 
-#info circle{
-fill: hotPink;
-fill: #FD79BE;
+#info circle {
+    fill: hotPink;
+    fill: #FD79BE;
 }
 
-#info:hover circle, #info.activate circle {
-fill: deepPink;
-fill: #FF70FF;
+#info:hover circle,
+#info.activate circle {
+    fill: deepPink;
+    fill: #FF70FF;
 }
 
-#info:hover, #info.activate{
-/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px #FF70FF); 
-filter: drop-shadow(0px 0px 7px #FF70FF);
+#info:hover,
+#info.activate {
+    /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+    -webkit-filter: drop-shadow(0px 0px 7px #FF70FF);
+    filter: drop-shadow(0px 0px 7px #FF70FF);
 }
 
 #costume {
@@ -83,19 +98,21 @@ filter: drop-shadow(0px 0px 7px #FF70FF);
     top: 36px;
 }
 
-#costume circle{
-fill: deepskyblue;
-fill: #00BCFF;
+#costume circle {
+    fill: deepskyblue;
+    fill: #00BCFF;
 }
 
-#costume:hover circle, #costume.activate circle  {
-fill: #00DDFF
+#costume:hover circle,
+#costume.activate circle {
+    fill: #00DDFF
 }
 
-#costume:hover, #costume.activate{
-/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px #00DDFF); 
-filter: drop-shadow(0px 0px 7px #00DDFF);
+#costume:hover,
+#costume.activate {
+    /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+    -webkit-filter: drop-shadow(0px 0px 7px #00DDFF);
+    filter: drop-shadow(0px 0px 7px #00DDFF);
 }
 
 #fun {
@@ -104,22 +121,24 @@ filter: drop-shadow(0px 0px 7px #00DDFF);
     font-family: serif !important;
 }
 
-#fun circle{
-fill: mediumSeaGreen;
+#fun circle {
+    fill: mediumSeaGreen;
 }
 
-#fun:hover circle, #fun.activate circle  {
-fill: limeGreen;
+#fun:hover circle,
+#fun.activate circle {
+    fill: limeGreen;
 }
 
-#fun:hover, #fun.activate{
-/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px limeGreen); 
-filter: drop-shadow(0px 0px 7px limeGreen);
+#fun:hover,
+#fun.activate {
+    /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+    -webkit-filter: drop-shadow(0px 0px 7px limeGreen);
+    filter: drop-shadow(0px 0px 7px limeGreen);
 }
 
 #fun .descriptionCls {
-font-family: monospace;
+    font-family: monospace;
 }
 
 #photo {
@@ -127,19 +146,21 @@ font-family: monospace;
     top: 31px;
 }
 
-#photo circle{
-/* fill: red; */
-fill: #E1001B;
+#photo circle {
+    /* fill: red; */
+    fill: #E1001B;
 }
 
-#photo:hover circle, #photo.activate circle  {
-fill: red;
+#photo:hover circle,
+#photo.activate circle {
+    fill: red;
 }
 
-#photo:hover, #photo.activate {
-/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px red); 
-filter: drop-shadow(0px 0px 7px red);
+#photo:hover,
+#photo.activate {
+    /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+    -webkit-filter: drop-shadow(0px 0px 7px red);
+    filter: drop-shadow(0px 0px 7px red);
 }
 
 #contact {
@@ -147,21 +168,23 @@ filter: drop-shadow(0px 0px 7px red);
     top: 12px;
 }
 
-#contact circle{
-fill: #F9D14C;
+#contact circle {
+    fill: #F9D14C;
 }
 
-#contact:hover circle, #contact.activate circle  {
-fill: #FFE800;
+#contact:hover circle,
+#contact.activate circle {
+    fill: #FFE800;
 }
 
-#contact:hover, #contact.activate {
-/*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
--webkit-filter: drop-shadow(0px 0px 7px #FFE800); 
-filter: drop-shadow(0px 0px 7px #FFE800);
+#contact:hover,
+#contact.activate {
+    /*Offset X and Y set to 0 to have the shadow around the whold SVG object*/
+    -webkit-filter: drop-shadow(0px 0px 7px #FFE800);
+    filter: drop-shadow(0px 0px 7px #FFE800);
 }
 
-.language{
+.language {
     cursor: pointer;
 }
 
@@ -178,7 +201,7 @@ filter: drop-shadow(0px 0px 7px #FFE800);
 
 .lightsCls {
     cursor: pointer;
-/* display:flex; */
+    /* display:flex; */
 }
 
 .lightsCls .descriptionCls {
@@ -186,8 +209,8 @@ filter: drop-shadow(0px 0px 7px #FFE800);
 }
 
 /* .lightsCls:hover .descriptionCls, .lightsCls.activate .descriptionCls{ */
-.lightsCls:hover .descriptionCls{
-    visibility:visible;
+.lightsCls:hover .descriptionCls {
+    visibility: visible;
     font-size: 15px;
 }
 
@@ -199,28 +222,28 @@ filter: drop-shadow(0px 0px 7px #FFE800);
 /* } */
 
 
-.innerShadow{
-    -webkit-box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);
-    -moz-box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);
-    box-shadow: inset 10px 10px 24px 0px rgba(0,0,0,0.47);
+.innerShadow {
+    -webkit-box-shadow: inset 10px 10px 24px 0px rgba(0, 0, 0, 0.47);
+    -moz-box-shadow: inset 10px 10px 24px 0px rgba(0, 0, 0, 0.47);
+    box-shadow: inset 10px 10px 24px 0px rgba(0, 0, 0, 0.47);
 }
 
-.picFolder:hover, .picFolderActive{
-background-color: rgba(255, 179, 183, 0.59);
-}
-.picFolder{
-margin: 10px;
-padding: 20px;
-cursor: pointer;
-border-radius: 10px;
+.picFolder:hover,
+.picFolderActive {
+    background-color: rgba(255, 179, 183, 0.59);
 }
 
-.downloadPic{
-margin: 10px;
-padding: 20px;
-cursor: pointer;
-font-size: 14px;
-color: #bd229d;
+.picFolder {
+    margin: 10px;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
-
+.downloadPic {
+    margin: 10px;
+    padding: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #bd229d;
+}

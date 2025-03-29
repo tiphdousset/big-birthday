@@ -59,14 +59,25 @@ object Photos {
       }
     }
 
+  val pic_danse = div(
+    backgroundImage := "url(danse.jpg)",
+    backgroundSize := "cover",
+    height := "300px",
+    width := "84.5%",
+    marginLeft := "auto",
+    marginRight := "auto",
+    marginTop := "30px"
+  )
   def photo_before_party(language: Observable[Translation]) = div(
     div(
-      marginBottom := "30px",
-      "UNDER CONSTRUCTION",
-      display.flex,
-      justifyContent.center,
-      alignItems.flexStart,
-      fontSize := "25px"
+      // marginBottom := "30px",
+      language.map(_.menu_photo_before_party),
+      // "UNDER CONSTRUCTION",
+      pic_danse
+      // display.flex,
+      // justifyContent.center,
+      // alignItems.flexStart,
+      // fontSize := "25px"
     )
   )
 

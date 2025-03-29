@@ -47,15 +47,19 @@ object Translation_DE extends Translation {
   def title_menu_fun: String = "DO NOT CLICK HERE"
 
   def menu_photo: String = "UNDER CONSTRUCTION"
+  def menu_photo_before_party =
+    "Geh, tanz und komm zurück (um die Fotos von der Party runterzuladen)!"
   def title_menu_photo: String = "Fotos"
 
   def menu_contact: String =
     """Du hast ein Frage? Oder du willst uns eine Liebeserklärung machen? Kein Problem, wir freuen uns auf deine Nachricht!"""
   def title_menu_contact: String = "Kontakt"
 
-  def display_costume(guestName: String,
-                      costume: String,
-                      costumePartner: String): VDomModifier =
+  def display_costume(
+      guestName: String,
+      costume: String,
+      costumePartner: String
+  ): VDomModifier =
     VDomModifier(
       div("Du bist: "),
       div(b(s"$costume"), fontSize := "35px"),

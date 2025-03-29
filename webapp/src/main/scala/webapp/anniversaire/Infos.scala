@@ -6,10 +6,13 @@ import colibri._
 
 object Infos {
 
-  def info(language: Observable[Translation]) =
-    div(language.map(
-          _.menu_info
-        ),
-        fontSize := "16px",
-        whiteSpace := "pre-line")
+  def info(language: Observable[Translation]): VMod =
+    language.map(l =>
+      div.thunk("content rendering")(l.menu_info)(
+        VMod(
+          fontSize := "16px",
+          innerHTML := UnsafeHTML(l.menu_info)
+        )
+      )
+    )
 }

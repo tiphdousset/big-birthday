@@ -1,6 +1,7 @@
 package anniversaire
 
 import outwatch.VDomModifier
+import outwatch._
 
 trait Translation {
 
@@ -21,14 +22,17 @@ trait Translation {
   def title_menu_fun: String
 
   def menu_photo: String
+  def menu_photo_before_party: String
   def title_menu_photo: String
 
   def menu_contact: String
   def title_menu_contact: String
 
-  def display_costume(guestName: String,
-                      costume: String,
-                      costumePartner: String): VDomModifier
+  def display_costume(
+      guestName: String,
+      costume: String,
+      costumePartner: String
+  ): VDomModifier
 
   def display_no_costume: VDomModifier
 
