@@ -19,9 +19,7 @@ object Costume {
       backgroundColor := "#fd22c4",
       color := "white",
       display := "block",
-      if (token == "jenesuispaslasamedi" || token == "") {
-        onClick(4) --> showCostume
-      } else { onClick(2) --> showCostume }
+      onClick(2) --> showCostume
     )
 
     div(
@@ -39,16 +37,18 @@ object Costume {
           button_costume
       },
       fontSize := "16px",
-      whiteSpace := "pre-line",
+      whiteSpace := "pre-line"
     )
   }
 
   def displayLoser(language: Observable[Translation]): VNode =
-    div(language.map(_.display_no_costume),
-        marginTop := "20px",
-        display.flex,
-        flexDirection := "column",
-        alignItems := "center")
+    div(
+      language.map(_.display_no_costume),
+      marginTop := "20px",
+      display.flex,
+      flexDirection := "column",
+      alignItems := "center"
+    )
 
   def displayCostume(token: String, language: Observable[Translation]) = {
     val guestName = TokenLogic.findNameAndCostumePerToken(token).toList(0)._1
@@ -57,19 +57,23 @@ object Costume {
     println("costume = " + costume)
     val costumePartner = TokenLogic.findCostumePartner(costume)
     println("costumePartner = " + costumePartner)
-    div(language.map(_.display_costume(guestName, costume, costumePartner)),
-        marginTop := "20px",
-        display.flex,
-        flexDirection := "column",
-        alignItems := "center")
+    div(
+      language.map(_.display_costume(guestName, costume, costumePartner)),
+      marginTop := "20px",
+      display.flex,
+      flexDirection := "column",
+      alignItems := "center"
+    )
   }
   def magicGif(showCostume: Var[Int]) =
     div(
       display := "flex",
       video(
         margin := "20px auto",
-        source(src := "https://media.giphy.com/media/6CovzgyTig7M4/giphy.mp4",
-               tpe := "video/mp4"),
+        source(
+          src := "https://media.giphy.com/media/6CovzgyTig7M4/giphy.mp4",
+          tpe := "video/mp4"
+        ),
         attr("autoplay") := true,
         onDomMount.asHtml.foreach { x =>
           x.onended = { _ =>
@@ -85,7 +89,8 @@ object Costume {
         margin := "20px auto",
         source(
           src := "https://media.giphy.com/media/YOkrK8agZLEk2cXeLi/giphy.mp4",
-          tpe := "video/mp4"),
+          tpe := "video/mp4"
+        ),
         attr("autoplay") := true,
         onDomMount.asHtml.foreach { x =>
           x.onended = { _ =>

@@ -11,7 +11,7 @@ trait Translation {
   def count_downNow: String
   def count_downAfter: String
 
-  def menu_info: String
+  def menu_info(whatsappLink: Option[String]): String
   def title_menu_info: String
 
   def menu_costume: String

@@ -12,7 +12,7 @@ object Translation_DE extends Translation {
   def count_downNow: String = s"Viel Spass!"
   def count_downAfter: String = s"Wir sehen uns in 5 Jahren!"
 
-  def menu_info: String =
+  def menu_info(whatsappLink: Option[String]): String = {
     """Halli hallo!
 
     Für dich, lieber Freund, der auserwählt wurde, um unser 30-jähriges Jubiläum zu feiern gibt es hier einige nützliche Informationen zur Vorbereitung auf die lang erwartete Veranstaltung.
@@ -27,6 +27,7 @@ object Translation_DE extends Translation {
     Falls du früher ankommen oder später abreisen möchtest, zögere nicht, uns zu kontaktieren, damit du bei uns untergebracht werden kannst.
 
     Wenn du kein Wort verstanden hast, weil du denkst, dass mein Deutsch zu undeutlich ist.... geh und nimm Französischunterricht und dann lies die französische Variante."""
+  }
 
   def title_menu_info: String = "Informationen"
 

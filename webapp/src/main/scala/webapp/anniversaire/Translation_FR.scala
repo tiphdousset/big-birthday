@@ -10,8 +10,14 @@ object Translation_FR extends Translation {
   def count_downNow: String = s"Amuse toi bien!"
   def count_downAfter: String = s"Rendez-vous dans 5 ans!"
 
-  def menu_info: String =
-    """
+  def menu_info(whatsappLink: Option[String]): String = {
+    val whatsappLinkMessage = whatsappLink match {
+      case Some(link) =>
+        s"""<center><a href="$link">Groupe WhatsApp</a></center>"""
+      case None =>
+        "<center>Veuillez fournir un token valide pour accéder au groupe WhatsApp</center>"
+    }
+    s"""
     <h2>Hoyé hoyé!</h2>
     Pour toi, cher ami.e choisis entre tous pour célébrer nos 35 ans, voici quelques informations utiles pour préparer l'évènement tant attendu.
 
@@ -26,9 +32,12 @@ object Translation_FR extends Translation {
     Pour les non-nantais, un billet pour Nantes est à ce stade largement suffisant. <br /> 
     Pour le couchage, un champ sera mis à disposition pour planter les tentes. Pense donc à prendre ta tente ;-)
     <br></br>
-    Pour être à jour sur l'évènement, nous te suggérons de <b>rejoindre le groupe WhatsApp</b> dédié, où tu trouveras entre autre un sous-groupe spécialement consacré au "&#128663; Covoiturage".
+    Pour être à jour sur l'évènement, nous te suggérons de <b>rejoindre le groupe WhatsApp</b> dédié, où tu trouveras entre autre un sous-groupe spécialement consacré au "&#128663; Covoiturage": 
+    <br></br>
+    $whatsappLinkMessage
     <br></br>
     Non-french speaker : keep calm and don't panic, I'm sure you can find the transaltion icons yourself..."""
+  }
   def title_menu_info: String = "Informations"
 
   def menu_costume: String =
@@ -38,7 +47,7 @@ object Translation_FR extends Translation {
     Pas de stress cependant pour les allergiques aux déguisements: tu peux te contenter d'arborer l'un des accessoires fétiches du personnage en question - ou au contraire le jouer à fond.
   """
   def menu_costume_button_wheel: String = "Révéler mon déguisement"
-  def title_menu_costume: String = "Get dressed"
+  def title_menu_costume: String = "Code vestimentaire"
 
   def menu_fun: String = "Please bring me back home"
   def title_menu_fun: String = "NE SURTOUT PAS CLIQUER ICI"

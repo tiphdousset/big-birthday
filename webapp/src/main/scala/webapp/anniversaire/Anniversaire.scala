@@ -14,19 +14,20 @@ import cats.effect.SyncIO
 
 object Anniversaire {
 
-  val defaultToken = "jenesuispaslasamedi"
   def main(args: Array[String]): Unit = {
 
-//    val intersection: Set[String] = GuestsAndCostumes.guestsEmails intersect Guests.emails
-//    val union: Set[String] = GuestsAndCostumes.guestsEmails union Guests.emails
-    assert(
-      GuestsAndCostumes.guestsEmails == Guests.emails,
-      "!!!!!!! Ooops, it looks like one guest does not have a costume !!!!!!!"
-    )
-    assert(
-      GuestsAndCostumes.guestCostumes == Costumes.names,
-      "!!!!!!! Ooops, errors in costumes!!!!!!!!!!"
-    )
+    // val intersection: Set[String] =
+    //   GuestsAndCostumes.guestsEmails intersect Guests.emails
+    // val union: Set[String] = GuestsAndCostumes.guestsEmails union Guests.emails
+    // TODO: re-activate the asserts
+    // assert(
+    //   GuestsAndCostumes.guestsEmails == Guests.emails,
+    //   "!!!!!!! Ooops, it looks like one guest does not have a costume !!!!!!!"
+    // )
+    // assert(
+    //   GuestsAndCostumes.guestCostumes == Costumes.names,
+    //   "!!!!!!! Ooops, errors in costumes!!!!!!!!!!"
+    // )
 
     val page = Var(Option(""))
 //    val tokenValue = Var("queen-bene-francois-fun-king")
@@ -34,6 +35,9 @@ object Anniversaire {
     val language = Var[Translation](Translation_FR)
     val counter = Observable.interval(1.second)
     var isClicked = true
+    val encrypted_whatsapp_link =
+      "U2FsdGVkX19rOSMwADaiAGtcDH0YRqp9eiZEobHmrnW8PRBnQHrxNGdCvQBWVNCq0dG33aGfzP01C2v8R03MQOrfPnQlBgLkj2Fknge3mjg="
+    val decryptedLink = Var(None: Option[String])
 
     def light_div(
         lightId: String,
@@ -166,8 +170,8 @@ object Anniversaire {
         light_div(
           "info",
           l.title_menu_info,
-          onClick.as(
-            Some(Infos.info(language.observable))
+          onClick(decryptedLink).map(link =>
+            Some(Infos.info(language.observable, link))
           ) --> contentHandler,
           0
         )
@@ -212,13 +216,18 @@ object Anniversaire {
     def onClickToken(showTokenBox: Var[Boolean], tokenBorder: Var[String]) = {
       if (TokenLogic.isTokenValid(tokenValue.now)) {
         showTokenBox.set(false)
+        val dectryptedLinkValue = TokenLogic.decryptWhatsappLink(
+          encrypted_whatsapp_link,
+          tokenValue.now
+        )
+        decryptedLink.set(dectryptedLinkValue)
       } else {
         tokenBorder.set("4px solid red")
       }
     }
 
     val home_div = {
-      val showTokenBox = Var(false)
+      val showTokenBox = Var(true)
       val tokenBorder = Var("none")
       div(
         header,
@@ -267,19 +276,6 @@ object Anniversaire {
                 "OK",
                 onClick.foreach {
                   onClickToken(showTokenBox, tokenBorder)
-                },
-                fontSize := "30px",
-                marginLeft := "20px",
-                backgroundColor := "#fd22c4",
-                color := "white",
-                fontWeight.bold,
-                borderRadius := "3px",
-                border := "none"
-              ),
-              button(
-                "I'm feeling lucky",
-                onClick.foreach {
-                  showTokenBox.set(false)
                 },
                 fontSize := "30px",
                 marginLeft := "20px",

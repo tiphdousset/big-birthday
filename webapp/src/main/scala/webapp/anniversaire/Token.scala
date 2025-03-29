@@ -1,6 +1,15 @@
 package anniversaire
 
-import anniversaire.resources.{Guest, GuestsAndCostumes, Guests, Costumes}
+import anniversaire.resources.{
+  Guest,
+  GuestsAndCostumes,
+  Guests,
+  Costumes,
+  TokensHashes
+}
+
+import anniversaire.AESUtil
+import anniversaire.HashUtil
 
 object TokenLogic {
 
@@ -18,10 +27,11 @@ object TokenLogic {
     return g.toList.sortBy(i => i._3)
   }
 
-  //println(getListPairGuests(guests).mkString("\n"))
+  // println(getListPairGuests(guests).mkString("\n"))
 
   def getListBestPairGuests(
-      listPairGuests: List[(Guest, Guest, Int)]): Seq[(String, String)] = {
+      listPairGuests: List[(Guest, Guest, Int)]
+  ): Seq[(String, String)] = {
     val used = collection.mutable.HashSet[Guest]()
     val result = collection.mutable.ArrayBuffer[(String, String)]()
 
@@ -36,13 +46,15 @@ object TokenLogic {
   }
 
   val listBestPairGuests = getListBestPairGuests(getListPairGuests(guests))
-  //println(listBestPairGuests.mkString("\n"))
+  // println(listBestPairGuests.mkString("\n"))
   val listBestPairGuestsName = listBestPairGuests.flatMap {
     case (name1, name2) => List(name1, name2)
   }
 
-  def whoIsAlone(allGuestsNames: List[String],
-                 usedGuestsNames: List[String]): List[String] = {
+  def whoIsAlone(
+      allGuestsNames: List[String],
+      usedGuestsNames: List[String]
+  ): List[String] = {
     allGuestsNames.diff(usedGuestsNames)
   }
 
@@ -66,9 +78,12 @@ object TokenLogic {
   }
 
   def isTokenValid(token: String) = {
-    //guests.exists(guest => guest.token == token)
-    guests.exists(_.token == token)
-
+    val costume_token = extractCostumeToken(token)
+    println(s"costume_token: $costume_token")
+    val hash_token = costume_token.map(HashUtil.sha256(_))
+    println(s"hash_token: $hash_token")
+    val valid_tokens_hashes: List[String] = TokensHashes.hashes
+    hash_token.exists(hash => valid_tokens_hashes.contains(hash))
   }
 
   def fromTupleToList(costumes: (String, String)): List[String] = {
@@ -96,4 +111,27 @@ object TokenLogic {
   //    case (a,b) if List(a,b).contains(costumeA) => Set(a,b)-costumeA
   //  }
 
+  def extractCostumeToken(token: String): Option[String] = {
+    token.split("-", 2) match {
+      case Array(_, rest) if rest.nonEmpty => Some(rest)
+      case _                               => None
+    }
+  }
+
+  def extractKey(token: String): Option[String] = {
+    println(s"token: $token")
+    token.split("-", 2) match {
+      case Array(head, _) => Some(head)
+      case _              => None
+    }
+  }
+
+  def decryptWhatsappLink(
+      whatsappLink: String,
+      token: String
+  ): Option[String] = {
+    val key = extractKey(token)
+    println(s"key: $key")
+    key.flatMap(AESUtil.decryptAES(whatsappLink, _))
+  }
 }
