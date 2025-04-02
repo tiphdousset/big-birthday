@@ -10,21 +10,37 @@ object Translation_DE extends Translation {
   def title: String = "Last Call For 35"
   def count_down(numberOfDays: String): String = s"Noch $numberOfDays Tage"
   def count_downNow: String = s"Viel Spass!"
-  def count_downAfter: String = s"Wir sehen uns in 5 Jahren!"
+  def count_downAfter: String = s"Wir sehen uns in 4 Jahren!"
 
   def menu_info(whatsappLink: Option[String]): String = {
-    """Halli hallo!
+    val whatsappLinkMessage = whatsappLink match {
+      case Some(link) =>
+        s"""<center><a href="$link" target="_blank">Whatsapp-Gruppe</a></center>"""
+      case None =>
+        "<center>Bitte geben Sie ein gültiges Token an, um Zugang zur WhatsApp-Gruppe zu erhalten.</center>"
+    }
 
-    Für dich, lieber Freund, der auserwählt wurde, um unser 30-jähriges Jubiläum zu feiern gibt es hier einige nützliche Informationen zur Vorbereitung auf die lang erwartete Veranstaltung.
-    Zunächst das Datum: Die Feierlichkeiten finden vom Samstag, den 8. bis Montag, den 10. Juni statt. Du wirst am späten Nachmittag am Samstag erwartet (z.B. gegen 17 Uhr) und wir werden das Gelände am Montag am späten Vormittag verlassen. 
+    s"""
+    <h2>Halli hallo!</h2>
 
-    Für den Ort können wir dir sagen, dass es sich um das prächtige Dorf St. Colomban handelt, 30 Minuten südlich von Nantes. Der genaue Standort des Geländes wird dir bis dahin mitgeteilt. 
-    Wir empfehlen dir, die Mitfahrgelegenheiten von Nantes aus zu nutzen, die zu gegebener Zeit über diese Website organisiert werden können. 
-    Für Leute, die nicht aus Nantes kommen, ist ein Ticket nach Nantes zu diesem Zeitpunkt mehr als genug.
+    Für dich, lieber Freund, der auserwählt wurde, um unser 35-jähriges Jubiläum zu feiern gibt es hier einige nützliche Informationen zur Vorbereitung auf die lang erwartete Veranstaltung.
+    
 
-    Zum Schlafen wird ein Feld für Zelte zur Verfügung gestellt. Also denk daran, dein Zelt zu mitzunehmen ;-)
+    <h2>Wann?</h2>
+    Die Feierlichkeiten finden vom Samstag, den <b>7. bis Montag, den 9. Juni 2025</b> statt. Du wirst am späten Nachmittag am Samstag erwartet (z.B. gegen 17 Uhr) und wir werden das Gelände am Montag am späten Vormittag verlassen. 
 
-    Falls du früher ankommen oder später abreisen möchtest, zögere nicht, uns zu kontaktieren, damit du bei uns untergebracht werden kannst.
+    <h2>Wo?</h2>
+    Wir können dir sagen, dass es sich um das prächtige Dorf <b>St. Colomban (44)</b> handelt, in einem Feld von <a href="https://maps.app.goo.gl/7LrY3YEMv25wooiU7" target="_blank">la ferme de Rublé</a>, 30 Minuten südlich von Nantes. Die genaue Lage des Feldes wird dir bei deiner Ankunft auf der Farm kunstvoll angezeigt, keine Sorge. 
+
+    <h2>Wie?</h2>
+    Wir empfehlen dir, die Mitfahrgelegenheiten von Nantes aus zu nutzen.<br />
+    Für Leute, die nicht aus Nantes kommen, ist ein Ticket nach Nantes zu diesem Zeitpunkt mehr als genug.<br />
+    Zum Schlafen wird ein Feld für Zelte zur Verfügung gestellt. Also denk daran, dein Zelt mitzunehmen ;-)
+    <br></br>
+    Um über die Veranstaltung auf dem Laufenden zu bleiben, empfehlen wir dir, der speziellen <b>WhatsApp-Gruppe</b> beizutreten, wo du unter anderem eine Untergruppe findest, die sich speziell mit Fahrgemeinschaften befasst.
+    <br></br>
+    $whatsappLinkMessage
+    <br></br>
 
     Wenn du kein Wort verstanden hast, weil du denkst, dass mein Deutsch zu undeutlich ist.... geh und nimm Französischunterricht und dann lies die französische Variante."""
   }
@@ -32,24 +48,21 @@ object Translation_DE extends Translation {
   def title_menu_info: String = "Informationen"
 
   def menu_costume: String =
-    """Du hast nicht viel vorzubereiten, außer.... deinem Outfit!
-    Das folgende Glücksrad wird dir in wenigen Monaten eine Verkleidung zeigen, die du am Samstag tragen musst.
+    """Du hast nicht viel vorzubereiten, außer.... deinem Outfit für den Samstag!
 
-    Dein Charakter ist Teil eines Paares und du musst deinen Partner an diesem ersten Abend unter den Gästen persönlich wiederfinden.
+    Für diejenigen, die gegen Verkleidungen allergisch sind, gibt es jedoch keinen Stress: Du kannst einfach eines der Lieblingsaccessoires der Figur tragen oder umgekehrt, sie in vollen Zügen spielen.
 
-    Für diejenigen, die gegen Verkleidungen allergisch sind, gibt es jedoch keinen Stress: Du kannst einfach eines der Lieblingsaccessoires der Figur tragen oder umgekehrt, sie in vollen Zügen spielen. Das Wichtigste ist, deine Hälfte zu finden. #love 
+    Um zu wissen, was dich genau erwartet, komm Anfang Mai wieder und schau dir diese Seite an!"""
 
-    Um zu wissen, was dich genau erwartet, komm im Frühjahr wieder und schau dir diese Seite an!"""
-
-  def menu_costume_button_wheel: String = "Wer bin ich?"
-  def title_menu_costume: String = "Get dressed"
+  def menu_costume_button_wheel: String = "Meine Verkleidung aufdecken"
+  def title_menu_costume: String = "Dresscode"
 
   def menu_fun: String = "please bring me back home"
   def title_menu_fun: String = "DO NOT CLICK HERE"
 
   def menu_photo: String = "UNDER CONSTRUCTION"
   def menu_photo_before_party =
-    "Geh, tanz und komm zurück (um die Fotos von der Party runterzuladen)!"
+    "Geh, tanz und komm zurück im Juli (um die Fotos von der Party runterzuladen)!"
   def title_menu_photo: String = "Fotos"
 
   def menu_contact: String =
@@ -77,7 +90,7 @@ object Translation_DE extends Translation {
     )
 
   def display_no_costume: VDomModifier =
-    VDomModifier(div(b("Kein Token, keine Verkleidung!")), fontSize := "20px")
+    VDomModifier(div(b("Komm Anfang Mai zurück")), fontSize := "20px")
 
   def guest_book: String = "Gästebuch"
   def duo: String = "Pärchen"

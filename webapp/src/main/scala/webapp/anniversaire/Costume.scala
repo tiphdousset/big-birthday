@@ -26,7 +26,7 @@ object Costume {
       language.map(_.menu_costume),
       Rx {
         if (showCostume() == 2)
-          magicGif(showCostume)
+          displayLoser(language)
         else if (showCostume() == 3)
           displayCostume(token, language)
         else if (showCostume() == 4)

@@ -8,12 +8,12 @@ object Translation_FR extends Translation {
   def title: String = "Last Call For 35"
   def count_down(numberOfDays: String): String = s"J - $numberOfDays"
   def count_downNow: String = s"Amuse toi bien!"
-  def count_downAfter: String = s"Rendez-vous dans 5 ans!"
+  def count_downAfter: String = s"Rendez-vous dans 4 ans!"
 
   def menu_info(whatsappLink: Option[String]): String = {
     val whatsappLinkMessage = whatsappLink match {
       case Some(link) =>
-        s"""<center><a href="$link">Groupe WhatsApp</a></center>"""
+        s"""<center><a href="$link" target="_blank">Groupe WhatsApp</a></center>"""
       case None =>
         "<center>Veuillez fournir un token valide pour accéder au groupe WhatsApp</center>"
     }
@@ -25,11 +25,11 @@ object Translation_FR extends Translation {
     Les festivités se dérouleront du <b>Samedi 7 au Lundi 9 Juin 2025</b>. Tu es attendu en fin d'après midi le Samedi (disons vers 17h) et nous quitterons les lieux le Lundi en fin de matinée. 
 
     <h2>Où?</h2>
-    Nous pouvons te dire que ça se passe dans la magnifique bourgade de <b>St Colomban (44)</b>, dans un champ de <a href="https://maps.app.goo.gl/7LrY3YEMv25wooiU7">la ferme de Rublé</a>, à 30 minutes au Sud de Nantes. La localisation précise du champ sera habilement indiquée à ton arrivée à la ferme, ne t'en fais pas.
+    Nous pouvons te dire que ça se passe dans la magnifique bourgade de <b>St Colomban (44)</b>, dans un champ de <a href="https://maps.app.goo.gl/7LrY3YEMv25wooiU7" target="_blank">la ferme de Rublé</a>, à 30 minutes au Sud de Nantes. La localisation précise du champ sera habilement indiquée à ton arrivée à la ferme, ne t'en fais pas.
     
     <h2>Comment?</h2>
     Nous te conseillons de miser sur le co-voiturage depuis Nantes.<br />
-    Pour les non-nantais, un billet pour Nantes est à ce stade largement suffisant. <br /> 
+    Pour les non-nantais, un billet pour Nantes est à ce stade largement suffisant.<br /> 
     Pour le couchage, un champ sera mis à disposition pour planter les tentes. Pense donc à prendre ta tente ;-)
     <br></br>
     Pour être à jour sur l'évènement, nous te suggérons de <b>rejoindre le groupe WhatsApp</b> dédié, où tu trouveras entre autre un sous-groupe spécialement consacré au "&#128663; Covoiturage": 
@@ -42,7 +42,7 @@ object Translation_FR extends Translation {
 
   def menu_costume: String =
     """Pas grand chose à préparer pour nous rejoindre si ce n'est...ta tenue du Samedi!
-    Pour savoir ce que le hasard te réserve, reviens donc checker cette page mi Avril.
+    Pour savoir ce que le hasard te réserve, reviens donc checker cette page début Mai.
 
     Pas de stress cependant pour les allergiques aux déguisements: tu peux te contenter d'arborer l'un des accessoires fétiches du personnage en question - ou au contraire le jouer à fond.
   """
@@ -54,7 +54,7 @@ object Translation_FR extends Translation {
 
   def menu_photo: String = "EN CONSTRUCTION"
   def menu_photo_before_party =
-    "Va, danse et reviens (pour télécharger les photos du weekend!"
+    "Va, danse et reviens fin Juin (pour télécharger les photos du weekend)!"
   def title_menu_photo: String = "Photos"
 
   def menu_contact: String =
@@ -82,7 +82,7 @@ object Translation_FR extends Translation {
     )
 
   def display_no_costume: VDomModifier =
-    VDomModifier(div(b("Reviens mi Avril!"), fontSize := "20px"))
+    VDomModifier(div(b("Reviens début Mai!"), fontSize := "20px"))
 
   def guest_book: String = "Livre d'or"
   def duo: String = "Duo"

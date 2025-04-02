@@ -10,22 +10,35 @@ object Translation_EN extends Translation {
 
   def count_down(numberOfDays: String): String = s"D - $numberOfDays"
   def count_downNow: String = s"Have Fun!"
-  def count_downAfter: String = s"See you in 5 years!"
+  def count_downAfter: String = s"See you in 4 years!"
 
   def menu_info(whatsappLink: Option[String]): String = {
-    """Hello world!
+    val whatsappLinkMessage = whatsappLink match {
+      case Some(link) =>
+        s"""<center><a href="$link" target="_blank">Whatsapp group</a></center>"""
+      case None =>
+        "<center>Please provide a valid token to access the WhatsApp group</center>"
+    }
+    s"""
+  <h2>Yo yo yo!</h2>
 
-  For you, dear friend, chosen among all to celebrate our 30th anniversary, here is some useful information to prepare for the long-awaited event.
+  For you, dear friend, chosen among all to celebrate our 35th anniversary, here is some useful information to prepare for the long-awaited event.
 
-  First of all the date: the festivities will take place from Saturday 8 to Monday 10 June. You are expected in the late afternoon on Saturday (say around 5pm) and we will leave on Monday in the late morning.
+  <h2>When?</h2>
+  The festivities will take place from <b>Saturday 7 to Monday 9 June 2025</b>. You are expected in the late afternoon on Saturday (say around 5pm) and we will leave on Monday in the late morning.
 
-  For the place, we can tell you that it is happening in the magnificent village of St Colomban, 30 minutes south of Nantes. The exact location of the site will be communicated to you by then.
-  We recommend that you take advantage of carpooling from Nantes, which can be organized via this site in due course.
-  For non-Nantes people, a train or flight ticket to Nantes is more than enough at this stage.
-
+  <h2>Where?</h2>
+  We can tell you that it is happening in the magnificent village of <b>St Colomban (44)</b>, in a field of <a href="https://maps.app.goo.gl/7LrY3YEMv25wooiU7" target="_blank">la ferme de Rublé</a>, 30 minutes south of Nantes. The exact location of the field will be cleverly indicated when you arrive at the farm, don't worry.
+  
+  <h2>How?</h2>
+  We recommend that you take advantage of carpooling from Nantes.<br />
+  For non-Nantes people, a train or flight ticket to Nantes is more than enough at this stage.<br />
   For sleeping, a field will be provided for tents. So don't forget to take your tent ;-)
-
-  If you wish to arrive earlier / leave later, do not hesitate to contact us so that we can welcome you to one of our homes.
+  <br></br>
+  To stay up to date on the event, we recommend that you join the special <b>WhatsApp group</b>, where you will find a sub-group dedicated to carsharing. 
+  <br></br>
+  $whatsappLinkMessage
+  <br></br>
 
   If you didn't understand a word because you think my English is too unclear...go get French lessons and come back to read the French version."""
   }
@@ -33,18 +46,15 @@ object Translation_EN extends Translation {
   def title_menu_info: String = "Information"
 
   def menu_costume: String =
-    """Not much to prepare to join us except... your outfit!
-  In a few months the following wheel will reveal to you a costume to wear on Saturday.
+    """Not much to prepare to join us except... your outfit for Saturday!
 
-  Your character is part of a pair and you have to find your partner among the guests on this first evening.
+  For those who are allergic to costumes, there is no stress: you can simply wear one of the character's favorite accessories, or alternatively, play it to the fullest.
 
-  For those who are allergic to costumes, there is no stress: you can simply wear one of the character's favorite accessories, or alternatively, play it to the fullest. The most important thing is to find your half. #love 
+  To know what awaits you, come back at the beginning of May and have a look at this page!"""
 
-  To know what awaits you, come back in spring and have a look at this page!"""
+  def menu_costume_button_wheel: String = "Reveal my costume"
 
-  def menu_costume_button_wheel: String = "Who am I?"
-
-  def title_menu_costume: String = "Get dressed"
+  def title_menu_costume: String = "Dresscode"
 
   def menu_fun: String = "please bring me back home"
 
@@ -52,7 +62,7 @@ object Translation_EN extends Translation {
 
   def menu_photo: String = "UNDER CONSTRUCTION"
   def menu_photo_before_party =
-    "Go, dance and come back (to download the pictures of the party)!"
+    "Go, dance and come back in July (to download the pictures of the party)!"
 
   def title_menu_photo: String = "Photos"
 
@@ -82,7 +92,7 @@ object Translation_EN extends Translation {
     )
 
   def display_no_costume: VDomModifier =
-    VDomModifier(div(b("No token, no costume!")), fontSize := "20px")
+    VDomModifier(div(b("Come back early May!"), fontSize := "20px"))
 
   def guest_book: String = "Guest book"
   def duo: String = "Pairs"
