@@ -6,7 +6,7 @@ object Translation_EN extends Translation {
 
   def intro_button: String = "They are back."
 
-  def title: String = "Last Call For 35"
+  def title: String = "Last Call For 35!"
 
   def count_down(numberOfDays: String): String = s"D - $numberOfDays"
   def count_downNow: String = s"Have Fun!"
@@ -38,6 +38,8 @@ object Translation_EN extends Translation {
   To stay up to date on the event, we recommend that you join the special <b>WhatsApp group</b>, where you will find a sub-group dedicated to carsharing. 
   <br></br>
   $whatsappLinkMessage
+  <br></br>
+  If you haven't already done so, tell one of the hosts which meal(s) (Saturday evening, Sunday Brunch, Sunday evening) you'd like to attend.
   <br></br>
 
   If you didn't understand a word because you think my English is too unclear...go get French lessons and come back to read the French version."""

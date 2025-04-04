@@ -5,7 +5,7 @@ import outwatch.dsl._
 object Translation_FR extends Translation {
 
   def intro_button: String = "They are back."
-  def title: String = "Last Call For 35"
+  def title: String = "Last Call For 35!"
   def count_down(numberOfDays: String): String = s"J - $numberOfDays"
   def count_downNow: String = s"Amuse toi bien!"
   def count_downAfter: String = s"Rendez-vous dans 4 ans!"
@@ -35,6 +35,8 @@ object Translation_FR extends Translation {
     Pour être à jour sur l'évènement, nous te suggérons de <b>rejoindre le groupe WhatsApp</b> dédié, où tu trouveras entre autre un sous-groupe spécialement consacré au "&#128663; Covoiturage": 
     <br></br>
     $whatsappLinkMessage
+    <br></br>
+    Si tu ne l'as pas déjà fait, indique à l'un des hôtes à quel(s) repas (Samedi soir, Brunch du Dimanche, Dimanche soir) tu souhaites participer.
     <br></br>
     Non-french speaker : keep calm and don't panic, I'm sure you can find the transaltion icons yourself..."""
   }
