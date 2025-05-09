@@ -92,7 +92,10 @@ object Translation_DE extends Translation {
     )
 
   def display_no_costume: VDomModifier =
-    VDomModifier(div(b("Komm Anfang Mai zurück")), fontSize := "20px")
+    VDomModifier(
+      div(b("Noch ein wenig Geduld, wir sind fast soweit ...")),
+      fontSize := "20px"
+    )
 
   def guest_book: String = "Gästebuch"
   def duo: String = "Pärchen"
