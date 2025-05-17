@@ -12,7 +12,12 @@ body {
 }
 
 html * {
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
+    font-optical-sizing: auto;
+}
+
+b {
+    font-weight: 600;
 }
 
 h2 {
