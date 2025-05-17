@@ -93,7 +93,7 @@ object Translation_EN extends Translation {
       )
     )
 
-  def display_no_costume: VDomModifier =
+  def display_waiting_for_costume: VDomModifier =
     VDomModifier(
       div(
         b("Just a little more patience, it's almost ready..."),
@@ -101,6 +101,136 @@ object Translation_EN extends Translation {
       )
     )
 
+  def display_intro_costume: String =
+    """
+    Because you're all beloved members of our chosen families, we're bringing you together for a weekend of family-themed festivities. 
+
+    <i>But what really makes a family?</i>
+
+    Traditional models didn't work for us, so we're offering new ones where everyone can be the member they wish.
+
+    For those not keen on costumes, the rule remains: no pressure, just simple accessories or details will do.
+    For the rest: let your imagination run wild.
+
+    One goal for Saturday night: <u>gather your family</u> for <b>the ultimate family photo</b>!
+    """
+
+  def family_poisson(familySize: Int): String =
+    s"""
+    You're part of the <b>FISH</b> family!
+    There are <b>$familySize</b> fish in your family.
+
+    Let the vibes of "Under the Sea" from The Little Mermaid inspire you on Saturday, June 7th! 
+    If you've ever dreamed of exploring the ocean's depths, now's your chance to dive in.
+    Bring out your scales and join the school of fish for an oceanic adventure.
+    """
+
+  def family_fleurs(familySize: Int): String =
+    s"""
+    You're part of the <b>FLOWERS</b> family!
+    There are <b>$familySize</b> flowers in your family.
+
+    Join us on Saturday, June 7th, to celebrate in full bloom!
+    Whether you wear your best floral prints or transform into a giant sunflower, let your inner flower shine. 
+    Connect with other petals in the garden to create a one-night-only bouquet!
+    """
+
+  def family_legumes(familySize: Int): String =
+    s"""
+    You're part of the <b>FRUITS & VEGGIES</b> family!
+    There are <b>$familySize</b> fruits and veggies in your family.
+
+    On Saturday, June 7th, get ready to celebrate in style!
+    Whether you dress as a juicy strawberry,
+    or a vibrant carrot,
+    let your colorful side shine! 
+    Gather with other fruits and veggies for a fun and healthy party!
+    """
+
+  def family_paillettes(familySize: Int): String =
+    s"""
+    You're part of the <b>SPARKLE</b> family!
+    There are <b>$familySize</b> sparkles in your family.
+
+    <center><i>"Remember when you were young, you shon like the sun. Shine on you crazy diamond"</i></center>
+
+    Let the vibe of "Shine On You Crazy Diamond" by Pink Floyd inspire you on Saturday, June 7th!
+    Whether you add a bit of glitter to your eyes,
+    or dress up like a disco ball,
+    the idea is to glow. 
+    Join your fellow glitter fans for a night of bright fun!
+  """
+
+  def family_felins(familySize: Int): String =
+    s"""
+    You're part of the <b>CATS</b> family!
+    There are <b>$familySize</b> cats in your family.
+
+    <center><i>"Everybody, everybody, everybody wants to be cat"</i></center>
+
+    On Saturday, June 7th, unleash your inner feline!
+    Whether you wear a leopard print outfit,
+    or style your hair like a lion's mane,
+    the key is to embrace your wild side and find your pack!
+    """
+
+  def family_oiseaux(familySize: Int): String =
+    s"""
+    You're part of the <b>BIRDS</b> family!
+    There are <b>$familySize</b> birds in your family.
+
+    On Saturday, June 7th, let your inner bird take flight!
+    Whether you show off your feathers, beak, or claws, 
+    it's time to spread your wings and join the flock!
+    """
+
+  def family_rayures(familySize: Int): String =
+    s"""
+    You're part of the <b>STRIPES</b> family!
+    There are <b>$familySize</b> stripes in your family.
+
+    Bob Dylan might have predicted your Saturday night look with 
+    
+      <center><i>"Stripes on your shoulders, stripes on your back and on your hands."</i></center>
+    
+    Whether you transform into a zebra,
+    embody Sonia Rykiel's motto "beauty will always be striped",
+    or simply pull out your striped sailor shirt, 
+    the mission is clear: reunite with your stripe-loving family!
+    """
+
+  def family_couleurs(familySize: Int): String =
+    s"""  
+    You're part of the <b>COLORS</b> family!
+    There are <b>$familySize</b> colors in your family.
+
+    <center><i>"Moon is yellow silver
+    Oh, the things that summer brings
+    It's a love you'd kill for 
+    And all the world is green"</i></center>
+
+    Like Tom Waits, you'll see the world in color this Saturday, June 7th. 
+    Pick your favorite plain color and wear it proudly. 
+    Join your colorful family to create a one-of-a-kind palette!
+    """
+
+  def family_formes_geometriques(familySize: Int): String =
+    s"""
+    You're part of the <b>GEOMETRIC PATTERNS</b> family!
+    There are <b>$familySize</b> geometric patterns in your family.
+
+    <i><center>"God always does geometry"...</center></i>
+    
+    ...said a certain guy named Plato a long time ago.
+
+    So, this is your lucky day, dear member of this family, because you get to feel like God for an evening! 
+    Whether you want to draw all the perfect shapes on your clothes or skin using a compass and a set square, wear your polka dot skirt or your square-patterned shirt (a relative of the usual plaid shirt), the rule is simple: reconnect with your geometric family.
+    """
+
+  def display_not_a_saturday_guest: String =
+    """
+    Unfortunately, you won't be with us on Saturday, that means you don't need to prepare a dress code.
+    """
   def guest_book: String = "Guest book"
   def duo: String = "Pairs"
   def appareil_jetable: String = "Disposable cameras"

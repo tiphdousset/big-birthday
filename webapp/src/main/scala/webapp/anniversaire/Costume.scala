@@ -3,6 +3,7 @@ import outwatch._
 import outwatch.dsl._
 import colibri._
 import colibri.reactive._
+import anniversaire.resources.{GuestAndFamily, GuestsAndFamilies2025}
 object Costume {
 
   def costume(token: String, language: Observable[Translation]) = {
@@ -23,16 +24,21 @@ object Costume {
     )
 
     div(
-      language.map(_.menu_costume),
+      // language.map(_.menu_costume),
+      // language.map(_.display_waiting_for_costume),
+      language.map(l =>
+        div.thunk("content rendering")(l.display_intro_costume)(
+          VMod(
+            fontSize := "16px",
+            innerHTML := UnsafeHTML(l.display_intro_costume)
+          )
+        )
+      ),
       Rx {
-        if (showCostume() == 2)
-          displayLoser(language)
-        else if (showCostume() == 3)
+        if (showCostume() == 2 && isSaturdayGuest(token))
           displayCostume(token, language)
-        else if (showCostume() == 4)
-          loserGif(showCostume)
-        else if (showCostume() == 5)
-          displayLoser(language)
+        else if (showCostume() == 2 && !isSaturdayGuest(token))
+          not_a_saturday_guest(language)
         else
           button_costume
       },
@@ -41,30 +47,230 @@ object Costume {
     )
   }
 
-  def displayLoser(language: Observable[Translation]): VNode =
-    div(
-      language.map(_.display_no_costume),
-      marginTop := "20px",
-      display.flex,
-      flexDirection := "column",
-      alignItems := "center"
-    )
+  def isSaturdayGuest(token: String): Boolean = {
+    TokenLogic.getFamily(token).isDefined
+  }
 
   def displayCostume(token: String, language: Observable[Translation]) = {
-    val guestName = TokenLogic.findNameAndCostumePerToken(token).toList(0)._1
-    println("guestName = " + guestName)
-    val costume = TokenLogic.findNameAndCostumePerToken(token).toList(0)._2
-    println("costume = " + costume)
-    val costumePartner = TokenLogic.findCostumePartner(costume)
-    println("costumePartner = " + costumePartner)
-    div(
-      language.map(_.display_costume(guestName, costume, costumePartner)),
-      marginTop := "20px",
-      display.flex,
-      flexDirection := "column",
-      alignItems := "center"
-    )
+    val guestAndfamily: Option[GuestAndFamily] = TokenLogic.getFamily(token)
+
+    val family = guestAndfamily match {
+      case Some(guestAndFamily2) =>
+        guestAndFamily2.family match {
+          case "oiseaux" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_oiseaux(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "🐦 🐧 🦆 🕊️ 🦢"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_oiseaux(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+          case "poissons" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_poisson(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "🐠 🐟 🐡 🐋 🦈"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_poisson(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+          case "rayures" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_rayures(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "🦓 🍭 🐝 🎪 🌈"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_rayures(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+          case "couleurs" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_couleurs(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "🟡 🟢 🟣 🟠 🟤"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_couleurs(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+          case "formes_geometriques" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_formes_geometriques(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "🟩 ⭕ 🔷 ⭐ 🔸"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_formes_geometriques(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+          case "paillettes" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_paillettes(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "✨ 🪩 💫 💎 🌟"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_paillettes(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+          case "legumes" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_legumes(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "🥕 🍅 🥦 🍌 🍒"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_legumes(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+          case "fleurs" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_fleurs(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "🌸 🌼 🌻 🌹 🌺"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_fleurs(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+          case "felins" =>
+            language.map(l =>
+              div.thunk("content rendering")(
+                l.family_felins(guestAndFamily2.familySize)
+              )(
+                VMod(
+                  fontSize := "16px",
+                  textAlign.center,
+                  display.flex,
+                  flexDirection.column,
+                  div(
+                    fontSize := "32px",
+                    "🐱 🐯 🦁 🐆 🦊"
+                  ),
+                  div(
+                    innerHTML := UnsafeHTML(
+                      l.family_felins(guestAndFamily2.familySize)
+                    )
+                  )
+                )
+              )
+            )
+        }
+      case None =>
+        language.map(l =>
+          div.thunk("content rendering")(l.display_not_a_saturday_guest)(
+            VMod(
+              fontSize := "16px",
+              innerHTML := UnsafeHTML(l.display_not_a_saturday_guest)
+            )
+          )
+        )
+    }
+
+    div(family)
+
   }
+
   def magicGif(showCostume: Var[Int]) =
     div(
       display := "flex",
@@ -82,9 +288,12 @@ object Costume {
         }
       )
     )
-  def loserGif(showCostume: Var[Int]) =
+  def not_a_saturday_guest(language: Observable[Translation]) =
     div(
+      language.map(_.display_not_a_saturday_guest),
       display := "flex",
+      flexDirection := "column",
+      alignItems := "center",
       video(
         margin := "20px auto",
         source(
@@ -92,11 +301,7 @@ object Costume {
           tpe := "video/mp4"
         ),
         attr("autoplay") := true,
-        onDomMount.asHtml.foreach { x =>
-          x.onended = { _ =>
-            showCostume.set(5)
-          }
-        }
+        attr("loop") := true
       )
     )
 }
