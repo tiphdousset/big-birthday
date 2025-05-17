@@ -1,6 +1,54 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "entr@latest": {
+      "last_modified": "2025-04-17T05:47:26Z",
+      "resolved": "github:NixOS/nixpkgs/ebe4301cbd8f81c4f8d3244b3632338bbeb6d49c#entr",
+      "source": "devbox-search",
+      "version": "5.7",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hk3460fh353kf0hf5isdfc8gjyww2943-entr-5.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/hk3460fh353kf0hf5isdfc8gjyww2943-entr-5.7"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vcj02ra62ny49yqh91n10lymcng06k8f-entr-5.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vcj02ra62ny49yqh91n10lymcng06k8f-entr-5.7"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7l9j0pq9sy8cbszf2bl5jif0iaq6hm54-entr-5.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/7l9j0pq9sy8cbszf2bl5jif0iaq6hm54-entr-5.7"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qadis679ycm0z1gnl97dszi4zykw0hdn-entr-5.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/qadis679ycm0z1gnl97dszi4zykw0hdn-entr-5.7"
+        }
+      }
+    },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "resolved": "github:NixOS/nixpkgs/dd613136ee91f67e5dba3f3f41ac99ae89c5406b?lastModified=1742707865&narHash=sha256-RVQQZy38O3Zb8yoRJhuFgWo%2FiDIDj0hEdRTVfhOtzRk%3D"
     },
@@ -55,6 +103,54 @@
             }
           ],
           "store_path": "/nix/store/vn52ryf8n8rddbcp68a5cydjmagnx792-sbt-1.10.10"
+        }
+      }
+    },
+    "scala-cli@latest": {
+      "last_modified": "2025-04-17T05:47:26Z",
+      "resolved": "github:NixOS/nixpkgs/ebe4301cbd8f81c4f8d3244b3632338bbeb6d49c#scala-cli",
+      "source": "devbox-search",
+      "version": "1.7.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xvki02plbhk85sdmwmzdxp4n3c9w52ql-scala-cli-1.7.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xvki02plbhk85sdmwmzdxp4n3c9w52ql-scala-cli-1.7.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mkba37l8dqp71hfn2pnirg0vmz7yc05v-scala-cli-1.7.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mkba37l8dqp71hfn2pnirg0vmz7yc05v-scala-cli-1.7.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/y4y204h5k33p9zbmnllsm8pyzz8mcbfz-scala-cli-1.7.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/y4y204h5k33p9zbmnllsm8pyzz8mcbfz-scala-cli-1.7.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/0w6hjwq2b1mz2kw34hiqi1kg254bsf93-scala-cli-1.7.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/0w6hjwq2b1mz2kw34hiqi1kg254bsf93-scala-cli-1.7.1"
         }
       }
     }
