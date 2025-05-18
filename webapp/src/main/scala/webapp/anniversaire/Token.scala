@@ -5,7 +5,9 @@ import anniversaire.resources.{
   GuestsAndCostumes,
   Guests,
   Costumes,
-  TokensHashes
+  TokensHashes,
+  GuestsAndFamilies2025,
+  GuestAndFamily
 }
 
 import anniversaire.AESUtil
@@ -77,10 +79,23 @@ object TokenLogic {
     }
   }
 
-  def isTokenValid(token: String) = {
+  def getSha256Costume(token: String): Option[String] = {
     val costume_token = extractCostumeToken(token)
     println(s"costume_token: $costume_token")
-    val hash_token = costume_token.map(HashUtil.sha256(_))
+    costume_token.map(HashUtil.sha256(_))
+  }
+
+  def getFamily(token: String): Option[GuestAndFamily] = {
+    val sha256Costume = getSha256Costume(token)
+    sha256Costume.flatMap(sha256 =>
+      GuestsAndFamilies2025.guestsAndFamilies.find(guestAndFamily =>
+        guestAndFamily.sha256 == sha256
+      )
+    )
+  }
+
+  def isTokenValid(token: String) = {
+    val hash_token = getSha256Costume(token)
     println(s"hash_token: $hash_token")
     val valid_tokens_hashes: List[String] = TokensHashes.hashes
     hash_token.exists(hash => valid_tokens_hashes.contains(hash))

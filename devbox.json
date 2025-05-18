@@ -2,7 +2,9 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
   "packages": [
     "openjdk8@latest",
-    "sbt@latest"
+    "sbt@latest",
+    "scala-cli@latest",
+    "entr@latest"
   ],
   "shell": {
     "init_hook": [

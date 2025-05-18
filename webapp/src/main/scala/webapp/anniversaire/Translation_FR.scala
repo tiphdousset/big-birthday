@@ -83,7 +83,7 @@ object Translation_FR extends Translation {
       )
     )
 
-  def display_no_costume: VDomModifier =
+  def display_waiting_for_costume: VDomModifier =
     VDomModifier(
       div(
         b("Encore un peu de patience, c'est presque prêt..."),
@@ -91,6 +91,143 @@ object Translation_FR extends Translation {
       )
     )
 
+  def display_intro_costume: String =
+    """
+    Parce que vous êtes toutes et tous les membres chéris de nos  <b>familles de cœur</b>, on vous rassemble en ce week-end festif <b>sous le signe des familles</b>. 
+
+    <i>Mais qu'est-ce qu'une famille finalement ?</i>
+
+    Les modèles conventionnels ne nous ayant pas satisfait, on vous en propose d'autres, dans lesquelles chacun est libre d'être le membre qu'il souhaite.
+
+    Pour les allergiques aux déguisements, la consigne reste la même que toujours : pas de pression, de simples accessoires ou détails feront l'affaire.
+    Pour les autres : on vous invite à laisser complètement libre cours à votre imagination, surprenez-nous !
+
+    Ton objectif pour Samedi soir: <u>retrouver tous les membres de ta famille</u> pour nous faire <b>la plus belle photo de famille</b> qu'on puisse espérer garder sur notre buffet (comment ça plus personne n'a de buffet ??).
+    """
+
+  def family_poisson(familySize: Int): String =
+    s"""
+    Tu appartiens à la famille des <b>POISSONS</b>!
+    (Il y a <b>$familySize</b> poissons dans ta famille)
+
+    <center><i>"Les petits poissons dans l'eau
+    Nagent, nagent, nagent, nagent, nagent
+    Les petits poissons dans l'eau
+    Nagent aussi bien que les gros."</i></center>
+
+    Si toi aussi tu as chanté, re-chanté, re-re-chanté cette chanson dans ta baignoire, c'est que quelque part en toi un petit poisson tourne en rond et attend de s'exprimer au grand jour. 
+    Le 7 Juin sera l'occasion idéale de sortir tes écailles et rejoindre le banc de poissons dans le grand bain.
+    """
+
+  def family_fleurs(familySize: Int): String =
+    s"""
+    Tu appartiens à la famille des <b>FLEURS</b>!
+    (Il y a <b>$familySize</b> fleurs dans ta famille)
+
+    <center><i>"C'était le temps des fleurs
+    On ignorait la peur
+    Les lendemains avaient un goût de miel."</i></center>
+
+    Les paroles de Dalida seront ton hymne pour le Samedi 7 juin, cher membre de la famille des fleurs !
+    Que tu passes tes plus beaux motifs et accessoires floraux, ou que tu te transformes en grand tournesol, l'important est de faire fleurir le bourgeon qui sommeille en toi ! 
+    Retrouve d'autres brindilles égarés dans le mélange des motifs pour former un bouquet éphémère !
+    """
+
+  def family_legumes(familySize: Int): String =
+    s"""
+    Tu appartiens à la famille des <b>FRUITS & LÉGUMES</b> !
+    (Il y a <b>$familySize</b> fruits et légumes dans ta famille)
+
+    <center><i>"Salade de fruits, jolie, jolie, jolie"</i></center>
+
+    Tel sera ton hymne pour inspirer ta parure, cher membre des fruits et légumes !
+    Que tu veuilles revêtir ta plus belle chemisette à cerises ou donner corps à une nature morte flamande, laisse éclore le fruit ou le légume qui germe en toi et retrouve tes comparses pour une salade composée unique en son genre !
+    """
+
+  def family_paillettes(familySize: Int): String =
+    s"""
+    Tu appartiens à la famille des <b>PAILLETTES</b> !
+    (Il y a <b>$familySize</b> paillettes dans ta famille)
+
+    <center><i>"Remember when you were young, you shon like the sun. Shine on you crazy diamond"</i></center>
+
+    Ces paroles de David Gilmour seront ton mantra pour la soirée, cher membre de la famille des paillettes ! 
+    Que tu veuilles te parer de quelques paillettes au coin des yeux ou te transformer en véritable boule à facettes, tu auras compris l'idée, il s'agit de briller de mille feux et retrouver tes frères et sœurs de lumière dans la cacophonie des motifs !
+  """
+
+  def family_felins(familySize: Int): String =
+    s"""
+    Tu appartiens à la famille des <b>FÉLINS</b> !
+    (Il y a <b>$familySize</b> félins dans ta famille)
+
+    <center><i>"Everybody, everybody, everybody wants to be cat"</i></center>
+
+    Chantent tes comparses les aristochats. Pour ce Samedi 7 Juin enfile ta combinaison léopard ou bien coiffe ta plus belle crinière, l'important est de réveiller le félin en toi et retrouver ta meute !
+    """
+
+  def family_oiseaux(familySize: Int): String =
+    s"""
+    Tu appartiens à la famille des <b>OISEAUX</b> !
+    (Il y a <b>$familySize</b> oiseaux dans ta famille)
+
+    <center><i>"Si j'étais un oiseau, 
+    Je survolerais les villes,
+    Je survolerais la campagne,
+    Je survolerais des chantiers,
+    Si j'étais un oiseau, 
+    Même tout petit,
+    Je survolerais le pays, 
+    Avec le vent, avec les nuages..."</i></center>
+
+    A défaut de pouvoir réellement décoller du sol (quoi que...), le Samedi 7 Juin sera l'occasion pour toi de révéler l'oiseau qui roucoule en toi. 
+    Alors sors ton plumage, ton bec ou tes griffes, ajuste ton ramage et rejoins ta nuée !
+    """
+
+  def family_rayures(familySize: Int): String =
+    s"""
+    Tu appartiens à la famille des <b>RAYURES</b> !
+    (Il y a <b>$familySize</b> rayures dans ta famille)
+
+    <center><i>"Stripes on your shoulders, 
+    Stripes on your back and on your hands"</i></center>
+
+    Bob Dylan aurait-il vu à l'avance ta parure du Samedi soir ? Probablement. 
+    Que tu veuilles te transformer en véritable zèbre, incarner l'adaje de Sonia Rykiel « la beauté sera toujours rayée », ou simplement sortir ta marinière du placard, la consigne est simple, il faut que tu retrouves ta famille rayée !
+    """
+
+  def family_couleurs(familySize: Int): String =
+    s"""  
+    Tu appartiens à la famille des <b>COULEURS</b> !
+    (Il y a <b>$familySize</b> couleurs dans ta famille)
+
+    <center><i>"Moon is yellow silver
+    Oh, the things that summer brings
+    It's a love you'd kill for 
+    And all the world is green"</i></center>
+
+    A l'instar de Tom Waits, tu verras le monde en couleur, façon monochrome en ce Samedi 7 juin. 
+    Choisis celle que tu veux, et incarne la complètement. Retrouve ta famille de couleurs parmis le mélange des motifs et forme une palette unique en son genre.
+    """
+
+  def family_formes_geometriques(familySize: Int): String =
+    s"""
+    Tu appartiens à la famille des <b>MOTIFS GÉOMÉTRIQUES</b> !
+    (Il y a <b>$familySize</b> motifs géométriques dans ta famille)
+
+    <center><i>“Dieu, toujours, fait de la géométrie”</center></i> 
+    
+    a dit, un jour, il y a fort longtemps, un certain gars nommé Platon.
+
+    C'est donc ton jour de chance, cher membre de cette famille !
+    Car tu vas pouvoir te prendre pour Dieu le temps d'une soirée !
+    Que tu veuilles tracer sur tes habits ou ta peau l'ensemble des formes parfaites au moyen d'un compas et d'une équerre, revêtir ta jupe à pois ou ta chemise à carrés (une cousine de la chemise à carreaux),
+    la consigne est simple: retrouver ta famille géométrique.
+    """
+
+  def display_not_a_saturday_guest: String =
+    """
+    Tu ne seras malheureusement pas parmis nous le Samedi, tu n'as donc pas de code vestimentaire à préparer.
+    """
   def guest_book: String = "Livre d'or"
   def duo: String = "Duo"
   def appareil_jetable: String = "Appareils jetables"

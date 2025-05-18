@@ -34,9 +34,20 @@ trait Translation {
       costumePartner: String
   ): VDomModifier
 
-  def display_no_costume: VDomModifier
+  def display_waiting_for_costume: VDomModifier
 
   def guest_book: String
   def duo: String
   def appareil_jetable: String
+  def display_intro_costume: String
+  def family_poisson(familySize: Int): String
+  def family_fleurs(familySize: Int): String
+  def family_legumes(familySize: Int): String
+  def family_paillettes(familySize: Int): String
+  def family_felins(familySize: Int): String
+  def family_oiseaux(familySize: Int): String
+  def family_rayures(familySize: Int): String
+  def family_couleurs(familySize: Int): String
+  def family_formes_geometriques(familySize: Int): String
+  def display_not_a_saturday_guest: String
 }
