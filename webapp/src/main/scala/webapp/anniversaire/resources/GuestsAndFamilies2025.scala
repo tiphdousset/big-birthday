@@ -6,7 +6,115 @@ case class GuestAndFamily(
     family: String,
     familySize: Int
 )
+
 object GuestsAndFamilies2025 {
+  // Set of valid guest names from GuestsSaturdayAll.sc (local file)
+  private val validGuestNames = Set(
+    "Lilie",
+    "VincentLetelier",
+    "Maxou",
+    "Mitri",
+    "Dédé",
+    "Juliette",
+    "Lulu",
+    "Robin",
+    "Nono",
+    "Audrey",
+    "Felix",
+    "ManonMartins",
+    "Coco",
+    "Raph",
+    "FloCreutin",
+    "GuiF",
+    "Arne",
+    "Michael",
+    "Darya",
+    "Hans",
+    "SebDec",
+    "JulieBoulanger",
+    "Clemi",
+    "Gaelle",
+    "PierreLuc",
+    "Emeline",
+    "Gaux",
+    "CaroleLeGall",
+    "Theo",
+    "FloChevalier",
+    "AlexNevski",
+    "Julius",
+    "Eva",
+    "Isa",
+    "Jerem",
+    "Thomas",
+    "Saena",
+    "Mayou",
+    "AlexRaud",
+    "Mamat",
+    "LiliZapater",
+    "Claire",
+    "BaptisteFanch",
+    "ArthurCreff",
+    "Gégé",
+    "Barbie",
+    "Laure",
+    "Hugo",
+    "Manon",
+    "Katie",
+    "Smitty",
+    "Winnie",
+    "AlexFanch",
+    "Damien",
+    "Maud",
+    "Remi",
+    "Dona",
+    "Dona+1",
+    "MarieFanch",
+    "MargauxFanch",
+    "Cecile",
+    "Chandra",
+    "Youri",
+    "Yoan",
+    "VincentBéné",
+    "Valentine",
+    "Nagi",
+    "Micka",
+    "MarionSev",
+    "MarineGuignebert",
+    "MarieGermain",
+    "LucasPonton",
+    "LucasCombret",
+    "LouiseGuerin",
+    "JulienNaud",
+    "FloGourdon",
+    "Ferid",
+    "Elsa",
+    "Denis",
+    "Dekel",
+    "Caro",
+    "Antoine"
+  )
+
+  // Verify no valid names are missing and no duplicates exist
+  private def verifyGuestNames(
+      guests: List[GuestAndFamily]
+  ): (Set[String], Set[String]) = {
+    val guestNames = guests.map(_.name)
+    println(
+      s"[DEBUG] Checking for duplicates in guestsAndFamilies list (${guestNames.size} names)"
+    )
+
+    val missingNames = validGuestNames.filter(!guestNames.toSet.contains(_))
+    val duplicates = guestNames.groupBy(identity).filter(_._2.size > 1).keySet
+
+    if (duplicates.nonEmpty) {
+      println(
+        s"[DEBUG] Found duplicates in guestsAndFamilies: ${duplicates.mkString(", ")}"
+      )
+    }
+
+    (missingNames, duplicates)
+  }
+
   val guestsAndFamilies = List(
     GuestAndFamily(
       "b1d9e50519508291d49ee320ac6a33cd67929be84cafc710a9cfd8aee239d6f0",
@@ -53,12 +161,6 @@ object GuestsAndFamilies2025 {
     GuestAndFamily(
       "4af364df9324189595d122819da6848934d6b0683a596c3e51f95b1cd6c33911",
       "MarineGuignebert",
-      "oiseaux",
-      11
-    ),
-    GuestAndFamily(
-      "9836d3f939878cdeb7c93068b92e1661546af4d72578de6d8b8b354b1c341d4a",
-      "PierreLuc",
       "oiseaux",
       11
     ),
@@ -177,8 +279,8 @@ object GuestsAndFamilies2025 {
       9
     ),
     GuestAndFamily(
-      "96b9fef6a5ead5faee6943ab469a1fd6bfcdc25ac62d388bef12e23dc2e6cef6",
-      "Elo",
+      "1d7423b7c92ee563827bdba024b80dbbd95f11e1c4d1eec016ceffbaef6db913",
+      "LouiseGuerin",
       "rayures",
       9
     ),
@@ -201,8 +303,8 @@ object GuestsAndFamilies2025 {
       9
     ),
     GuestAndFamily(
-      "b1d9e50519508291d49ee320ac6a33cd67929be84cafc710a9cfd8aee239d6f0",
-      "Lilie",
+      "9836d3f939878cdeb7c93068b92e1661546af4d72578de6d8b8b354b1c341d4a",
+      "PierreLuc",
       "couleurs",
       9
     ),
@@ -273,9 +375,9 @@ object GuestsAndFamilies2025 {
       9
     ),
     GuestAndFamily(
-      "1d7423b7c92ee563827bdba024b80dbbd95f11e1c4d1eec016ceffbaef6db913",
-      "LouiseGuerin",
-      "formes_geometriques",
+      "ed5634b345039ffce1006c8190520ec096ec4f02784b4343f0c9bded2fd408e5",
+      "BaptisteFanch",
+      "forme_geometriques",
       9
     ),
     GuestAndFamily(
@@ -507,4 +609,21 @@ object GuestsAndFamilies2025 {
       9
     )
   )
+
+//   // Verify all guest names at initialization
+//   val (missing, duplicates) = verifyGuestNames(guestsAndFamilies)
+
+//   def main(args: Array[String]): Unit = {
+//     if (missing.nonEmpty) {
+//       println(s"Missing guest names: ${missing.mkString(", ")}")
+//     }
+
+//     if (duplicates.nonEmpty) {
+//       println(s"Duplicate guest names: ${duplicates.mkString(", ")}")
+//     }
+
+//     if (missing.isEmpty && duplicates.isEmpty) {
+//       println("All guest names are present and there are no duplicates!")
+//     }
+//   }
 }
