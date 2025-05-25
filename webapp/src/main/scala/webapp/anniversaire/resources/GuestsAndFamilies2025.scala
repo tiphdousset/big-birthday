@@ -116,6 +116,67 @@ object GuestsAndFamilies2025 {
     (missingNames, duplicates)
   }
 
+  private def verifyFamilySizeConsistency(
+      guests: List[GuestAndFamily]
+  ): Map[String, List[GuestAndFamily]] = {
+    println(
+      s"[DEBUG] Checking for family size consistency in guestsAndFamilies list (${guests.size} guests)"
+    )
+    guests
+      .groupBy(_.family)
+      .filter { case (_, familyMembers) =>
+        familyMembers.map(_.familySize).distinct.size > 1
+      }
+  }
+
+  private def verifyFamilySizeMatchesMemberCount(
+      guests: List[GuestAndFamily]
+  ): Map[String, (Int, Int)] = {
+    println(
+      s"[DEBUG] Checking for family size matching member count in guestsAndFamilies list (${guests.size} guests)"
+    )
+    guests
+      .groupBy(_.family)
+      .map { case (familyName, familyMembers) =>
+        val recordedFamilySize =
+          familyMembers.head.familySize // Assuming consistency is already checked
+        val actualMemberCount = familyMembers.size
+        (familyName, recordedFamilySize, actualMemberCount)
+      }
+      .filter { case (_, recordedFamilySize, actualMemberCount) =>
+        recordedFamilySize != actualMemberCount
+      }
+      .map { case (familyName, recordedFamilySize, actualMemberCount) =>
+        familyName -> (recordedFamilySize, actualMemberCount)
+      }
+      .toMap
+  }
+
+  private def verifySumOfFamilySizesMatchesTotalGuests(
+      guests: List[GuestAndFamily]
+  ): Option[(Int, Int)] = {
+    println(
+      s"[DEBUG] Checking if sum of family sizes matches total guest count (${guests.size} guests)"
+    )
+    val sumOfDeclaredFamilySizes = guests
+      .groupBy(_.family)
+      .map {
+        case (_, familyMembers) if familyMembers.nonEmpty =>
+          familyMembers.head.familySize // Relies on familySize being consistent within the family
+        case _ =>
+          0 // Should not happen with valid data where families have members
+      }
+      .sum
+
+    val totalActualGuests = guests.size
+
+    if (sumOfDeclaredFamilySizes != totalActualGuests) {
+      Some((sumOfDeclaredFamilySizes, totalActualGuests))
+    } else {
+      None
+    }
+  }
+
   val guestsAndFamilies = List(
     GuestAndFamily(
       "b1d9e50519508291d49ee320ac6a33cd67929be84cafc710a9cfd8aee239d6f0",
@@ -619,6 +680,13 @@ object GuestsAndFamilies2025 {
 
 //   // Verify all guest names at initialization
 //   val (missing, duplicates) = verifyGuestNames(guestsAndFamilies)
+//   val familySizeInconsistencies = verifyFamilySizeConsistency(guestsAndFamilies)
+//   val familyMemberCountMismatches = verifyFamilySizeMatchesMemberCount(
+//     guestsAndFamilies
+//   )
+//   val sumOfFamilySizesMismatch = verifySumOfFamilySizesMatchesTotalGuests(
+//     guestsAndFamilies
+//   )
 
 //   def main(args: Array[String]): Unit = {
 //     if (missing.nonEmpty) {
@@ -629,8 +697,40 @@ object GuestsAndFamilies2025 {
 //       println(s"Duplicate guest names: ${duplicates.mkString(", ")}")
 //     }
 
-//     if (missing.isEmpty && duplicates.isEmpty) {
-//       println("All guest names are present and there are no duplicates!")
+//     if (familySizeInconsistencies.nonEmpty) {
+//       println(
+//         "Family size internal inconsistencies found (different familySize values within the same family):"
+//       )
+//       familySizeInconsistencies.foreach { case (family, members) =>
+//         println(s"  Family '$family':")
+//         members.foreach(member =>
+//           println(s"    ${member.name} - familySize: ${member.familySize}")
+//         )
+//       }
+//     }
+
+//     if (familyMemberCountMismatches.nonEmpty) {
+//       println("Family size does not match actual member count for:")
+//       familyMemberCountMismatches.foreach {
+//         case (family, (recordedSize, actualCount)) =>
+//           println(
+//             s"  Family '$family': Recorded size $recordedSize, Actual member count $actualCount"
+//           )
+//       }
+//     }
+
+//     sumOfFamilySizesMismatch.foreach { case (sumDeclared, actualTotal) =>
+//       println(
+//         s"Mismatch: Sum of declared family sizes ($sumDeclared) does not equal total actual guests ($actualTotal)."
+//       )
+//     }
+
+//     if (
+//       missing.isEmpty && duplicates.isEmpty && familySizeInconsistencies.isEmpty && familyMemberCountMismatches.isEmpty && sumOfFamilySizesMismatch.isEmpty
+//     ) {
+//       println(
+//         "All guest names are present, no duplicates, family sizes are consistent, family sizes match member counts, and sum of family sizes matches total guests!"
+//       )
 //     }
 //   }
 }
