@@ -384,7 +384,7 @@ object GuestsAndFamilies2025 {
     GuestAndFamily(
       "ed5634b345039ffce1006c8190520ec096ec4f02784b4343f0c9bded2fd408e5",
       "BaptisteFanch",
-      "forme_geometriques",
+      "formes_geometriques",
       9
     ),
     GuestAndFamily(
