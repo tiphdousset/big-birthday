@@ -92,7 +92,10 @@ object GuestsAndFamilies2025 {
     "Caro",
     "Antoine",
     "Cycy",
-    "Guillaume(Darya+1)"
+    "Guillaume(Darya+1)",
+    "Katrin",
+    "Kieren",
+    "Jasmine"
   )
 
   // Verify no valid names are missing and no duplicates exist
@@ -302,55 +305,61 @@ object GuestsAndFamilies2025 {
       "7e859959b4257572431c18c36fd9185381713edaa91a25d66598f6b997e19d19",
       "Ferid",
       "rayures",
-      9
+      10
     ),
     GuestAndFamily(
       "b0456f685ad2611ed39900bfd608f5917e59727007210ed92982f6d6559825c2",
       "JulieBoulanger",
       "rayures",
-      9
+      10
     ),
     GuestAndFamily(
       "950cc41e005825ba7c834301c781a50c55488085298d37211ee8eeb2fdeddbdc",
       "Remi",
       "rayures",
-      9
+      10
     ),
     GuestAndFamily(
       "6ac09d08ef5f761f120054d15a3ebb9c2778cdb734d46899296dd2d5cb3b1615",
       "Yoan",
       "rayures",
-      9
+      10
     ),
     GuestAndFamily(
       "9110cc9ab5814dfaa4b42c6b4b44a29ac95ea6bf169b1dfc838b00b5c7f61c95",
       "Hans",
       "rayures",
-      9
+      10
     ),
     GuestAndFamily(
       "39d489a3c03081758bb673f2c8376bd847ce05fe0cd015fe7ea7745c223dc136",
       "Barbie",
       "rayures",
-      9
+      10
     ),
     GuestAndFamily(
       "bd46552e90bd75c4fb9996db4ccc6583ccf330d5bf6c019b5d3fda780b98aee7",
       "MarionSev",
       "rayures",
-      9
+      10
     ),
     GuestAndFamily(
       "7b64cb08943b300fd61ed17b954d4ba59a4a3a034898c2c911b41a7cbe3929a0",
       "Gaelle",
       "rayures",
-      9
+      10
     ),
     GuestAndFamily(
       "1d7423b7c92ee563827bdba024b80dbbd95f11e1c4d1eec016ceffbaef6db913",
       "LouiseGuerin",
       "rayures",
-      9
+      10
+    ),
+    GuestAndFamily(
+      "27d7397bab8b00c04af768831257e607d3d63aec4ecac912cc77b78be1938d51",
+      "Jasmine",
+      "rayures",
+      10
     ),
     GuestAndFamily(
       "0ed3dace4134e9c806f06406545ab6203ce2a38fa6e9e59993a9d875231677dc",
@@ -464,109 +473,121 @@ object GuestsAndFamilies2025 {
       "5a7749b70464747ea46a61d12df45bc1b6ac7b1646001a4bed5530c825eafd3e",
       "FloGourdon",
       "paillettes",
-      9
+      10
     ),
     GuestAndFamily(
       "cfc5c26267a2a44c5283b15dc2932b17ac667256374deb1365de4e8fc1fd3056",
       "ManonMartins",
       "paillettes",
-      9
+      10
     ),
     GuestAndFamily(
       "24598bf32a8fc28dda270baec690e51b4a0fe03a6a45fbe4284fcc87e43fa43c",
       "Cecile",
       "paillettes",
-      9
+      10
     ),
     GuestAndFamily(
       "956a3f04ca199d1e49534c53d1f73be201d4311bfc7647e08ddd876dd25bf7c0",
       "Elsa",
       "paillettes",
-      9
+      10
     ),
     GuestAndFamily(
       "747d2ed0d5e6e19f9fc4b7379c35a1e06a7e1df64b6027a6b1c73b913f9aecac",
       "Raph",
       "paillettes",
-      9
+      10
     ),
     GuestAndFamily(
       "9be84c692209bf2234f88a42fca1f0970c03babb5a152dac0b1a2dff66e80081",
       "AlexRaud",
       "paillettes",
-      9
+      10
     ),
     GuestAndFamily(
       "5e27e1235c559d95d46dbef8f46eb8b26ca831fe8ff2c7da81a566b8c4df7d55",
       "LucasPonton",
       "paillettes",
-      9
+      10
     ),
     GuestAndFamily(
       "e419bb25c3581ada514ee7cb8339a61c22e2f669f37813a3a073432eaf0eb33a",
       "Emeline",
       "paillettes",
-      9
+      10
     ),
     GuestAndFamily(
       "a75c1a27b76e88a3a7635c5588efad63d316cd073cac221ba2964720245eeeb0",
       "Gégé",
       "paillettes",
-      9
+      10
+    ),
+    GuestAndFamily(
+      "fa079780d5242affbd1cc59ac5bae437fda2268dd1c665c61bac349571569e1b",
+      "Kieren",
+      "paillettes",
+      10
+    ),
+    GuestAndFamily(
+      "1f25b7c9726c897ab4534660457ad33474932c9fe3114861d21cdb84ee2df4dc",
+      "Katrin",
+      "legumes",
+      10
     ),
     GuestAndFamily(
       "1a9c4c13e305eaa5e799912867904da6c226b2d8624fea3a9b76f78ea7c20d2f",
       "Caro",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "9e97766a8b1ebd109c475ac4dcadaed9d091b5ba13c273f68367181e1515e713",
       "FloChevalier",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "4543756da7045e27738d04fc0f79fd539eca1ed5270f7ffa35c2cad44fab79dc",
       "AlexNevski",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "0f60fa43b6bbea38b55be9c5950e5dcbf9887cec61e30284c997410f3705f911",
       "Nono",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "f66ed0360002e0ffc595f6a63d146e7345421075a7ade2a08699f56bfc41cd66",
       "MarieGermain",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "77d5d9d7da8a16a4e3fc9cfe8689e259e39d4f500c7a565a6a70f5972fb6c9dc",
       "SebDec",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "04a29c68ba8239ec711f5c56b34e0980873238211b0fed3806aacbacd353a750",
       "Mayou",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "7cb483894f46ed4f88fcbacc6e59f007cd76d9317e48e9d93d456fd87eec8a4e",
       "Chandra",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "b3bc0aeb88197dcf3e307f6172761488c1dfca7776ce72ba4175825dc42fd6df",
       "MargauxFanch",
       "legumes",
-      9
+      10
     ),
     GuestAndFamily(
       "ad182135c5442f866084550c024a441a851ed8d4d67ef48f8d8faaae706441c6",
